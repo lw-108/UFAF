@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Case1 } from "@/components/ui/Case1"; // import the carousel
 import type { FC } from "react";
+import Image from "next/image";
 
 // --------------- TEXT CONTENT (3 PARAGRAPHS) ----------------
 
@@ -124,11 +125,16 @@ export const About3: FC = () => {
               </Button>
             </div>
 
-            <img
-              src="https://i.redd.it/s59mnjg6wvqa1.gif"
-              alt="placeholder"
-              className="object-cover max-h-[300px] rounded-4xl mr-2"
-            />
+            <div className="relative max-h-[300px] w-auto overflow-hidden rounded-4xl mr-2">
+              <Image
+                src="https://i.redd.it/s59mnjg6wvqa1.gif"
+                alt="placeholder"
+                width={500}
+                height={300}
+                className="object-cover w-auto h-auto max-h-[300px]"
+                unoptimized
+              />
+            </div>
           </div>
         </div>
 
