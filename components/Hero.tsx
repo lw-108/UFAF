@@ -7,7 +7,6 @@ export function Hero67() {
     <section className="py-24 bg-background">
       <div className="container">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 text-center px-4 lg:px-0">
-          
           {/* Heading */}
           <h1 className="text-4xl font-semibold tracking-tight lg:text-6xl">
             Empowering the Future Through Knowledge
@@ -18,14 +17,11 @@ export function Hero67() {
             <strong className="font-medium text-foreground">
               U-Fill Academy
             </strong>{" "}
-            is committed to shaping tomorrow's leaders. Fill your knowledge —
-            fill your future with practical learning programs, expert instructors,
-            and industry-ready skills.
+            {`is committed to shaping tomorrow's leaders. Fill your knowledge — fill your future with practical learning programs, expert instructors, and industry-ready skills.`}
           </p>
 
           {/* CTA */}
           <div className="flex w-full flex-col items-center justify-center gap-5 sm:flex-row">
-
             <Button
               size="lg"
               className="shadow-md hover:scale-[1.03] transition-transform"
@@ -49,7 +45,6 @@ export function Hero67() {
                 1,000+ learners already joined
               </p>
             </div>
-
           </div>
         </div>
 

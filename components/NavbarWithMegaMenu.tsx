@@ -160,7 +160,14 @@ function ProfileMenu() {
   );
 }
 
-function MenuItem({ title, description, icon: Icon, href }: any) {
+interface MenuItemProps {
+  title: string;
+  description: string;
+  href: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+function MenuItem({ title, description, icon: Icon, href }: MenuItemProps) {
   return (
     <Link
       href={href}
@@ -176,6 +183,7 @@ function MenuItem({ title, description, icon: Icon, href }: any) {
     </Link>
   );
 }
+
 
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);

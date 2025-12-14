@@ -16,11 +16,15 @@ import Image from "next/image";
 // --------------- TEXT CONTENT (3 PARAGRAPHS) ----------------
 
 const paragraphs = [
-  `U Fill Academy is an educational initiative built on the principle of “Education for All.” Our core motive is to serve society by providing free and accessible education to tribal students and children from economically weaker sections.`,
-
-  `We believe that every child deserves quality learning opportunities, regardless of background or financial status. By offering free academic support, tuition classes, and career guidance, U Fill Academy ensures that underprivileged students get equal access to knowledge and skills.`,
-
-  `Along with core academics, we also provide Co-Curricular (CCA) and Extra-Curricular (ECA) programs that help students grow holistically. From foundation classes, JEE/NEET/GATE guidance, to sports, arts, personality development, and skill training, we create an environment where learning is not just about passing exams, but also about building confidence, creativity, and character.`,
+  {
+    text: "U Fill Academy is an educational initiative built on the principle of \"Education for All.\" Our core motive is to serve society by providing free and accessible education to tribal students and children from economically weaker sections.",
+  },
+  {
+    text: "We believe that every child deserves quality learning opportunities, regardless of background or financial status. By offering free academic support, tuition classes, and career guidance, U Fill Academy ensures that underprivileged students get equal access to knowledge and skills.",
+  },
+  {
+    text: "Along with core academics, we also provide Co-Curricular (CCA) and Extra-Curricular (ECA) programs that help students grow holistically. From foundation classes, JEE/NEET/GATE guidance, to sports, arts, personality development, and skill training, we create an environment where learning is not just about passing exams, but also about building confidence, creativity, and character.",
+  },
 ];
 
 // ------------------ Achievements ------------------
@@ -56,12 +60,12 @@ export const About3: FC = () => {
 
           {/* ABOUT TEXT BOX */}
           <div
-            className={`max-w-3xl mx-auto mt-8 rounded-2xl  bg-background/50 backdrop-blur p-6 sm:p-8 text-muted-foreground overflow-hidden transition-all duration-500 ease-in-out 
+            className={`max-w-3xl mx-auto mt-8 rounded-2xl bg-background/50 backdrop-blur p-6 sm:p-8 text-muted-foreground overflow-hidden transition-all duration-500 ease-in-out 
   ${expanded ? "max-h-[1000px]" : "max-h-[280px]"}`}
           >
             <div className="space-y-4 text-left leading-relaxed text-lg md:text-xl pt-1 pr-5 pl-5 overflow-y-auto max-h-[350px] no-scrollbar">
               {paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
+                <p key={i}>{p.text}</p>
               ))}
             </div>
           </div>
@@ -112,7 +116,7 @@ export const About3: FC = () => {
           {/* RIGHT SIDE CARD + IMAGE */}
           <div className="flex flex-col justify-between gap-7">
             <div className="p-6 mr-2 space-y-4 bg-transparent shadow-sm rounded-4xl">
-              <img src="/u-robo.png" alt="logo" className="h-25" />
+              <Image src="/u-robo.png" alt="logo" width={200} height={200} />
               <h3 className="text-lg font-semibold text-white">
                 Innovation That Matters
               </h3>

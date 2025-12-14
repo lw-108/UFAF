@@ -32,7 +32,7 @@ const academicQuestions = [
   },
   {
     q: "Is parental involvement encouraged?",
-    a: "Absolutely. We frequently host parent–teacher meetings, workshops, and collaborative events to strengthen the academic partnership.",
+    a: "Absolutely. We frequently host parent-teacher meetings, workshops, and collaborative events to strengthen the academic partnership.",
   },
 ];
 
@@ -40,11 +40,13 @@ export const FrequentAskedQuestions = () => (
   <div className="w-full py-20 lg:py-40">
     <div className="container mx-auto">
       <div className="grid gap-10 lg:grid-cols-2">
-        
         {/* --- LEFT SIDE CONTENT --- */}
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
-            <Badge variant="outline" className="px-4 py-1 text-sm font-medium tracking-wide">
+            <Badge
+              variant="outline"
+              className="px-4 py-1 text-sm font-medium tracking-wide"
+            >
               Academic FAQ
             </Badge>
 
@@ -53,9 +55,7 @@ export const FrequentAskedQuestions = () => (
             </h4>
 
             <p className="max-w-xl text-lg leading-relaxed text-left text-muted-foreground">
-              Whether you're a parent, educator, or student — we’ve answered the most frequently
-              asked academic and institutional questions to guide you through our educational
-              experience.
+              {"Whether you're a parent, educator, or student — we’ve answered the most frequently asked academic and institutional questions to guide you through our educational experience."}
             </p>
 
             <Button className="gap-3 w-fit" variant="outline">
@@ -65,11 +65,7 @@ export const FrequentAskedQuestions = () => (
         </div>
 
         {/* --- ACCORDION --- */}
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full space-y-4"
-        >
+        <Accordion type="single" collapsible className="w-full space-y-4">
           {academicQuestions.map((item, index) => (
             <AccordionItem
               key={index}
@@ -80,9 +76,7 @@ export const FrequentAskedQuestions = () => (
               )}
             >
               <AccordionTrigger className="py-4 text-lg font-medium leading-snug tracking-tight text-left">
-                <div className="flex items-center gap-3">
-                  {item.q}
-                </div>
+                <div className="flex items-center gap-3">{item.q}</div>
               </AccordionTrigger>
 
               <AccordionContent className="pb-4 leading-relaxed text-muted-foreground">
