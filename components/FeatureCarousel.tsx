@@ -332,7 +332,7 @@ export const FeatureCarousel = () => {
         <div className="max-w-2xl mx-auto mt-16 text-center">
           <p className="text-sm text-muted-foreground">
             Each stage builds upon the previous, ensuring a continuous learning journey
-            that adapts to your child's growth and development needs.
+            that adapts to your child&apos;s growth and development needs.
           </p>
         </div>
       </div>
