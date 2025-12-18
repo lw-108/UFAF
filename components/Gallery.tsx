@@ -1,39 +1,42 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Image from "next/image"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import * as React from "react";
+import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog"
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
-import { Calendar, MapPin, ImageIcon, Camera, GraduationCap, Cpu, Trophy } from "lucide-react"
-import { cn } from "@/lib/utils"
+  Calendar,
+  MapPin,
+  ImageIcon,
+  Camera,
+  GraduationCap,
+  Cpu,
+  Trophy,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 /* ---------------------------------------------
    IMAGE DATA (easy to manage)
 --------------------------------------------- */
 
 type GalleryImage = {
-  src: string
-  alt: string
-  title: string
-  description: string
-  date: string
-  venue: string
-}
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+  date: string;
+  venue: string;
+};
 
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
 type GalleryTab = {
-  label: string
-  value: string
-  icon: ReactNode
-  images: GalleryImage[]
-}
-
+  label: string;
+  value: string;
+  icon: ReactNode;
+  images: GalleryImage[];
+};
 
 const GALLERY_TABS: GalleryTab[] = [
   {
@@ -103,7 +106,7 @@ const GALLERY_TABS: GalleryTab[] = [
         date: "Every Friday",
         venue: "Robotics Lab",
       },
-       {
+      {
         src: "/forest.png",
         alt: "Robotics Club",
         title: "Robotics Club Meetup",
@@ -113,57 +116,50 @@ const GALLERY_TABS: GalleryTab[] = [
       },
     ],
   },
-]
+];
 
 /* ---------------------------------------------
    MAIN COMPONENT
 --------------------------------------------- */
 
 export default function GalleryWithTabs() {
-  const [activeImage, setActiveImage] = React.useState<GalleryImage | null>(null)
+  const [activeImage, setActiveImage] = React.useState<GalleryImage | null>(
+    null
+  );
 
   return (
-    <section className="w-full py-24 border-dashed border-l-0 border-r-0 border-t-0 border-b border-white/20 rounded-4xl">
-      <div className="max-w-7xl mx-auto px-6 space-y-12">
-
+    <section className="w-full py-24 border-t-0 border-b border-l-0 border-r-0 border-dashed border-white/20 rounded-4xl">
+      <div className="px-6 mx-auto space-y-12 max-w-7xl">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight">
+        <div className="max-w-3xl mx-auto space-y-4 text-center">
+          <h2 className="font-serif text-4xl tracking-tight md:text-5xl lg:text-6xl">
             Campus Gallery
           </h2>
           <p className="text-muted-foreground">
-            Explore our events, workshops, and student activities through moments
-            captured across campus life.
+            Explore our events, workshops, and student activities through
+            moments captured across campus life.
           </p>
         </div>
 
         {/* Tabs */}
         <Tabs defaultValue="events" className="w-full">
-          <TabsList className="mx-auto flex w-fit flex-wrap justify-center gap-2 mb-12">
-          {GALLERY_TABS.map((tab) => (
-            <TabsTrigger
-              key={tab.value}
-              value={tab.value}
-              className="gap-2"
-            >
-              {tab.icon}
-              {tab.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+          <TabsList className="flex flex-wrap justify-center gap-2 mx-auto mb-12 w-fit">
+            {GALLERY_TABS.map((tab) => (
+              <TabsTrigger key={tab.value} value={tab.value} className="gap-2">
+                {tab.icon}
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-          {GALLERY_TABS.map(tab => (
-            <TabsContent
-              key={tab.value}
-              value={tab.value}
-              className="mt-12"
-            >
+          {GALLERY_TABS.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value} className="mt-12">
               {/* Masonry Grid */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+              <div className="gap-6 space-y-6 columns-1 sm:columns-2 lg:columns-3">
                 {tab.images.map((image, idx) => (
                   <div
                     key={idx}
-                    className="relative group break-inside-avoid cursor-pointer"
+                    className="relative cursor-pointer group break-inside-avoid"
                     onClick={() => setActiveImage(image)}
                   >
                     {/* Image */}
@@ -173,27 +169,25 @@ export default function GalleryWithTabs() {
                         alt={image.alt}
                         width={600}
                         height={400}
-                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover w-full h-auto transition-transform duration-500 group-hover:scale-105"
                       />
 
                       {/* Hover Overlay */}
                       <div
-                        className="
-                          absolute inset-[5px]
-                          rounded-lg
-                          bg-primary/70
-                          backdrop-blur-md
-                          text-primary-foreground
-                          opacity-0
-                          group-hover:opacity-100
-                          transition-opacity
-                          flex flex-col justify-end
-                          p-4
-                        "
+                        className={cn(
+                          "absolute inset-[5px]",
+                          "rounded-lg",
+                          "bg-primary/70",
+                          "backdrop-blur-md",
+                          "text-primary-foreground",
+                          "opacity-0",
+                          "group-hover:opacity-100",
+                          "transition-opacity",
+                          "flex flex-col justify-end",
+                          "p-4"
+                        )}
                       >
-                        <h3 className="font-semibold text-lg">
-                          {image.title}
-                        </h3>
+                        <h3 className="text-lg font-semibold">{image.title}</h3>
 
                         <p className="text-sm opacity-90 line-clamp-2">
                           {image.description}
@@ -223,7 +217,7 @@ export default function GalleryWithTabs() {
           Focus Image Modal (NO CROP + ZOOM)
       --------------------------------------------- */}
       <Dialog open={!!activeImage} onOpenChange={() => setActiveImage(null)}>
-        <DialogContent className="max-w-6xl p-4 bg-black overflow-auto">
+        <DialogContent className="max-w-6xl p-4 overflow-auto bg-black">
           <VisuallyHidden>
             <DialogTitle>Image preview</DialogTitle>
           </VisuallyHidden>
@@ -249,5 +243,5 @@ export default function GalleryWithTabs() {
         </DialogContent>
       </Dialog>
     </section>
-  )
+  );
 }
