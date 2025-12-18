@@ -138,7 +138,7 @@ export const FeatureCarousel = () => {
           </h2>
           <p className="text-lg text-muted-foreground">
             A structured journey from foundational discovery to future-ready skills,
-            designed to nurture every child's potential.
+            designed to nurture every child&apos;s potential.
           </p>
         </div>
 

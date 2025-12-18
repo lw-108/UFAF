@@ -19,6 +19,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 interface Footer7Props {
   logo?: {
@@ -140,7 +141,7 @@ const Footer7 = ({
               {/* Logo & Brand */}
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-20 h-20 bg-transparent">
-                  <img src="/u-robo.png" alt="u-robo"  />
+                  <Image src="/u-robo.png" alt="hero" width={500} height={300} />
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight">

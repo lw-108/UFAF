@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { BookOpen, GraduationCap, Users } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
 
 interface Feature {
   id: string;
@@ -36,8 +37,7 @@ export const Feature51 = ({
       heading: "Research & Innovation",
       description:
         "Work alongside top faculty and industry experts to solve real-world problems and develop breakthrough solutions.",
-      image:
-        "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
+      image: "/forest.png",
       url: "/research",
       isDefault: false,
     },
@@ -53,7 +53,8 @@ export const Feature51 = ({
     },
   ],
 }: Feature51Props) => {
-  const defaultTab = features.find((tab) => tab.isDefault)?.id || features[0].id;
+  const defaultTab =
+    features.find((tab) => tab.isDefault)?.id || features[0].id;
 
   const [activeTab, setActiveTab] = useState(defaultTab);
 
@@ -101,7 +102,9 @@ export const Feature51 = ({
                   </p>
                 </div>
 
-                <p className="font-normal text-muted-foreground">{tab.description}</p>
+                <p className="font-normal text-muted-foreground">
+                  {tab.description}
+                </p>
               </TabsTrigger>
             ))}
           </TabsList>
@@ -110,13 +113,22 @@ export const Feature51 = ({
           {features.map((tab) => (
             <TabsContent key={tab.id} value={tab.id}>
               <div className="relative w-full h-[450px] md:h-[550px] lg:h-[650px] rounded-md overflow-hidden shadow-xl transition-opacity duration-500">
-                <img src={tab.image} alt={tab.heading} className="object-cover w-full h-full" />
-
+                <Image
+                  src={tab.image}
+                  alt={tab.heading}
+                  fill
+                  priority={tab.isDefault}
+                  className="object-cover"
+                />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
                 <div className="absolute max-w-xl space-y-3 bottom-10 left-10">
-                  <h3 className="text-2xl font-bold text-white md:text-4xl">{tab.heading}</h3>
-                  <p className="text-base text-white/80 md:text-lg">{tab.description}</p>
+                  <h3 className="text-2xl font-bold text-white md:text-4xl">
+                    {tab.heading}
+                  </h3>
+                  <p className="text-base text-white/80 md:text-lg">
+                    {tab.description}
+                  </p>
 
                   <a
                     href={tab.url}
