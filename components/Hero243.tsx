@@ -1,4 +1,3 @@
-import { TrendingUp, Users, Zap } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
@@ -46,7 +45,7 @@ const Hero243 = () => {
             alt="U Fill Academy Showcase"
             width={1280}
             height={720}
-            className="mx-auto aspect-video max-h-[700px] w-full max-w-7xl rounded-xl object-cover shadow-xl"
+            className="object-cover w-full mx-auto shadow-xl aspect-video max-h-175 max-w-7xl rounded-xl"
           />
         </div>
       </div>
