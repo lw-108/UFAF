@@ -72,7 +72,7 @@ export const FrequentAskedQuestions = () => (
               value={`faq-${index}`}
               className={cn(
                 "rounded-xl border border-border/50 px-4 transition-all duration-300",
-                "hover:shadow-sm hover:border-foreground/30"
+                "hover:shadow-sm hover:border-foreground/30 mb-5"
               )}
             >
               <AccordionTrigger className="py-4 text-lg font-medium leading-snug tracking-tight text-left">

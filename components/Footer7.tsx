@@ -297,26 +297,6 @@ const Footer7 = ({
             </span>
           </p>
         </div>
-
-        {/* Newsletter Signup (Optional) */}
-        <div className="p-6 mt-8 border rounded-lg">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div>
-              <h4 className="font-semibold">Stay Updated</h4>
-              <p className="text-sm text-muted-foreground">
-                Get notified about new programs, workshops, and special offers
-              </p>
-            </div>
-            <div className="flex w-full max-w-sm gap-2">
-              <input 
-                type="email" 
-                placeholder="Enter parent's email"
-                className="flex-1 px-3 py-2 text-sm border rounded-md"
-              />
-              <Button size="sm">Subscribe</Button>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Decorative Elements */}
