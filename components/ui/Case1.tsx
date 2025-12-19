@@ -10,16 +10,16 @@ import {
 } from "@/components/ui/carousel";
 
 const logos = [
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
-  "u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
+  "/u-robo.png",
 ];
 
 // Duplicate for seamless loop

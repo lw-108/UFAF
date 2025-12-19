@@ -11,42 +11,42 @@ const testimonials = [
     testimonial:
       "  The platform has revolutionized our workflow and increased productivity.",
     by: `Alex, CEO at TechCorp`,
-    imgSrc: `https://i.pravatar.cc/150?img=1`,
+    imgSrc: `/vercel.svg`,
   },
   {
     tempId: 1,
     testimonial:
       " COMPANY has significantly improved our security infrastructure.",
     by: `Dan, CTO at SecureNet`,
-    imgSrc: `https://i.pravatar.cc/150?img=2`,
+    imgSrc: `/vercel.svg`,
   },
   {
     tempId: 2,
     testimonial:
       " The customer support from COMPANY has been outstanding and prompt.",
     by: `Stephanie, COO at InnovateCo`,
-    imgSrc: `https://i.pravatar.cc/150?img=3`,
+    imgSrc: `/vercel.svg`,
   },
   {
     tempId: 3,
     testimonial:
       " COMPANY's analytics have given us incredible insights into our customer behavior.",
     by: `Marie, CFO at FuturePlanning`,
-    imgSrc: `https://i.pravatar.cc/150?img=4`,
+    imgSrc: `/vercel.svg`,
   },
   {
     tempId: 4,
     testimonial:
       "The intuitive design and robust features have boosted our productivity tremendously.",
     by: `Andre, Head of Design at CreativeSolutions`,
-    imgSrc: `https://i.pravatar.cc/150?img=5`,
+    imgSrc: `/vercel.svg`,
   },
   {
     tempId: 5,
     testimonial:
       "This Academy has transformed the way our team approaches learning and development.",
     by: `Jeremy, Product Manager at TimeWise`,
-    imgSrc: `https://i.pravatar.cc/150?img=6`,
+    imgSrc: `/vercel.svg`,
   },
 ];
 
@@ -72,7 +72,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
         isCenter
           ? "z-10 bg-primary text-primary-foreground border-primary"
-          : "z-0 bg-card text-card-foreground border-border hover:border-primary/50"
+          : "z-0 bg-card text-card-foreground border-border hover:border-primary"
       )}
       style={{
         width: cardSize,
@@ -103,7 +103,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         alt={testimonial.by.split(",")[0]}
         width={48}
         height={56}
-        className="object-cover object-top w-12 mb-4 h-14 bg-muted"
+        className="object-top w-12 mb-4 bg-transparent h-14"
         style={{ boxShadow: "3px 3px 0px hsl(var(--background))" }}
       />
 
@@ -186,7 +186,7 @@ export const StaggerTestimonials: React.FC = () => {
           onClick={() => handleMove(-1)}
           className={cn(
             "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-background border-2 border-border hover:bg-primary hover:text-primary-foreground",
+            "bg-background border-2 border-border  hover:bg-primary hover:text-primary-foreground",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           )}
           aria-label="Previous testimonial"
