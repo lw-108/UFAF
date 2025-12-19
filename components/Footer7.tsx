@@ -10,7 +10,6 @@ import {
   FaEnvelope, 
   FaBook, 
   FaUserGraduate,
-  FaChild,
   FaCalendarAlt,
   FaCertificate,
   FaUsers,
@@ -22,12 +21,6 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
 interface Footer7Props {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-  };
   sections?: Array<{
     title: string;
     icon?: React.ReactElement;
@@ -114,12 +107,6 @@ const defaultContactInfo = {
 };
 
 const Footer7 = ({
-  logo = {
-    url: "/",
-    src: "/urobo.png",
-    alt: "U Fill Academy Logo",
-    title: "U FILL ACADEMY"
-  },
   sections = defaultSections,
   description = "U FILL ACADEMY provides exceptional summer classes, weekend programs, and after-school learning experiences for children and students. We focus on holistic development through innovative teaching methods.",
   socialLinks = defaultSocialLinks,
@@ -141,7 +128,7 @@ const Footer7 = ({
               {/* Logo & Brand */}
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-20 h-20 bg-transparent">
-                  <Image src="/u-robo.png" alt="hero" width={500} height={300} />
+                  <Image src="/u-robo.png" alt="U Fill Academy Logo" width={500} height={300} />
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight">

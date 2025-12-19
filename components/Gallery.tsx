@@ -8,9 +8,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   Calendar,
   MapPin,
-  ImageIcon,
   Camera,
-  GraduationCap,
   Cpu,
   Trophy,
 } from "lucide-react";
@@ -175,7 +173,7 @@ export default function GalleryWithTabs() {
                       {/* Hover Overlay */}
                       <div
                         className={cn(
-                          "absolute inset-[5px]",
+                          "absolute inset-1.25",
                           "rounded-lg",
                           "bg-primary/70",
                           "backdrop-blur-md",

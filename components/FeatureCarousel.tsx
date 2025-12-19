@@ -6,11 +6,8 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { BookOpen, Users, Mic, Lightbulb, Rocket } from "lucide-react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Play, Pause } from "lucide-react";
 
@@ -193,7 +190,7 @@ export const FeatureCarousel = () => {
                 <CarouselItem key={index} className="basis-full">
                   <div className={`p-1 rounded-3xl overflow-hidden bg-linear-to-br ${stage.color} border shadow-lg`}>
                     <div className="overflow-hidden bg-white dark:bg-gray-900 rounded-2xl">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[480px]">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-120">
                         
                         {/* Left Content */}
                         <div className="flex flex-col justify-between p-10 lg:p-12">
