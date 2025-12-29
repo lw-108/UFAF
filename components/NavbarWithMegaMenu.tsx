@@ -126,39 +126,39 @@ function NavList() {
   );
 }
 
-function ProfileMenu() {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Avatar className="w-8 h-8 border-2 border-dashed cursor-pointer border-primary">
-          <AvatarImage
-            src="https://images.unsplash.com/photo-1716662318479-a9c0f1cd1a0e?auto=format"
-            alt="Profile"
-          />
-          <AvatarFallback>CT</AvatarFallback>
-        </Avatar>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="end"
-        className="border border-dashed rounded-md"
-      >
-        <DropdownMenuItem>
-          <User className="w-4 h-4 mr-2" /> My Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Settings className="w-4 h-4 mr-2" /> Edit Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <HelpCircle className="w-4 h-4 mr-2" /> Support
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-destructive">
-          <LogOut className="w-4 h-4 mr-2" /> Logout
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+// function ProfileMenu() {
+//   return (
+//     <DropdownMenu>
+//       <DropdownMenuTrigger asChild>
+//         <Avatar className="w-8 h-8 border-2 border-dashed cursor-pointer border-primary">
+//           <AvatarImage
+//             src="https://images.unsplash.com/photo-1716662318479-a9c0f1cd1a0e?auto=format"
+//             alt="Profile"
+//           />
+//           <AvatarFallback>CT</AvatarFallback>
+//         </Avatar>
+//       </DropdownMenuTrigger>
+//       <DropdownMenuContent
+//         align="end"
+//         className="border border-dashed rounded-md"
+//       >
+//         <DropdownMenuItem>
+//           <User className="w-4 h-4 mr-2" /> My Profile
+//         </DropdownMenuItem>
+//         <DropdownMenuItem>
+//           <Settings className="w-4 h-4 mr-2" /> Edit Profile
+//         </DropdownMenuItem>
+//         <DropdownMenuItem>
+//           <HelpCircle className="w-4 h-4 mr-2" /> Support
+//         </DropdownMenuItem>
+//         <DropdownMenuSeparator />
+//         <DropdownMenuItem className="text-destructive">
+//           <LogOut className="w-4 h-4 mr-2" /> Logout
+//         </DropdownMenuItem>
+//       </DropdownMenuContent>
+//     </DropdownMenu>
+//   );
+// }
 
 interface MenuItemProps {
   title: string;
@@ -246,8 +246,8 @@ export function NavbarWithMegaMenu() {
               <span className="text-blue-600 text-[70px] uppercase font-nsec leading-none">
                 U
               </span>
-              <div className="flex flex-col items-start -mt-2 -ml-1 -space-y-2">
-                <span className="font-league text-[16px] sm:text-[18px] md:text-[20px] dark:text-white text-black">
+              <div className="flex flex-col items-start -mt-2 -ml-0.5 -space-y-2">
+                <span className="font-league text-[16px] ml-0.5 sm:text-[18px] md:text-[20px] dark:text-white text-black">
                   FILL
                 </span>
                 <span className="font-league text-[16px] sm:text-[18px] md:text-[20px] dark:text-white text-black">
@@ -268,7 +268,7 @@ export function NavbarWithMegaMenu() {
                   </NavigationMenuTrigger>
 
                   <NavigationMenuContent>
-                    <div className="grid w-[800px] grid-cols-3 gap-4 p-4 border border-dashed rounded-md bg-background/90">
+                    <div className="grid grid-cols-3 gap-4 p-4 border border-dashed rounded-md w-200 bg-background/90">
                       {MEGA_MENU_SECTIONS.map((section, sIndex) => (
                         <div key={sIndex} className="space-y-2">
                           <h4 className="text-xs font-semibold text-muted-foreground">
@@ -317,7 +317,7 @@ export function NavbarWithMegaMenu() {
               <ThemeToggle />
             </div>
 
-            <ProfileMenu />
+            {/* <ProfileMenu /> */}
           </div>
         </div>
 
