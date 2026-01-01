@@ -176,9 +176,13 @@ const Footer7 = ({
               </div>
 
               {/* CTA Button */}
-              <Button className="w-full">
-                Schedule a Free Demo Class
-              </Button>
+             <Button 
+  className="text-white bg-primary hover:bg-primary/90" 
+  onClick={() => window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLScG3nDXAdVCfPN0fZbw_i72XbvapbCYzYSBtxlm6o2IHPQygg/viewform"}
+>
+  Schedule a Visit
+</Button>
+
             </div>
           </div>
 
@@ -282,9 +286,8 @@ const Footer7 = ({
 
           {/* Made with Love */}
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>Build with</span>
-            <FaHeart className="w-3 h-3 text-destructive" />
-            <span>for young learners</span>
+            <span>By</span>
+            <span className="font-bold text-primary">LW_19</span>
           </div>
         </div>
 

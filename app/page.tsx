@@ -18,17 +18,17 @@ import { Footer7 } from "@/components/Footer7";
 
 const Page = () => {
   return (
-    <div className="w-full min-h-screen border-dashed border-t-0 border-b-0  border-white overflow-visible">
+    <div className="w-full min-h-screen overflow-visible border-t-0 border-b-0 border-white border-dashed">
       <NavbarWithMegaMenu />
       
-      <div className="mt-[100px]">
+      <div className="mt-25">
         <Banner1
           linkUrl="https://udyamregistration.gov.in"
           codes={["TNSLMAILMTRSE-6-25-00060", "UDYAM-TN-20-0154420"]}
         />
       </div>
 
-      <main className="px-4 pt-10 mx-auto space-y-20 max-w-7xl sm:px-6 lg:px-8 border-dashed border-t-0 border-b-0  border-white overflow-visible">
+      <main className="px-4 pt-10 mx-auto space-y-20 overflow-visible border-t-0 border-b-0 border-white border-dashed max-w-7xl sm:px-6 lg:px-8">
         <Hero243 />
         <ThirukkuralSection />
         <About3 />

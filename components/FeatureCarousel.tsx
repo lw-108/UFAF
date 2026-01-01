@@ -125,17 +125,18 @@ export const FeatureCarousel = () => {
   return (
     <section className="w-full py-24 border border-t-0 border-l-0 border-r-0 border-dashed rounded-4xl lg:py-40 bg-background border-white/20">
       <div className="container px-4 mx-auto">
-        
         {/* Header */}
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
             Our Progressive
             <br />
-            <span className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">Educational Pathway</span>
+            <span className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
+              Educational Pathway
+            </span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            A structured journey from foundational discovery to future-ready skills,
-            designed to nurture every child&apos;s potential.
+            A structured journey from foundational discovery to future-ready
+            skills, designed to nurture every child&apos;s potential.
           </p>
         </div>
 
@@ -176,10 +177,10 @@ export const FeatureCarousel = () => {
           </div>
 
           {/* Carousel */}
-          <Carousel 
-            setApi={setApi} 
+          <Carousel
+            setApi={setApi}
             className="w-full max-w-4xl mx-auto"
-            opts={{ 
+            opts={{
               align: "center",
               slidesToScroll: 1,
               duration: 30,
@@ -188,26 +189,32 @@ export const FeatureCarousel = () => {
             <CarouselContent>
               {stages.map((stage, index) => (
                 <CarouselItem key={index} className="basis-full">
-                  <div className={`p-1 rounded-3xl overflow-hidden bg-linear-to-br ${stage.color} border shadow-lg`}>
-                    <div className="overflow-hidden bg-white dark:bg-gray-900 rounded-2xl">
+                  <div
+                    className={`p-1 rounded-3xl overflow-hidden bg-linear-to-br ${stage.color} border shadow-lg`}
+                  >
+                    <div className="overflow-hidden bg-background rounded-2xl">
                       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-120">
-                        
                         {/* Left Content */}
                         <div className="flex flex-col justify-between p-10 lg:p-12">
                           <div className="space-y-6">
                             <div className="flex items-start justify-between">
-                              <div>
-                                <div className={`inline-flex items-center justify-center p-3 rounded-xl ${stage.color.replace('from-', 'bg-').replace(' to-', '/20')} mb-4`}>
-                                  <stage.icon className={`h-7 w-7 ${stage.iconColor}`} />
+                              <div className="space-y-2 -top-6">
+                                <div
+                                  className={`inline-flex items-center justify-center p-3 rounded-xl ${stage.color
+                                    .replace("from-", "bg-")
+                                    .replace(" to-", "/20")} mb-4`}
+                                >
+                                  <stage.icon
+                                    className={`h-7 w-7 ${stage.iconColor}`}
+                                  />
                                 </div>
-                                <span className="px-3 py-1 text-sm font-medium rounded-full text-primary bg-primary/10">
+                                <span className="relative px-3 py-1 text-sm font-medium -translate-y-1/2 rounded-full -top-2 text-primary bg-primary/10">
                                   {stage.stage}
                                 </span>
                               </div>
                               <div className="text-right">
-                                <div className="text-xs text-muted-foreground">Slideshow</div>
-                                <div className="font-mono text-2xl">
-                                  {String(index + 1).padStart(2, '0')}/05
+                                <div className="font-mono text-2xl top-6">
+                                  {String(index + 1).padStart(2, "0")}/05
                                 </div>
                               </div>
                             </div>
@@ -237,20 +244,30 @@ export const FeatureCarousel = () => {
                         </div>
 
                         {/* Right Image */}
-                        <div className="relative overflow-hidden bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+                        <div className="relative overflow-hidden bg-background">
                           <div className="absolute inset-0 flex items-center justify-center p-8">
                             <div className="relative w-64 h-64 lg:w-80 lg:h-80">
                               {/* Placeholder for image - you can replace with actual Image component */}
                               <div className="absolute inset-0 border shadow-inner rounded-2xl bg-linear-to-br from-white to-gray-100" />
                               <div className="absolute inset-4 rounded-xl bg-linear-to-br from-gray-200 to-gray-300 animate-pulse" />
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <stage.icon className={`h-24 w-24 ${stage.iconColor} opacity-20`} />
+                                <stage.icon
+                                  className={`h-24 w-24 ${stage.iconColor} opacity-20`}
+                                />
                               </div>
                             </div>
                           </div>
                           <div className="absolute bottom-6 left-6">
                             <div className="text-xs text-muted-foreground">
-                              U Fill Academy • Age Group: {index === 0 ? "3-5" : index === 1 ? "6-10" : index === 2 ? "11-14" : "15-18"} years
+                              U Fill Academy • Age Group:{" "}
+                              {index === 0
+                                ? "3-5"
+                                : index === 1
+                                ? "6-10"
+                                : index === 2
+                                ? "11-14"
+                                : "15-18"}{" "}
+                              years
                             </div>
                           </div>
                         </div>
@@ -264,7 +281,7 @@ export const FeatureCarousel = () => {
 
           {/* Progress Indicators */}
           <div className="flex flex-col items-center gap-6 mt-12">
-            <div className="flex items-center gap-3">
+            {/*<div className="flex items-center gap-3">
               {stages.map((_, index) => (
                 <button
                   key={index}
@@ -292,13 +309,17 @@ export const FeatureCarousel = () => {
                   )}
                 </button>
               ))}
-            </div>
+            </div> */}
 
             {/* Slide Counter & Timer */}
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <div className={`h-2 w-2 rounded-full ${isPlaying ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`} />
-                <span>{isPlaying ? 'Auto-playing' : 'Paused'}</span>
+                <div
+                  className={`h-2 w-2 rounded-full ${
+                    isPlaying ? "bg-green-500 animate-pulse" : "bg-gray-400"
+                  }`}
+                />
+                <span>{isPlaying ? "Auto-playing" : "Paused"}</span>
               </div>
               <div className="flex items-center gap-4">
                 <Button
@@ -328,8 +349,9 @@ export const FeatureCarousel = () => {
         {/* Footer Note */}
         <div className="max-w-2xl mx-auto mt-16 text-center">
           <p className="text-sm text-muted-foreground">
-            Each stage builds upon the previous, ensuring a continuous learning journey
-            that adapts to your child&apos;s growth and development needs.
+            Each stage builds upon the previous, ensuring a continuous learning
+            journey that adapts to your child&apos;s growth and development
+            needs.
           </p>
         </div>
       </div>

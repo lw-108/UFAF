@@ -22,17 +22,17 @@ const THIRUKKURALS = [
   },
   {
     number: 400,
-    line1: "கேடில் விழுச்செல்வம் கல்வி யொருவற்கு",
-    line2: "மாடல்ல மற்றை யவை",
+    line1: "உவப்பத் தலைக்கூடி உள்ளப் பிரிதல்",
+    line2: "அனைத்தே புலவர் தொழில்",
     meaning:
-      "அழிவில்லாத சிறந்த செல்வம்’ என்பது கல்விச் செல்வமே; மற்றைய பொன் பொருள் மண் என்னும் செல்வங்கள் ஒருவனுக்குச் சிறந்த செல்வம் ஆகா",
+      "மற்றவர்கள் கூடி வரும்போது, மனம் மகிழ அவர்களுடன் கலந்து பேசி, இனி இவரை எப்போது, எவ்வாறு சந்திக்கப் போகிறோம் என்று அவர்கள் எண்ணுமாறு பிரிவது கற்று அறிந்தவரின் செயல்.",
   },
   {
-    number: 390,
-    line1: "யாதானும் நாடாமால் ஊராமால் என்னொருவன்",
-    line2: "சாந்துணையுங் கல்லாத வாறு",
+    number: 399,
+    line1: "தாமின் புறுவது உலகின் புறக்கண்டு",
+    line2: "காமுறுவர் கற்றறிந் தார்",
     meaning:
-      "கற்றவனுக்கு எந்த நாடும் நாடாகும்; எந்த ஊரும் ஊராகும்; இதுவே உண்மையாக இருந்தும் ஒருவன் சாகும் வரைக்கும் கல்லாமலிருப்பது எதனால்? ",
+      "தாம் இன்பம் அடைவதாகிய கல்வியினாலே உலகத்தாரும் இன்பம் அடைவதைக் கண்டு, கற்றறிந்தவர், மேன்மேலும் தாம் கற்பதையே விரும்புவார்கள்",
   },
 ];
 
@@ -52,38 +52,38 @@ export function ThirukkuralSection() {
   };
 
   return (
-    <section className="w-full flex justify-center items-center">
-      <div className="flex flex-col w-full items-center gap-10">
+    <section className="flex items-center justify-center w-full pb-32 border-b border-dashed rounded-4xl">
+      <div className="flex flex-col items-center w-full gap-10">
         {/* Title Bar */}
-        <div className="relative flex w-full max-w-5xl flex-col justify-center px-5 py-10 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl tracking-tight leading-tight md:leading-tight mt-20">
+        <div className="relative flex flex-col justify-center w-full max-w-5xl px-5 py-10 text-center">
+          <h1 className="mt-20 font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
             Thirukkural
           </h1>
         </div>
 
         {/* Main Content Box */}
-        <div className="container border border-dashed border-b-0 px-10 py-16 flex flex-col md:flex-row items-center gap-10 max-w-4xl shadow-sm">
+        <div className="container flex flex-col items-center max-w-4xl gap-10 px-10 py-16 border border-dashed shadow-sm md:flex-row">
           {/* Image */}
-          <div className="flex justify-center md:justify-start w-full md:w-auto">
+          <div className="flex justify-center w-full md:justify-start md:w-auto">
             <Image
               src="/thiruvalluvar.png"
               alt="Thiruvalluvar"
-              width={160}
-              height={160}
-              className="drop-shadow-lg object-contain"
+              width={100}
+              height={100}
+              className="object-contain drop-shadow-lg"
             />
           </div>
 
           {/* Text */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+          <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
             <div className="space-y-2">
               <div className="space-y-2 text-center">
                 <div className="space-y-1 text-center">
-                  <div className="space-y-1 text-start border border-dashed px-2 py-3 rounded-lg w">
-                    <p className="text-base sm:text-1xl md:text-2xl lg:text-2.5xl font-semibold leading-snug tracking-wide italic">
+                  <div className="w-full px-2 py-3 space-y-1 underline-offset-8 text-start">
+                    <p className="text-xs italic font-semibold leading-snug tracking-wide sm:text-sm md:text-base lg:text-lg">
                       {kural.line1}
                     </p>
-                    <p className="text-base sm:text-lg md:text-2xl lg:text-2.5xl font-semibold leading-snug tracking-wide italic">
+                    <p className="text-xs italic font-semibold leading-snug tracking-wide sm:text-sm md:text-base lg:text-lg">
                       {kural.line2}
                     </p>
                   </div>
@@ -91,11 +91,11 @@ export function ThirukkuralSection() {
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground tracking-widest">
+            <p className="text-sm tracking-widest text-muted-foreground">
               குறள் எண்: {kural.number} — திருவள்ளுவர்
             </p>
 
-            <p className="max-w-xl text-lg text-muted-foreground leading-relaxed">
+            <p className="max-w-xl text-xs leading-relaxed text-muted-foreground">
               {kural.meaning}
             </p>
 

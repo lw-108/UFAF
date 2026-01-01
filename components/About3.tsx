@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Volume2,
@@ -39,19 +39,16 @@ const defaultAchievements = [
 // ------------------ COMPONENT ------------------
 
 export const About3: FC = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [expanded, setExpanded] = useState(false);
 
   const toggleMute = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = !videoRef.current.muted;
-    setMuted(videoRef.current.muted);
+    setMuted(!muted);
   };
 
   return (
-    <section className="flex items-center justify-center w-full min-h-screen px-5">
-      <div className="container pt-10 border border-l-0 border-r-0 border-dashed backdrop-blur-sm">
+    <section className="flex items-center justify-center w-full min-h-screen">
+      <div className="container pt-10 border border-t-0 border-l-0 border-r-0 border-dashed backdrop-blur-sm">
         {/* ---------------- HEADER ---------------- */}
         <div className="mt-16 space-y-4 text-center">
           <h1 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
@@ -61,9 +58,9 @@ export const About3: FC = () => {
           {/* ABOUT TEXT BOX */}
           <div
             className={`max-w-3xl mx-auto mt-8 rounded-2xl bg-background/50 backdrop-blur p-6 sm:p-8 text-muted-foreground overflow-hidden transition-all duration-500 ease-in-out 
-  ${expanded ? "max-h-[1000px]" : "max-h-[280px]"}`}
+  ${expanded ? "max-h-62.5" : "max-h-70"}`}
           >
-            <div className="space-y-4 text-left leading-relaxed text-lg md:text-xl pt-1 pr-5 pl-5 overflow-y-auto max-h-[350px] no-scrollbar">
+            <div className="pt-1 pl-5 pr-5 space-y-4 overflow-y-auto text-lg leading-relaxed text-left md:text-xl max-h-54.5 no-scrollbar">
               {paragraphs.map((p, i) => (
                 <p key={i}>{p.text}</p>
               ))}
@@ -86,57 +83,65 @@ export const About3: FC = () => {
         </div>
 
         {/* ---------------- VIDEO + IMAGE / CARD ---------------- */}
-        <div className="grid gap-10 pb-20 border border-t-0 border-b-0 border-l-0 border-r-0 border-dashed lg:grid-cols-3 rounded-4xl">
+        <div className="grid gap-10 pb-10 border border-t-0 border-b-0 border-l-0 border-r-0 border-dashed lg:grid-cols-3 rounded-2xl">
           {/* VIDEO */}
-          <div className="relative overflow-hidden shadow-lg lg:col-span-2 rounded-4xl md:rounded-0">
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="https://images.unsplash.com/photo-1529101091764-c3526daf38f"
-              className="object-cover w-full h-full"
-            >
-              <source
-                src="https://skiper-ui.com/showreel/skiper-ui-showreel.mp4"
-                type="video/mp4"
+          <div className="relative overflow-hidden shadow-lg rounded-2xl lg:col-span-2">
+            {/* YouTube Embed */}
+            <div className="relative pt-[36.25%]">
+              <iframe
+                src={`https://www.youtube.com/embed/O-BdMhNGvQw?autoplay=1&mute=${muted ? 1 : 0}&loop=1&playlist=O-BdMhNGvQw&controls=0&modestbranding=1&rel=0`}
+                className="absolute top-0 left-0 w-full h-full rounded-2xl"
+                title="U-Fill Academy Introduction"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
               />
-            </video>
+            </div>
 
-            {/* MUTE BUTTON */}
+            {/* Mute Button */}
             <button
               onClick={toggleMute}
-              className="absolute p-3 transition border rounded-full bottom-5 left-5 bg-background/60 backdrop-blur border-white/40 hover:scale-110"
+              className="absolute p-3 transition-all border rounded-full bottom-4 left-4 bg-background/60 backdrop-blur-sm border-white/40 hover:scale-110 hover:bg-background/80"
+              aria-label={muted ? "Unmute video" : "Mute video"}
             >
-              {muted ? <VolumeX /> : <Volume2 />}
+              {muted ? (
+                <VolumeX className="w-5 h-5" />
+              ) : (
+                <Volume2 className="w-5 h-5" />
+              )}
             </button>
           </div>
 
           {/* RIGHT SIDE CARD + IMAGE */}
           <div className="flex flex-col justify-between gap-7">
-            <div className="p-6 mr-2 space-y-4 bg-transparent shadow-sm rounded-4xl">
-              <Image src="/u-robo.png" alt="logo" width={200} height={200} />
-              <h3 className="text-lg font-semibold text-white">
+            <div className="p-6 space-y-4 bg-transparent border shadow-sm rounded-2xl">
+              <div className="relative w-40 h-40 mx-auto">
+                <Image 
+                  src="/u-robo.png" 
+                  alt="U Fill Academy Logo" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-center">
                 Innovation That Matters
               </h3>
-              <p className="text-muted-foreground">
-                We build software products used worldwide.
+              <p className="text-center text-muted-foreground">
+                We build educational solutions that transform lives.
               </p>
 
-              <Button variant="ghost" className="text-white">
-                Explore More <MoveUpRight />
+              <Button variant="outline" className="w-full gap-2">
+                Explore More <MoveUpRight className="w-4 h-4" />
               </Button>
             </div>
 
-            <div className="relative max-h-[300px] w-auto overflow-hidden rounded-4xl mr-2">
+            <div className="relative w-full h-64 overflow-hidden border rounded-2xl">
               <Image
-                src="https://i.redd.it/s59mnjg6wvqa1.gif"
-                alt="placeholder"
-                width={500}
-                height={300}
-                className="object-cover w-auto h-auto max-h-[300px]"
-                unoptimized
+                src="/placeholder-image.jpg" // Replace with your actual image
+                alt="Our students learning"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
@@ -144,18 +149,18 @@ export const About3: FC = () => {
 
         {/* ---------------- ACHIEVEMENTS ---------------- */}
         <div className="p-10 mt-20 text-center">
-          <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
+          <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-6xl md:leading-tight">
             Our Journey & Impact
           </h2>
-          <p className="max-w-lg mx-auto text-muted-foreground">
+          <p className="max-w-lg mx-auto mt-4 text-muted-foreground">
             We are continuously working towards empowering underserved
             communities through education.
           </p>
 
           <div className="grid grid-cols-2 gap-10 mt-10 lg:grid-cols-4">
             {defaultAchievements.map((a, i) => (
-              <div key={i} className="space-y-1">
-                <h3 className="text-4xl font-bold">{a.value}</h3>
+              <div key={i} className="space-y-2">
+                <h3 className="text-4xl font-bold text-primary">{a.value}</h3>
                 <p className="text-muted-foreground">{a.label}</p>
               </div>
             ))}
