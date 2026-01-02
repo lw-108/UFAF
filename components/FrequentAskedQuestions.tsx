@@ -55,7 +55,7 @@ export const FrequentAskedQuestions = () => (
             </h4>
 
             <p className="max-w-xl text-lg leading-relaxed text-left text-muted-foreground">
-              {"Whether you're a parent, educator, or student — we’ve answered the most frequently asked academic and institutional questions to guide you through our educational experience."}
+              {"Whether you are a parent, educator, or student — we have answered the most frequently asked academic and institutional questions to guide you through our educational experience."}
             </p>
 
             <Button className="gap-3 w-fit" variant="outline">

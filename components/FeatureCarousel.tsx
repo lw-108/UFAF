@@ -14,7 +14,7 @@ import { Play, Pause } from "lucide-react";
 const stages = [
   {
     icon: BookOpen,
-    title: "Children's Hut",
+    title: "Children Hut",
     subtitle: "The Rise",
     stage: "Stage 1",
     desc: "Foundational learning and discovery. Building the first blocks of knowledge and curiosity through play-based learning and sensory activities.",
@@ -37,7 +37,7 @@ const stages = [
     title: "Secondary School",
     subtitle: "The Voice",
     stage: "Stage 3",
-    desc: "Developing expression and identity. Finding and using one's unique voice through debate, public speaking, and creative expression.",
+    desc: "Developing expression and identity. Finding and using ones unique voice through debate, public speaking, and creative expression.",
     image: "/u-robo.png",
     color: "from-purple-50 to-purple-100",
     iconColor: "text-purple-600",

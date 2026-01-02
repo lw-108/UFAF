@@ -57,7 +57,7 @@ export default function PopularCoursesPage() {
               <span className="text-orange-500">Top</span> Trending Courses
             </h1>
             <p className="mb-10 text-xl text-muted-foreground">
-              Join thousands of students learning what's trending right now
+              Join thousands of students learning what&apos;s trending right now
             </p>
             
             {/* Stats */}
@@ -108,7 +108,7 @@ export default function PopularCoursesPage() {
               <div className="py-12 text-center">
                 <TrendingUp className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                 <h3 className="mb-2 text-xl font-semibold">Monthly trends coming soon</h3>
-                <p className="text-muted-foreground">We're working on showing monthly popularity trends</p>
+                <p className="text-muted-foreground">We&apos;re working on showing monthly popularity trends</p>
               </div>
             </TabsContent>
             
@@ -272,7 +272,7 @@ export default function PopularCoursesPage() {
             <Trophy className="w-12 h-12 mx-auto mb-4 text-primary" />
             <h3 className="mb-4 text-2xl font-bold">Join Our Top Learners</h3>
             <p className="mb-6 text-muted-foreground">
-              Don't miss out on what everyone is learning. Enroll in our most popular courses and be part of the success story.
+              Don&apos;t miss out on what everyone is learning. Enroll in our most popular courses and be part of the success story.
             </p>
             <Button size="lg" className="px-8">
               Explore All Popular Courses

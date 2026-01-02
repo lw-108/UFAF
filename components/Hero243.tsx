@@ -28,7 +28,7 @@ const Hero243 = () => {
 
         {/* REPLACED: Direct iframe instead of HeroSplineClient */}
         <div className="w-full max-w-5xl mx-auto mt-12">
-          <div className="relative overflow-hidden border rounded-2xl border-white/10">
+          <div className="relative overflow-hidden ">
             <div className="relative w-full aspect-4/3 md:aspect-video">
               <iframe
                 src="https://my.spline.design/nexbotrobotcharacterconcept-quLQRzZpCb8v4Js4e5ISLgoE/"

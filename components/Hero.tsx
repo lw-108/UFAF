@@ -18,7 +18,7 @@ export function Hero67() {
             <strong className="font-medium text-foreground">
               U-Fill Academy
             </strong>{" "}
-            {`is committed to shaping tomorrow's leaders. Fill your knowledge — fill your future with practical learning programs, expert instructors, and industry-ready skills.`}
+            {`is committed to shaping tomorrows leaders. Fill your knowledge — fill your future with practical learning programs, expert instructors, and industry-ready skills.`}
           </p>
 
           {/* CTA */}

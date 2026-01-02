@@ -54,7 +54,7 @@ const faqData = [
     id: 3,
     question: "Is there an admission test or interview?",
     answer:
-      "No entrance tests. We conduct a simple interaction to understand the student's background and learning needs to provide personalized support.",
+      "No entrance tests. We conduct a simple interaction to understand the students background and learning needs to provide personalized support.",
     category: "admission",
   },
   {
@@ -178,7 +178,7 @@ const faqData = [
     id: 20,
     question: "How can I volunteer or donate?",
     answer:
-      "Visit our 'Get Involved' section or contact us directly. We welcome volunteers, mentors, and donors who want to support our mission.",
+      "Visit our Get Involved section or contact us directly. We welcome volunteers, mentors, and donors who want to support our mission.",
     category: "general",
   },
 ];
@@ -421,7 +421,7 @@ const FAQPage = () => {
                     <div className="text-white">
                       <h3 className="mb-4 text-3xl font-bold">Still Have Questions?</h3>
                       <p className="max-w-xl mb-6 text-white/90">
-                        Can't find the answer you're looking for? Our team is here to help.
+                        Can &apos;t find the answer you&apos;re looking for? Our team is here to help.
                       </p>
                       <div className="flex flex-wrap gap-4">
                         <Button size="lg" variant="secondary">
@@ -481,7 +481,7 @@ const FAQPage = () => {
                     <div className="text-white">
                       <h3 className="mb-4 text-3xl font-bold">Ready to Join Our Mission?</h3>
                       <p className="max-w-xl mb-6 text-white/90">
-                        Whether you're a student seeking education or a volunteer wanting to help, we're here to support your journey.
+                        Whether you&apos;re a student seeking education or a volunteer wanting to help, we&apos;re here to support your journey.
                       </p>
                       <div className="flex flex-wrap gap-4">
                         <Button size="lg" variant="secondary">
