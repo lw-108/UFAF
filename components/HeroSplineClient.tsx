@@ -2,13 +2,13 @@
 
 import dynamic from "next/dynamic";
 
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
+const Spline = dynamic(() => import("@splinetool/react-spline").then(mod => mod.default || mod), {
   ssr: false,
 });
 
 export default function HeroSplineClient() {
   return (
-    <div className="relative overflow-hidden border-dashed w-fullmx-auto rounded-2xl">
+    <div className="relative w-full mx-auto overflow-hidden border-dashed rounded-2xl">
       <div className="relative w-full border-dashed aspect-9/16 max-w-100 md:aspect-video md:max-w-none ">
         <Spline
           scene="https://prod.spline.design/54laZrznS91G7a2d/scene.splinecode"
