@@ -1,18 +1,15 @@
+// components/HeroSplineClient.tsx
 "use client";
-
-import dynamic from "next/dynamic";
-
-const Spline = dynamic(() => import("@splinetool/react-spline").then(mod => mod.default || mod), {
-  ssr: false,
-});
 
 export default function HeroSplineClient() {
   return (
-    <div className="relative w-full mx-auto overflow-hidden border-dashed rounded-2xl">
-      <div className="relative w-full border-dashed aspect-9/16 max-w-100 md:aspect-video md:max-w-none ">
-        <Spline
-          scene="https://prod.spline.design/54laZrznS91G7a2d/scene.splinecode"
-          className="absolute inset-0 w-full h-full mt-19 "
+    <div className="relative w-full mx-auto mt-10 overflow-hidden rounded-2xl">
+      <div className="relative w-full aspect-4/3 md:aspect-video">
+        <iframe
+          src="https://my.spline.design/nexbotrobotcharacterconcept-quLQRzZpCb8v4Js4e5ISLgoE/"
+          className="absolute inset-0 w-full h-full mt-17 rounded-2xl"
+          title="AI Robot Assistant"
+          style={{ border: 'none' }}
         />
       </div>
     </div>
