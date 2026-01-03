@@ -1,19 +1,45 @@
 // app/contact/page.tsx
-import { Mail, Phone, MapPin, MessageSquare, Send, User, MailIcon, PhoneIcon } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import {
+  Mail,
+  Phone,
+  MapPin,
+  MessageSquare,
+  Send,
+  User,
+  MailIcon,
+  PhoneIcon,
+  PhoneCall,
+  MessageCircle,
+  Globe2,
+  Facebook,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
+      {/* Navbar */}
+      <div className="fixed top-0 left-0 z-50 w-full">
+        <NavbarWithMegaMenu />
+      </div>
+
       {/* Hero Section */}
-      <div className="container px-4 py-16 mx-auto text-center">
-        <h1 className="mb-6 text-5xl font-bold text-transparent md:text-6xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text">
-          Get In Touch
+      <div className="container px-4 py-16 mx-auto mt-10 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
+          <PhoneCall className="w-5 h-5" />
+          <span className="text-sm font-semibold">Contact Us</span>
+        </div>
+        <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
+          Get In <span className="text-primary">Touch</span>
         </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">
-          Have questions or want to collaborate? Reach out to us and we'll get back to you as soon as possible.
+          Have questions or want to collaborate? Reach out to us and we'll get
+          back to you as soon as possible.
         </p>
       </div>
 
@@ -22,46 +48,69 @@ export default function ContactPage() {
         <div className="grid gap-12 md:grid-cols-2">
           {/* Contact Form */}
           <div className="p-8 border rounded-3xl bg-card border-border">
-            <h2 className="mb-6 text-2xl font-bold text-foreground">Send us a Message</h2>
+            <h2 className="mb-6 text-2xl font-bold text-foreground">
+              Send us a Message
+            </h2>
             <form className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">First Name</label>
+                  <label className="text-sm font-medium text-foreground">
+                    First Name
+                  </label>
                   <div className="relative">
                     <User className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
                     <Input placeholder="John" className="pl-10" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">Last Name</label>
+                  <label className="text-sm font-medium text-foreground">
+                    Last Name
+                  </label>
                   <Input placeholder="Doe" />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Email Address</label>
+                <label className="text-sm font-medium text-foreground">
+                  Email Address
+                </label>
                 <div className="relative">
                   <MailIcon className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
-                  <Input type="email" placeholder="john@example.com" className="pl-10" />
+                  <Input
+                    type="email"
+                    placeholder="john@example.com"
+                    className="pl-10"
+                  />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Phone Number</label>
+                <label className="text-sm font-medium text-foreground">
+                  Phone Number
+                </label>
                 <div className="relative">
                   <PhoneIcon className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
-                  <Input type="tel" placeholder="+1 (555) 123-4567" className="pl-10" />
+                  <Input
+                    type="tel"
+                    placeholder="+91 9876543210"
+                    className="pl-10"
+                  />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">Message</label>
+                <label className="text-sm font-medium text-foreground">
+                  Message
+                </label>
                 <div className="relative">
                   <MessageSquare className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
-                  <Textarea placeholder="Your message here..." className="min-h-[150px] pl-10" />
+                  <Textarea
+                    placeholder="Your message here..."
+                    className="min-h-[150px] pl-10"
+                  />
                 </div>
               </div>
-              
+
               <Button className="w-full" size="lg">
                 <Send className="w-4 h-4 mr-2" />
                 Send Message
@@ -70,85 +119,222 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="p-8 border rounded-3xl bg-card border-border">
-              <h3 className="mb-6 text-2xl font-bold text-foreground">Contact Information</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/20">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Email</h4>
-                    <p className="text-muted-foreground">contact@ufillacademy.com</p>
-                    <p className="text-sm text-muted-foreground">We reply within 24 hours</p>
-                  </div>
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-primary/20">
+                <Mail className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground">Email</h4>
+                <a
+                  href="mailto:ufillacademy@gmail.com"
+                  className="transition-colors text-primary hover:text-primary/80 hover:underline"
+                >
+                  ufillacademy@gmail.com
+                </a>
+                <p className="text-sm text-muted-foreground">
+                  We reply within 24 hours
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-primary/20">
+                <Phone className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground">Phone</h4>
+                <div className="space-y-1">
+                  <a
+                    href="tel:+918939976607"
+                    className="block transition-colors text-primary hover:text-primary/80 hover:underline"
+                  >
+                    +91 8939976607
+                  </a>
+                  <a
+                    href="tel:+917904281435"
+                    className="block transition-colors text-primary hover:text-primary/80 hover:underline"
+                  >
+                    +91 7904281435
+                  </a>
                 </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/20">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Phone</h4>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                    <p className="text-sm text-muted-foreground">Mon-Fri, 9am-5pm EST</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/20">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Office</h4>
-                    <p className="text-muted-foreground">123 Education Street</p>
-                    <p className="text-muted-foreground">Boston, MA 02115</p>
-                    <p className="text-sm text-muted-foreground">United States</p>
-                  </div>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Mon-Fri, 9am-5pm IST
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-primary/20">
+                <MapPin className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground">
+                  Office Location
+                </h4>
+                <div className="space-y-1">
+                  <a
+                    href="https://maps.google.com/?q=Salem+Tamil+Nadu+India"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block transition-colors text-primary hover:text-primary/80 hover:underline"
+                  >
+                    Salem, Tamil Nadu, India
+                  </a>
+                  <a
+                    href="https://maps.google.com/?q=Salem+Tamil+Nadu+India"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-sm transition-colors text-muted-foreground hover:text-primary hover:underline"
+                  >
+                    View on Google Maps
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* FAQ Section */}
-            <div className="p-8 border rounded-3xl bg-card border-border">
-              <h3 className="mb-6 text-2xl font-bold text-foreground">Frequently Asked Questions</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-foreground">What are your response times?</h4>
-                  <p className="text-sm text-muted-foreground">We typically respond within 24 hours during business days.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Do you offer custom solutions?</h4>
-                  <p className="text-sm text-muted-foreground">Yes, we provide custom educational technology solutions.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">Can I schedule a demo?</h4>
-                  <p className="text-sm text-muted-foreground">Absolutely! Contact us to schedule a personalized demo.</p>
+            {/* Social Media Links */}
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-primary/20">
+                <Globe2 className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground">
+                  Connect With Us
+                </h4>
+                <div className="flex gap-4 mt-2">
+                  <a
+                    href="https://wa.me/918939976607"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 transition-colors rounded-lg bg-green-500/20 hover:bg-green-500/30"
+                    title="WhatsApp"
+                  >
+                    <MessageCircle className="w-5 h-5 text-green-500" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/ufillacademy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 transition-colors rounded-lg bg-blue-500/20 hover:bg-blue-500/30"
+                    title="Facebook"
+                  >
+                    <Facebook className="w-5 h-5 text-blue-500" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/ufill_academy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 transition-colors rounded-lg bg-pink-500/20 hover:bg-pink-500/30"
+                    title="Instagram"
+                  >
+                    <Instagram className="w-5 h-5 text-pink-500" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/ufill-academy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 transition-colors rounded-lg bg-blue-700/20 hover:bg-blue-700/30"
+                    title="LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5 text-blue-700" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+        {/* FAQ Section */}
+        <div className="p-8 mt-12 border rounded-3xl bg-card border-border">
+          <h3 className="mb-6 text-2xl font-bold text-foreground">
+            Frequently Asked Questions
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <h4 className="mb-2 font-semibold text-foreground">
+                What are your response times?
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                We typically respond within 24 hours during business days.
+              </p>
+            </div>
+            <div>
+              <h4 className="mb-2 font-semibold text-foreground">
+                Do you offer custom solutions?
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                Yes, we provide custom educational technology solutions.
+              </p>
+            </div>
+            <div>
+              <h4 className="mb-2 font-semibold text-foreground">
+                Can I schedule a demo?
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                Absolutely! Contact us to schedule a personalized demo.
+              </p>
+            </div>
+            <div>
+              <h4 className="mb-2 font-semibold text-foreground">
+                What payment methods do you accept?
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                We accept all major credit cards, UPI, and bank transfers.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Support CTA with Pattern */}
-        <div className="relative mt-20 overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
+        <div className="relative mt-20 overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-primary/80">
           {/* Wave Pattern */}
           <div className="absolute inset-0">
-            <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="absolute inset-0 w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <defs>
-                <pattern id="wave-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <path d="M0,50 Q25,25 50,50 T100,50" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="2" />
-                  <path d="M0,70 Q25,95 50,70 T100,70" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
+                <pattern
+                  id="wave-pattern"
+                  x="0"
+                  y="0"
+                  width="100"
+                  height="100"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M0,50 Q25,25 50,50 T100,50"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M0,70 Q25,95 50,70 T100,70"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.1)"
+                    strokeWidth="2"
+                  />
                 </pattern>
-                <pattern id="dots-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                <pattern
+                  id="dots-pattern"
+                  x="0"
+                  y="0"
+                  width="50"
+                  height="50"
+                  patternUnits="userSpaceOnUse"
+                >
                   <circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.2)" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#wave-pattern)" />
-              <rect width="100%" height="100%" fill="url(#dots-pattern)" opacity="0.3" />
-              
+              <rect
+                width="100%"
+                height="100%"
+                fill="url(#dots-pattern)"
+                opacity="0.3"
+              />
+
               {/* Floating icons */}
               <circle cx="15%" cy="85%" r="30" fill="rgba(255,255,255,0.05)" />
               <circle cx="90%" cy="15%" r="40" fill="rgba(255,255,255,0.05)" />
@@ -156,27 +342,48 @@ export default function ContactPage() {
           </div>
 
           <div className="relative px-8 py-12 text-center">
-            <h3 className="mb-4 text-3xl font-bold text-white">Need Immediate Support?</h3>
+            <h3 className="mb-4 text-3xl font-bold text-white">
+              Need Immediate Support?
+            </h3>
             <p className="max-w-2xl mx-auto mb-8 text-white/90">
-              Our support team is available to help you with any questions or technical issues.
+              Our support team is available to help you with any questions or
+              technical issues.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" variant="secondary">
-                <Phone className="w-4 h-4 mr-2" />
-                Call Support
-              </Button>
-              <Button size="lg" variant="ghost" className="text-white border-white hover:bg-white/10">
-                <Mail className="w-4 h-4 mr-2" />
-                Email Support
-              </Button>
-              <Button size="lg" variant="ghost" className="text-white border-white hover:bg-white/10">
-                <MessageSquare className="w-4 h-4 mr-2" />
-                Live Chat
-              </Button>
+              <a href="tel:+918939976607">
+                <Button size="lg" variant="secondary">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Support
+                </Button>
+              </a>
+              <a href="mailto:ufillacademy@gmail.com">
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-white border-white hover:bg-white/10"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email Support
+                </Button>
+              </a>
+              <a
+                href="https://wa.me/918939976607"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="text-white border-white hover:bg-white/10"
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  WhatsApp Chat
+                </Button>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
