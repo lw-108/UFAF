@@ -74,7 +74,8 @@ const faqData = [
   {
     id: 6,
     question: "Is there any registration fee?",
-    answer: "Absolutely no fees. Education at U Fill Academy is completely free for all eligible students.",
+    answer:
+      "Absolutely no fees. Education at U Fill Academy is completely free for all eligible students.",
     category: "admission",
   },
 
@@ -188,7 +189,8 @@ const FAQPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredFAQs = faqData.filter((faq) => {
-    const matchesCategory = activeCategory === "all" || faq.category === activeCategory;
+    const matchesCategory =
+      activeCategory === "all" || faq.category === activeCategory;
     const query = searchQuery.trim().toLowerCase();
     const matchesSearch =
       query === "" ||
@@ -205,22 +207,22 @@ const FAQPage = () => {
       <div className="fixed top-0 left-0 z-50 w-full mb-50">
         <NavbarWithMegaMenu />
       </div>
-
       {/* Hero Section */}
       <div className="relative py-16 overflow-hidden bg-linear-to-br from-primary/5 via-transparent to-transparent">
         <div className="container relative px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center mt-15">
             <Badge className="px-4 py-2 mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              <HelpCircle className="w-4 h-4 mr-2" />
+              <HelpCircle className="w-18 h-18" /> {/* Custom size */}
               Frequently Asked Questions
             </Badge>
 
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
+            <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
               How Can We <span className="text-primary">Help</span> You?
             </h1>
 
             <p className="mb-8 text-lg text-gray-600">
-              Find answers to common questions about admissions, courses, support, and more.
+              Find answers to common questions about admissions, courses,
+              support, and more.
             </p>
 
             {/* Search Bar */}
@@ -244,7 +246,9 @@ const FAQPage = () => {
                 { value: "24/7", label: "Community Support" },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-2xl font-bold text-primary">{stat.value}</div>
+                  <div className="text-2xl font-bold text-primary">
+                    {stat.value}
+                  </div>
                   <div className="text-sm text-gray-500">{stat.label}</div>
                 </div>
               ))}
@@ -252,7 +256,6 @@ const FAQPage = () => {
           </div>
         </div>
       </div>
-
       {/* Main Content */}
       <div className="container px-4 py-12 mx-auto">
         <div className="grid gap-8 lg:grid-cols-4">
@@ -307,7 +310,9 @@ const FAQPage = () => {
                         key={faq.id}
                         onClick={() => {
                           setActiveCategory("all");
-                          setSearchQuery(faq.question.split(" ").slice(0, 3).join(" "));
+                          setSearchQuery(
+                            faq.question.split(" ").slice(0, 3).join(" ")
+                          );
                         }}
                         className="flex items-start w-full gap-2 p-2 text-sm text-left rounded hover:bg-primary-50"
                       >
@@ -319,7 +324,6 @@ const FAQPage = () => {
               </div>
             </div>
           </div>
-
           {/* FAQ Content */}
           <div className="lg:col-span-3">
             {/* Category Header */}
@@ -330,10 +334,16 @@ const FAQPage = () => {
                     ? "All Questions"
                     : faqCategories.find((c) => c.id === activeCategory)?.name}
                 </h2>
-                <p className="text-gray-500">{filteredFAQs.length} questions found</p>
+                <p className="text-gray-500">
+                  {filteredFAQs.length} questions found
+                </p>
               </div>
               {searchQuery && (
-                <Button variant="outline" size="sm" onClick={() => setSearchQuery("")}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setSearchQuery("")}
+                >
                   Clear Search
                 </Button>
               )}
@@ -344,7 +354,9 @@ const FAQPage = () => {
               <div className="p-8 text-center border rounded-lg bg-background">
                 <HelpCircle className="w-12 h-12 mx-auto mb-4 text-gray-300" />
                 <h3 className="mb-2 text-xl font-bold">No questions found</h3>
-                <p className="mb-4 text-gray-500">Try a different search term or category</p>
+                <p className="mb-4 text-gray-500">
+                  Try a different search term or category
+                </p>
                 <Button
                   onClick={() => {
                     setSearchQuery("");
@@ -361,14 +373,19 @@ const FAQPage = () => {
                     key={faq.id}
                     className="overflow-hidden border rounded-lg shadow-sm bg-background"
                   >
-                    <AccordionItem value={faq.id.toString()} className="border-0">
+                    <AccordionItem
+                      value={faq.id.toString()}
+                      className="border-0"
+                    >
                       <AccordionTrigger className="px-6 py-4 text-left hover:text-black dark:text-white hover:no-underline hover:bg-primary">
                         <div className="flex items-start gap-4">
                           <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full bg-primary/10">
                             <HelpCircle className="w-4 h-4 text-primary" />
                           </div>
                           <div className="flex-1 text-left">
-                            <h3 className="font-semibold hover:text-white">{faq.question}</h3>
+                            <h3 className="font-semibold hover:text-white">
+                              {faq.question}
+                            </h3>
                             <Badge variant="outline" className="mt-2">
                               {faq.category}
                             </Badge>
@@ -378,12 +395,16 @@ const FAQPage = () => {
                       <AccordionContent className="px-6 pb-4">
                         <div className="pl-12">
                           <div className="p-4 rounded-lg bg-background">
-                            <p className="leading-relaxed text-black dark:text-white">{faq.answer}</p>
+                            <p className="leading-relaxed text-black dark:text-white">
+                              {faq.answer}
+                            </p>
                           </div>
                           {popularQuestions.includes(faq.id) && (
                             <div className="flex items-center gap-2 mt-4">
                               <Sparkles className="w-4 h-4 text-yellow-500" />
-                              <span className="text-sm text-gray-500">Popular question</span>
+                              <span className="text-sm text-gray-500">
+                                Popular question
+                              </span>
                             </div>
                           )}
                         </div>
@@ -399,7 +420,10 @@ const FAQPage = () => {
               <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
                 {/* Animated Background */}
                 <div className="absolute inset-0">
-                  <svg className="w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className="w-full h-full opacity-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <defs>
                       <pattern
                         id="questionsPattern"
@@ -409,30 +433,50 @@ const FAQPage = () => {
                         height="100"
                         patternUnits="userSpaceOnUse"
                       >
-                        <path d="M0,50 L50,0 L100,50 L50,100 Z" fill="none" stroke="white" strokeWidth="2" />
+                        <path
+                          d="M0,50 L50,0 L100,50 L50,100 Z"
+                          fill="none"
+                          stroke="white"
+                          strokeWidth="2"
+                        />
                       </pattern>
                     </defs>
-                    <rect width="100%" height="100%" fill="url(#questionsPattern)" />
+                    <rect
+                      width="100%"
+                      height="100%"
+                      fill="url(#questionsPattern)"
+                    />
                   </svg>
                 </div>
 
                 <div className="relative px-8 py-12 md:px-12">
                   <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                     <div className="text-white">
-                      <h3 className="mb-4 text-3xl font-bold">Still Have Questions?</h3>
+                      <h3 className="mb-4 text-3xl font-bold">
+                        Still Have Questions?
+                      </h3>
                       <p className="max-w-xl mb-6 text-white/90">
-                        Can &apos;t find the answer you&apos;re looking for? Our team is here to help.
+                        Can &apos;t find the answer you&apos;re looking for? Our
+                        team is here to help.
                       </p>
                       <div className="flex flex-wrap gap-4">
                         <Button size="lg" variant="secondary">
                           <MessageCircle className="w-4 h-4 mr-2" />
                           Chat With Us
                         </Button>
-                        <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="text-white border-white hover:bg-white/10"
+                        >
                           <Phone className="w-4 h-4 mr-2" />
                           Call Us Now
                         </Button>
-                        <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="text-white border-white hover:bg-white/10"
+                        >
                           <Mail className="w-4 h-4 mr-2" />
                           Send Email
                         </Button>
@@ -445,7 +489,9 @@ const FAQPage = () => {
                         <p className="text-center text-white/90">
                           Quick Response
                           <br />
-                          <span className="text-sm">Typically within 24 hours</span>
+                          <span className="text-sm">
+                            Typically within 24 hours
+                          </span>
                         </p>
                       </div>
                     </div>
@@ -459,7 +505,10 @@ const FAQPage = () => {
               <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
                 {/* Animated Background */}
                 <div className="absolute inset-0">
-                  <svg className="w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    className="w-full h-full opacity-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <defs>
                       <pattern
                         id="missionPattern"
@@ -469,28 +518,49 @@ const FAQPage = () => {
                         height="100"
                         patternUnits="userSpaceOnUse"
                       >
-                        <path d="M50,0 L100,50 L50,100 L0,50 Z" fill="none" stroke="white" strokeWidth="2" />
+                        <path
+                          d="M50,0 L100,50 L50,100 L0,50 Z"
+                          fill="none"
+                          stroke="white"
+                          strokeWidth="2"
+                        />
                       </pattern>
                     </defs>
-                    <rect width="100%" height="100%" fill="url(#missionPattern)" />
+                    <rect
+                      width="100%"
+                      height="100%"
+                      fill="url(#missionPattern)"
+                    />
                   </svg>
                 </div>
 
                 <div className="relative px-8 py-12 md:px-12">
                   <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                     <div className="text-white">
-                      <h3 className="mb-4 text-3xl font-bold">Ready to Join Our Mission?</h3>
+                      <h3 className="mb-4 text-3xl font-bold">
+                        Ready to Join Our Mission?
+                      </h3>
                       <p className="max-w-xl mb-6 text-white/90">
-                        Whether you&apos;re a student seeking education or a volunteer wanting to help, we&apos;re here to support your journey.
+                        Whether you&apos;re a student seeking education or a
+                        volunteer wanting to help, we&apos;re here to support
+                        your journey.
                       </p>
                       <div className="flex flex-wrap gap-4">
                         <Button size="lg" variant="secondary">
                           Apply for Admission
                         </Button>
-                        <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="text-white border-white hover:bg-white/10"
+                        >
                           Become a Volunteer
                         </Button>
-                        <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="text-white border-white hover:bg-white/10"
+                        >
                           Schedule a Visit
                         </Button>
                       </div>
@@ -510,9 +580,12 @@ const FAQPage = () => {
                 </div>
               </div>
             </div>
-          </div> {/* end FAQ Content column */}
-        </div> {/* end grid */}
-      </div> {/* end main container */}
+          </div>{" "}
+          {/* end FAQ Content column */}
+        </div>{" "}
+        {/* end grid */}
+      </div>{" "}
+      {/* end main container */}
     </div>
   );
 };

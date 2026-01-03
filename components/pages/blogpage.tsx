@@ -7,9 +7,9 @@ import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
 const blogPosts = [
   {
     id: 1,
-    title: "The Future of Online Education in 2024",
+    title: "The Future of Online Education in 2026",
     excerpt: "Explore how AI and machine learning are revolutionizing the way we learn online and what trends to watch out for.",
-    image: "/blog1.jpg",
+    image: "https://media1.giphy.com/media/GSoFOqB2EIjDy/giphy.gif",
     author: "Dr. Sarah Johnson",
     date: "Dec 15, 2024",
     readTime: "8 min read",
@@ -92,9 +92,9 @@ export default function BlogPage() {
             </div>
       {/* Hero Section */}
       <div className="container px-4 py-16 mx-auto mt-20 text-center">
-        <h1 className="mb-6 text-5xl font-bold text-transparent md:text-6xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text">
-          Educational Insights & Learning Tips
-        </h1>
+        <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
+              Educational Insights & <span className="text-primary">Learning</span> Tips
+            </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">
           Stay updated with the latest trends, research, and best practices in education technology and learning methodologies.
         </p>
@@ -164,7 +164,7 @@ export default function BlogPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
-              <div className="flex items-center justify-center min-h-[300px] bg-muted">
+              <div className="flex items-center justify-center object-coverr min-h-75 bg-muted">
                 <div className="flex items-center justify-center w-full h-full p-4">
                   <img
                     src={blogPosts[0].image}

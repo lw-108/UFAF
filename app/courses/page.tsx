@@ -1,51 +1,62 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { CourseCard } from "@/components/ui/course-card"
-import { CategoryFilter } from "@/components/ui/category-filter"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Search, Filter, Grid3x3, List } from "lucide-react"
-import { coursesData, categories } from "@/data/courses"
+import { useState } from "react";
+import { CourseCard } from "@/components/ui/course-card";
+import { CategoryFilter } from "@/components/ui/category-filter";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search, Filter, Grid3x3, List } from "lucide-react";
+import { coursesData, categories } from "@/data/courses";
 import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
+import { BookOpen } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 export default function CoursesPage() {
-  const [activeCategory, setActiveCategory] = useState("all")
-  const [searchQuery, setSearchQuery] = useState("")
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
-  const [sortBy, setSortBy] = useState("popular")
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [sortBy, setSortBy] = useState("popular");
 
   const filteredCourses = coursesData.filter((course) => {
-    const matchesCategory = activeCategory === "all" || course.category === activeCategory
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         course.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-    return matchesCategory && matchesSearch
-  })
+    const matchesCategory =
+      activeCategory === "all" || course.category === activeCategory;
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    return matchesCategory && matchesSearch;
+  });
 
   const sortedCourses = [...filteredCourses].sort((a, b) => {
     switch (sortBy) {
       case "popular":
-        return b.students - a.students
+        return b.students - a.students;
       case "rating":
-        return b.rating - a.rating
+        return b.rating - a.rating;
       case "new":
-        return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)
+        return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
       case "price-low":
-        return parseFloat(a.price.replace(/[^0-9]/g, '')) - parseFloat(b.price.replace(/[^0-9]/g, ''))
+        return (
+          parseFloat(a.price.replace(/[^0-9]/g, "")) -
+          parseFloat(b.price.replace(/[^0-9]/g, ""))
+        );
       case "price-high":
-        return parseFloat(b.price.replace(/[^0-9]/g, '')) - parseFloat(a.price.replace(/[^0-9]/g, ''))
+        return (
+          parseFloat(b.price.replace(/[^0-9]/g, "")) -
+          parseFloat(a.price.replace(/[^0-9]/g, ""))
+        );
       default:
-        return 0
+        return 0;
     }
-  })
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -53,16 +64,21 @@ export default function CoursesPage() {
         <NavbarWithMegaMenu />
       </div>
       {/* Hero Section */}
-      <div className="relative py-20 mt-20 bg-background">
+      <div className="relative py-20 mt-10 bg-background">
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="mb-6 text-5xl font-bold">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full text-primary bg-blue-500/10">
+              <BookOpen className="w-4 h-4" />
+              <span className="font-medium">Our Courses</span>
+            </div>
+            <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
               Explore Our <span className="text-primary">Courses</span>
             </h1>
             <p className="mb-10 text-xl text-muted-foreground">
-              Choose from a wide range of courses designed to empower your future
+              Choose from a wide range of courses designed to empower your
+              future
             </p>
-            
+
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto mb-12">
               <Search className="absolute w-5 h-5 transform -translate-y-1/2 left-4 top-1/2 text-muted-foreground" />
@@ -89,13 +105,15 @@ export default function CoursesPage() {
             <div>
               <h2 className="mb-2 text-3xl font-bold">
                 {activeCategory === "all" ? "All Courses" : activeCategory}
-                <span className="ml-2 text-primary">({filteredCourses.length})</span>
+                <span className="ml-2 text-primary">
+                  ({filteredCourses.length})
+                </span>
               </h2>
               <p className="text-muted-foreground">
                 Browse through our comprehensive course catalog
               </p>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-45">
@@ -110,7 +128,7 @@ export default function CoursesPage() {
                   <SelectItem value="price-high">Price: High to Low</SelectItem>
                 </SelectContent>
               </Select>
-              
+
               <div className="flex overflow-hidden border rounded-lg">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
@@ -148,12 +166,23 @@ export default function CoursesPage() {
             <p className="mb-6 text-muted-foreground">
               Try adjusting your search or filter criteria
             </p>
-            <Button onClick={() => { setSearchQuery(""); setActiveCategory("all") }}>
+            <Button
+              onClick={() => {
+                setSearchQuery("");
+                setActiveCategory("all");
+              }}
+            >
               Clear Filters
             </Button>
           </div>
         ) : (
-          <div className={`grid gap-6 ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"}`}>
+          <div
+            className={`grid gap-6 ${
+              viewMode === "grid"
+                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                : "grid-cols-1"
+            }`}
+          >
             {sortedCourses.map((course) => (
               <CourseCard key={course.id} {...course} />
             ))}
@@ -164,7 +193,9 @@ export default function CoursesPage() {
         <div className="pt-12 mt-20 border-t">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
             <div className="p-6 text-center rounded-lg bg-primary/5">
-              <div className="mb-2 text-4xl font-bold text-primary">{coursesData.length}+</div>
+              <div className="mb-2 text-4xl font-bold text-primary">
+                {coursesData.length}+
+              </div>
               <div className="text-muted-foreground">Courses</div>
             </div>
             <div className="p-6 text-center rounded-lg bg-primary/5">
@@ -183,5 +214,5 @@ export default function CoursesPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

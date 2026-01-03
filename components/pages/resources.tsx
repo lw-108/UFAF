@@ -115,9 +115,9 @@ export default function ResourcesPage() {
       </div>
       {/* Hero Section */}
       <div className="container px-4 py-16 mx-auto mt-20 text-center">
-        <h1 className="mb-6 text-5xl font-bold text-transparent md:text-6xl bg-linear-to-r from-primary to-primary/70 bg-clip-text">
-          Free Educational Resources
-        </h1>
+        <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
+              Free Educational <span className="text-primary">Resources</span>
+            </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">
           Download high-quality study materials, guides, templates, and learning
           resources completely free.

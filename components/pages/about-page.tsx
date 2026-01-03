@@ -109,7 +109,7 @@ const AboutPage = () => {
               Education For All
             </Badge>
 
-            <h1 className="font-serif text-4xl tracking-tight md:text-5xl lg:text-6xl">
+            <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
               Empowering Through
               <span className="block text-primary">Education</span>
             </h1>

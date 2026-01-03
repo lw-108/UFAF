@@ -17,16 +17,16 @@ const Banner1 = ({
   codes = [],
 }: Banner1Props) => {
   return (
-    <section className="bg-background w-full px-4 py-4">
+    <section className="w-full px-4 py-4 mt-4 bg-transparent">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         
         {/* **Verified / Registration Codes** */}
         {codes.length > 0 && (
-          <div className="flex flex-wrap justify-center md:justify-start gap-2">
+          <div className="flex flex-wrap justify-center gap-2 md:justify-start">
             {codes.map((code, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-primary/10 text-primary text-xs md:text-sm rounded-md font-mono font-semibold tracking-wide uppercase"
+                className="px-3 py-1 font-mono text-xs font-semibold tracking-wide uppercase rounded-md bg-primary/10 text-primary md:text-sm"
               >
                 {code}
               </span>
@@ -42,7 +42,7 @@ const Banner1 = ({
               {description}{" "}
               <a
                 href={linkUrl}
-                className="hover:text-foreground underline underline-offset-2 font-medium"
+                className="font-medium underline hover:text-foreground underline-offset-2"
                 target="_blank"
               >
                 {linkText}
@@ -57,3 +57,5 @@ const Banner1 = ({
 };
 
 export { Banner1 };
+
+
