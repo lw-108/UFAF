@@ -14,20 +14,24 @@ import {
   Sparkles,
   Filter,
   ExternalLink,
-  Ticket,
   Video,
   Target,
   Trophy,
-  HelpCircle,
+  Eye,
+  ArrowRight,
+  Star,
+  CheckCircle,
+  Zap,
+  Award,
+  Heart,
 } from "lucide-react";
 
-// Event Data - Using achievements as events
+// Event Data
 const events = [
   {
     id: 1,
     title: "Free Python Webinar for College Students",
-    description:
-      "Conducted an engaging hands-on Python programming webinar to enhance coding literacy among college students.",
+    description: "Conducted an engaging hands-on Python programming webinar to enhance coding literacy among college students.",
     date: "Oct 15, 2024",
     time: "10:00 AM - 1:00 PM",
     location: "Online (Zoom)",
@@ -35,12 +39,13 @@ const events = [
     seats: "50/100",
     status: "completed",
     image: "/python-webminar.png",
+    highlight: "Featured",
+    tags: ["Python", "Programming", "Beginner"],
   },
   {
     id: 2,
     title: "Free AI & Robotics Sessions",
-    description:
-      "Conducted free AI and Robotics workshops for school students, introducing the fundamentals of intelligent systems.",
+    description: "Conducted free AI and Robotics workshops for school students, introducing the fundamentals of intelligent systems.",
     date: "Nov 5, 2024",
     time: "2:00 PM - 4:00 PM",
     location: "Meenakshi Academy",
@@ -48,12 +53,13 @@ const events = [
     seats: "30/50",
     status: "completed",
     image: "/robotics.png",
+    highlight: "Tech",
+    tags: ["AI", "Robotics", "STEM"],
   },
   {
     id: 3,
     title: "Free App Development Webinar",
-    description:
-      "Introduced young innovators to app development, nurturing creativity and problem-solving through practical learning.",
+    description: "Introduced young innovators to app development, nurturing creativity and problem-solving through practical learning.",
     date: "Sep 20, 2024",
     time: "9:00 AM - 5:00 PM",
     location: "Online",
@@ -61,12 +67,13 @@ const events = [
     seats: "Completed",
     status: "completed",
     image: "/app-dev.png",
+    highlight: "Popular",
+    tags: ["App Dev", "Mobile", "Creative"],
   },
   {
     id: 4,
     title: "Tamil Orientation Event",
-    description:
-      "Hosted a Tamil orientation event promoting unity and peace through language and culture on International Peace Day.",
+    description: "Hosted a Tamil orientation event promoting unity and peace through language and culture on International Peace Day.",
     date: "Sep 21, 2024",
     time: "3:00 PM - 6:00 PM",
     location: "Community Hall",
@@ -74,31 +81,24 @@ const events = [
     seats: "80/150",
     status: "completed",
     image: "/tamil-contest.png",
+    highlight: "Cultural",
+    tags: ["Tamil", "Culture", "Community"],
   },
 ];
 
 const eventTypes = [
-  { id: "all", name: "All Events", count: 4 },
-  { id: "completed", name: "Completed", count: 4 },
-  { id: "workshop", name: "Workshops", count: 1 },
-  { id: "cultural", name: "Cultural", count: 1 },
-  { id: "demo", name: "Demos", count: 1 },
-  { id: "bootcamp", name: "Bootcamps", count: 1 },
+  { id: "all", name: "All Events", icon: "", count: 4 },
+  { id: "workshop", name: "Workshops", icon: "", count: 1 },
+  { id: "cultural", name: "Cultural", icon: "", count: 1 },
+  { id: "demo", name: "Demos", icon: "", count: 1 },
+  { id: "bootcamp", name: "Bootcamps", icon: "", count: 1 },
 ];
 
 const EventsPage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredEvents = events.filter((event) => {
-    const matchesFilter =
-      activeFilter === "all" ||
-      event.type === activeFilter ||
-      event.status === activeFilter;
-    const matchesSearch =
-      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesFilter && matchesSearch;
+    return activeFilter === "all" || event.type === activeFilter;
   });
 
   return (
@@ -109,353 +109,262 @@ const EventsPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="container px-6 pt-32 mx-auto pb-14 sm:px-8 lg:px-12">
-        <div className="relative py-12 overflow-hidden rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-transparent">
+      <section className="relative pt-32 pb-8 overflow-hidden">
+        <div className="container relative px-6 mx-auto sm:px-8 lg:px-12">
           <div className="max-w-3xl mx-auto text-center">
-            {/* Enhanced FAQ Badge */}
-            <div className="inline-flex items-center gap-3 px-6 py-3 mb-8 transition-all duration-300 border rounded-full bg-gradient-to-r from-primary/15 to-primary/10 border-primary/20 hover:bg-primary/20">
-              <div className="p-2 rounded-full bg-primary/20">
-                <HelpCircle className="w-16 h-16 text-primary" />
-              </div>
-              <span className="text-xl font-bold text-primary">Events & Achievements</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
+              <Award className="w-5 h-5" />
+              <span className="text-sm font-semibold">Our Events Gallery</span>
             </div>
 
-            <h1 className="mb-4 font-serif text-5xl font-bold md:text-7xl">
-              Our <span className="text-primary">Impactful</span> Events
+            <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
+              Impactful <span className="text-primary">Events</span>
             </h1>
-            
-            <p className="mb-8 text-lg text-gray-600 dark:text-gray-300">
-              Discover our completed workshops, seminars, and cultural events that have transformed lives through education.
+
+            <p className="mb-8 text-lg text-black dark:text-white md:text-xl">
+              Explore our completed events that have transformed lives through education
             </p>
+          </div>
+        </div>
+      </section>
 
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-8">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search events by title or description..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-4 pl-12 text-gray-700 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
-                />
-                <div className="absolute transform -translate-y-1/2 left-4 top-1/2">
-                  <Sparkles className="w-5 h-5 text-gray-400" />
-                </div>
-              </div>
-            </div>
-
-            {/* Event Filters */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <Filter className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  <span className="font-medium text-gray-700 dark:text-gray-300">Filter by:</span>
-                </div>
-                <span className="text-sm text-gray-500 dark:text-gray-400">
-                  {filteredEvents.length} events found
+      {/* Filter Tabs */}
+      <div className="sticky z-10 py-4 mb-8 top-24 bg-background/80 backdrop-blur-sm">
+        <div className="container px-6 mx-auto sm:px-8 lg:px-12">
+          <div className="flex flex-wrap justify-center gap-2">
+            {eventTypes.map((type) => (
+              <button
+                key={type.id}
+                onClick={() => setActiveFilter(type.id)}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all ${
+                  activeFilter === type.id
+                    ? "bg-linear-to-r from-primary to-primary/80 text-white shadow-lg"
+                    : "bg-background text-black dark:text-white border border-gray-200 hover:border-primary/30 hover:shadow-md"
+                }`}
+              >
+                <span className="text-sm">{type.icon}</span>
+                <span className="text-sm font-medium">{type.name}</span>
+                <span className={`text-xs px-1.5 py-0.5 rounded ${
+                  activeFilter === type.id
+                    ? "bg-white/20"
+                    : "bg-primary/10 text-primary"
+                }`}>
+                  {type.count}
                 </span>
-              </div>
-
-              <div className="flex flex-wrap justify-center gap-2">
-                {eventTypes.map((type) => (
-                  <button
-                    key={type.id}
-                    onClick={() => setActiveFilter(type.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                      activeFilter === type.id
-                        ? "bg-primary text-white shadow-lg shadow-primary/30"
-                        : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-                    }`}
-                  >
-                    <span>{type.name}</span>
-                    <span
-                      className={`text-xs px-2 py-1 rounded ${
-                        activeFilter === type.id
-                          ? "bg-white/30"
-                          : "bg-primary/10 text-primary dark:bg-primary/20"
-                      }`}
-                    >
-                      {type.count}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Events Grid */}
-      <section className="container px-6 pb-20 mx-auto sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredEvents.map((event) => (
-            <div
-              key={event.id}
-              className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]"
-            >
-              {/* Event Image Container */}
-              <div className="relative w-full h-48 overflow-hidden bg-gray-100 dark:bg-gray-900">
-                <div className="relative flex items-center justify-center w-full h-full p-4">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    width={400}
-                    height={192}
-                    className="object-contain w-full h-full transition-transform duration-700 group-hover:scale-110"
-                    unoptimized={true}
-                  />
-                </div>
-                
-                {/* Status Badge */}
-                <div className="absolute top-3 right-3">
-                  <span className={`px-3 py-1 text-xs font-medium rounded-full ${
-                    event.status === "completed" 
-                      ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300" 
-                      : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
-                  }`}>
-                    {event.status === "completed" ? "Completed" : "Upcoming"}
-                  </span>
-                </div>
-              </div>
-
-              {/* Event Content */}
-              <div className="flex flex-col p-6">
-                <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white line-clamp-1">
-                  {event.title}
-                </h3>
-
-                <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
-                  {event.description}
-                </p>
-
-                {/* Event Details */}
-                <div className="mb-4 space-y-3">
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <Calendar className="w-4 h-4 shrink-0" />
-                    <span>{event.date}</span>
-                    <span className="text-gray-400 dark:text-gray-600">•</span>
-                    <Clock className="w-4 h-4 shrink-0" />
-                    <span>{event.time}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <MapPin className="w-4 h-4 shrink-0" />
-                    <span className="truncate">{event.location}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <Users className="w-4 h-4 shrink-0" />
-                    <span>Participants: {event.seats}</span>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <Button className="flex-1 transition-colors bg-primary hover:bg-primary/90">
-                    <Video className="w-4 h-4 mr-2" />
-                    <span className="truncate">View Photos</span>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="border-gray-300 shrink-0 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* No Events Message */}
-        {filteredEvents.length === 0 && (
-          <div className="py-16 text-center">
-            <Calendar className="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-700" />
-            <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-              No events found
-            </h3>
-            <p className="mb-6 text-gray-600 dark:text-gray-400">
-              Try adjusting your search or filter criteria
-            </p>
-            <Button
-              onClick={() => {
-                setSearchQuery("");
-                setActiveFilter("all");
-              }}
-              className="bg-primary hover:bg-primary/90"
-            >
-              View All Events
-            </Button>
-          </div>
-        )}
-      </section>
-
-      {/* === CTA Section - Grid Style === */}
-      <div className="container px-4 py-12 mx-auto">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-primary/80">
-          {/* Animated Background */}
-          <div className="absolute inset-0">
-            <svg
-              className="w-full h-full opacity-10"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern
-                  id="eventsPattern"
-                  x="0"
-                  y="0"
-                  width="100"
-                  height="100"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M0,50 Q25,0 50,50 T100,50"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M0,50 Q25,100 50,50 T100,50"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#eventsPattern)" />
-            </svg>
-          </div>
-
-          <div className="relative px-8 py-12 md:px-12">
-            <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-              <div className="text-white">
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-white/20">
-                  <Target className="w-4 h-4" />
-                  <span className="text-sm">Future Events</span>
-                </div>
-                <h3 className="mb-4 text-3xl font-bold">
-                  Help Us Organize More Events
-                </h3>
-                <p className="max-w-xl mb-6 text-white/90">
-                  Your support helps us conduct more free workshops and reach
-                  more underprivileged students with quality education.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" variant="secondary" className="gap-2">
-                    Propose an Event
-                    <ChevronRight className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="gap-2 text-white border-white hover:bg-white/10"
-                  >
-                    <Users className="w-4 h-4" />
-                    Volunteer
-                  </Button>
-                </div>
-              </div>
-              <div className="relative">
-                <div className="absolute rounded-full -inset-4 bg-white/10 blur-xl" />
-                <div className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm">
-                  <Trophy className="w-12 h-12 mx-auto mb-4 text-white" />
-                  <p className="text-center text-white/90">
-                    2000+ Students
-                    <br />
-                    <span className="text-sm">Impacted</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* === Volunteer CTA === */}
-      <div className="container px-4 py-12 mx-auto">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400">
-          {/* Animated Background */}
-          <div className="absolute inset-0">
-            <svg
-              className="w-full h-full opacity-10"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern
-                  id="volunteerPattern"
-                  x="0"
-                  y="0"
-                  width="80"
-                  height="80"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="30"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="1"
-                  />
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="15"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="1"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#volunteerPattern)" />
-            </svg>
-          </div>
+      {/* Main Content - Full Height Split Layout */}
+      <section className="pb-20">
+        <div className="container px-6 mx-auto sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {filteredEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative overflow-hidden transition-all duration-500 bg-white border border-gray-100 shadow-lg group rounded-2xl hover:shadow-2xl"
+              >
+                {/* FULL HEIGHT SPLIT LAYOUT */}
+                <div className="flex flex-col md:flex-row h-125 md:h-100 lg:h-112.5 bg-background">
+                  
+                  {/* LEFT HALF: FULL SIZE IMAGE - NO PIXEL MISSING */}
+                  <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
+                    {/* Image Container - Exact 50% of card */}
+                    <div className="absolute inset-0">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={index < 2}
+                        unoptimized={true}
+                        style={{ 
+                          objectFit: 'cover',
+                          objectPosition: 'center'
+                        }}
+                      />
+                      
+                      {/* Overlay only for badges - not covering image */}
+                      <div className="absolute z-10 top-4 left-4">
+                        <span className="px-3 py-1 text-xs font-bold text-white rounded-full shadow-lg bg-linear-to-r from-primary to-primary/80">
+                          {event.highlight}
+                        </span>
+                      </div>
+                      
+                      <div className="absolute z-10 top-4 right-4">
+                        <span className="px-3 py-1 text-xs font-bold text-white rounded-full shadow-lg bg-green-500/90">
+                          Completed
+                        </span>
+                      </div>
+                      
+                      {/* Minimal gradient for text readability */}
+                      <div className="absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-black/30 to-transparent md:hidden"></div>
+                    </div>
+                  </div>
 
-          <div className="relative px-8 py-12 md:px-12">
-            <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-              <div className="text-white">
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-white/20">
-                  <Sparkles className="w-4 h-4" />
-                  <span className="text-sm">Get Involved</span>
-                </div>
-                <h3 className="mb-4 text-3xl font-bold">
-                  Join Our Education Mission
-                </h3>
-                <p className="max-w-xl mb-6 text-white/90">
-                  Whether you want to attend our events, volunteer, or support
-                  our mission, there's a place for you in our community.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" variant="secondary" className="gap-2">
-                    View All Events
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="gap-2 text-white border-white hover:bg-white/10"
-                  >
-                    Donate Resources
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="gap-2 text-white border-white hover:bg-white/10"
-                  >
-                    Partner With Us
-                  </Button>
-                </div>
-              </div>
-              <div className="relative">
-                <div className="absolute rounded-full -inset-4 bg-white/10 blur-xl" />
-                <div className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm">
-                  <div className="flex flex-col items-center">
-                    <div className="mb-2 text-4xl font-bold">300+</div>
-                    <p className="text-sm text-center text-white/90">
-                      Active Volunteers
-                      <br />
-                      <span className="text-xs">Making a Difference</span>
+                  {/* RIGHT HALF: EVENT DETAILS */}
+                  <div className="flex flex-col w-full p-6 overflow-auto md:w-1/2 h-1/2 md:h-full md:p-8">
+                    {/* Title - Visible on mobile over gradient */}
+                    <h3 className="mb-3 text-xl font-bold leading-tight text-black dark:text-white md:mb-4">
+                      {event.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="mb-6 text-sm leading-relaxed text-black dark:text-white grow">
+                      {event.description}
                     </p>
+                    
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {event.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 text-xs border rounded-full bg-primary/10 text-primary border-primary/20"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    {/* Details Grid - 2x2 */}
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-black dark:text-white" />
+                          <span className="text-sm font-medium text-black dark:text-white">Date</span>
+                        </div>
+                        <div className="text-sm text-black dark:text-white">{event.date}</div>
+                      </div>
+                      
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-black dark:text-white" />
+                          <span className="text-sm font-medium text-black dark:text-white">Time</span>
+                        </div>
+                        <div className="text-sm text-black dark:text-white">{event.time}</div>
+                      </div>
+                      
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-black dark:text-white" />
+                          <span className="text-sm font-medium text-black dark:text-white">Location</span>
+                        </div>
+                        <div className="text-sm text-black truncate dark:text-white">{event.location}</div>
+                      </div>
+                      
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Users className="w-4 h-4 text-black dark:text-white" />
+                          <span className="text-sm font-medium text-black dark:text-white">Participants</span>
+                        </div>
+                        <div className="text-sm text-black dark:text-white">{event.seats}</div>
+                      </div>
+                    </div>
+                    
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 pt-4 border-t border-gray-100">
+                      <Button className="flex-1 gap-2 text-white bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary">
+                        <Video className="w-4 h-4" />
+                        View Photos
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="gap-2 text-black border-gray-300 dark:text-white hover:border-primary hover:text-primary"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Details
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+            
+            {/* Empty State */}
+            {filteredEvents.length === 0 && (
+              <div className="flex flex-col items-center justify-center col-span-2 p-12 text-center bg-black border border-gray-200 rounded-2xl">
+                <Calendar className="w-20 h-20 mb-6 text-black dark:text-white" />
+                <h3 className="mb-3 text-2xl font-bold text-black dark:text-white">
+                  No events found
+                </h3>
+                <p className="max-w-md mb-8 text-black dark:text-white">
+                  Try selecting a different category or check back soon for upcoming events.
+                </p>
+                <Button
+                  onClick={() => setActiveFilter("all")}
+                  className="gap-3 px-8 py-6 text-lg text-white bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary rounded-xl"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                  View All Events
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Impact CTA */}
+      <div className="pb-20">
+        <div className="container px-6 mx-auto sm:px-8 lg:px-12">
+          <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
+            <div className="absolute inset-0 opacity-10">
+              <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M0,50 Q25,0 50,50 T100,50" fill="none" stroke="white" strokeWidth="2" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#wave)" />
+              </svg>
+            </div>
+
+            <div className="relative p-8 md:p-12">
+              <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full bg-white/20">
+                    <Heart className="w-4 h-4 text-white" />
+                    <span className="text-sm font-medium text-white">Join Our Mission</span>
+                  </div>
+                  <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+                    Help Us Create More Impact
+                  </h2>
+                  <p className="mb-6 text-white/90">
+                    Support our mission to provide free educational events and reach thousands of underprivileged students across communities.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button size="lg" variant="secondary" className="gap-2 bg-primary/10">
+                      <Zap className="w-4 h-4" />
+                      Volunteer Today
+                    </Button>
+                    <Button size="lg" variant="outline" className="gap-2 text-white border-white hover:bg-white/10">
+                      <Target className="w-4 h-4" />
+                      Propose Event
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-6 text-center bg-white/10 backdrop-blur-sm rounded-xl">
+                    <div className="mb-1 text-3xl font-bold text-white">2K+</div>
+                    <div className="text-sm text-white/80">Students Impacted</div>
+                  </div>
+                  <div className="p-6 text-center bg-white/10 backdrop-blur-sm rounded-xl">
+                    <div className="mb-1 text-3xl font-bold text-white">4</div>
+                    <div className="text-sm text-white/80">Events Completed</div>
+                  </div>
+                  <div className="p-6 text-center bg-white/10 backdrop-blur-sm rounded-xl">
+                    <div className="mb-1 text-3xl font-bold text-white">100%</div>
+                    <div className="text-sm text-white/80">Free Access</div>
+                  </div>
+                  <div className="p-6 text-center bg-white/10 backdrop-blur-sm rounded-xl">
+                    <div className="mb-1 text-3xl font-bold text-white">5★</div>
+                    <div className="text-sm text-white/80">Satisfaction</div>
                   </div>
                 </div>
               </div>
