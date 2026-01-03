@@ -28,7 +28,7 @@ const Page = () => {
           direction="forward"
           scale={1.1}
           opacity={1}
-          mouseInteractive={true}
+          mouseInteractive={false}
         />
       </div>
 
