@@ -73,7 +73,7 @@ export const Feature51 = ({
   return (
     <section className="w-full px-5 border border-t-0 border-l-0 border-r-0 border-dashed py-22 rounded-4xl bg-background border-white/20">
       <div className="max-w-4xl mx-auto space-y-4 text-center">
-        <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
+        <h2 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-6xl">
           Explore Our Academic Excellence
         </h2>
         <p className="max-w-xl mx-auto mb-20 text-muted-foreground">

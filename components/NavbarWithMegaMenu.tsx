@@ -12,6 +12,7 @@ import {
   BookHeartIcon,
   BookOpen,
   BookOpenCheck,
+  CircleQuestionMarkIcon,
   FileText,
   GitBranch,
   Grid3x3,
@@ -54,6 +55,7 @@ import { FaPhoneSquare, FaRobot } from "react-icons/fa";
 
 const LINKS = [
   { icon: User, title: "About", href: "/about" },
+  { icon: CircleQuestionMarkIcon, title: "FAQ", href: "/faq" },
   // { icon: GitBranch, title: "Blocks", href: "/blocks" },
   { icon: PhoneCallIcon, title: "Contact", href: "/contact" },
 ];

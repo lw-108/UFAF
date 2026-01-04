@@ -71,7 +71,7 @@ export default function ClassesCarousel() {
   return (
     <section className="w-full border border-t-0 border-b border-l-0 border-r-0 border-dashed bg-background-t-0 rounded-4xl py-22 border-white/20">
       <div className="max-w-4xl mx-auto space-y-4 text-center">
-        <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
+        <h2 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-6xl">
           Explore Our Courses & Programs
         </h2>
         <p className="max-w-xl mx-auto mb-20 text-muted-foreground">
@@ -82,7 +82,7 @@ export default function ClassesCarousel() {
 
       <div className="container flex flex-col items-center gap-8 px-4 mx-auto lg:px-8 lg:flex-row lg:gap-12">
         {/* Left: 3x3 Grid */}
-        <div className="grid grid-cols-3 grid-rows-3 gap-5 w-full lg:w-1/2 h-[300px] lg:h-[400px]">
+        <div className="grid w-full grid-cols-3 grid-rows-3 gap-5 lg:w-1/2 h-75 lg:h-100">
           {gridItems.map((imgSrc: string | null, idx: number) => (
             <div
               key={idx}
