@@ -70,12 +70,12 @@ const MEGA_MENU_SECTIONS = [
         icon: BookOpen,
         href: "/courses",
       },
-      // {
-      //   title: "Popular Courses",
-      //   description: "Most enrolled programs and subjects.",
-      //   icon: Sun,
-      //   href: "/courses/popular",
-      // },
+      {
+        title: "Popular Courses",
+        description: "Most enrolled programs and subjects.",
+        icon: Sun,
+        href: "/courses/popular",
+      },
       // {
       //   title: "New Courses",
       //   description: "Recently launched learning programs.",
@@ -93,47 +93,47 @@ const MEGA_MENU_SECTIONS = [
         icon: User,
         href: "/about",
       },
-      // {
-      //   title: "Faculty",
-      //   description: "Meet our expert instructors and mentors.",
-      //   icon: Users,
-      //   href: "/faculty",
-      // },
+      {
+        title: "Faculty",
+        description: "Meet our expert instructors and mentors.",
+        icon: Users,
+        href: "/faculty",
+      },
       {
         title: "Mission & Vision",
         description: "Learn about our mission and vision.",
         icon: TargetIcon,
         href: "/missionandvision",
       },
-      // {
-      //   title: "Testimonials",
-      //   description: "Success stories from our students.",
-      //   icon: TriangleDashedIcon,
-      //   href: "/testimonials",
-      // },
-      // {
-      //   title: "Projects",
-      //   description: "Career opportunities and job placements.",
-      //   icon: FaRobot,
-      //   href: "/project",
-      // },
+      {
+        title: "Testimonials",
+        description: "Success stories from our students.",
+        icon: TriangleDashedIcon,
+        href: "/testimonials",
+      },
+      {
+        title: "Projects",
+        description: "Career opportunities and job placements.",
+        icon: FaRobot,
+        href: "/project",
+      },
     ],
   },
   {
     label: "Resources",
     items: [
-      // {
-      //   title: "Blog & Articles",
-      //   description: "Educational insights and learning tips.",
-      //   icon: Newspaper,
-      //   href: "/blog",
-      // },
-      // {
-      //   title: "Free Resources",
-      //   description: "Downloadable study materials and guides.",
-      //   icon: Archive,
-      //   href: "/resources",
-      // },
+      {
+        title: "Blog & Articles",
+        description: "Educational insights and learning tips.",
+        icon: Newspaper,
+        href: "/blog",
+      },
+      {
+        title: "Free Resources",
+        description: "Downloadable study materials and guides.",
+        icon: Archive,
+        href: "/resources",
+      },
       {
         title: "FAQ",
         description: "Frequently asked questions about courses.",
