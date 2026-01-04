@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Plasma from "@/components/Plasma";
 import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
 import { Banner1 } from "@/components/Banner1";
 import { Hero243 } from "@/components/Hero243";
@@ -20,17 +19,6 @@ import { Footer7 } from "@/components/Footer7";
 const Page = () => {
   return (
     <div className="relative w-full min-h-screen">
-      {/* Background Plasma Effect */}
-      <div className="fixed inset-0 z-0 opacity-30">
-        <Plasma
-          color="#002eb8"
-          speed={0.6}
-          direction="forward"
-          scale={1.1}
-          opacity={1}
-          mouseInteractive={false}
-        />
-      </div>
 
       {/* Main Content */}
       <div className="relative z-10">
