@@ -56,8 +56,8 @@ export function ThirukkuralSection() {
       <div className="flex flex-col items-center w-full gap-10">
         {/* Title Bar */}
         <div className="relative flex flex-col justify-center w-full max-w-5xl px-5 py-10 text-center">
-          <h1 className="mt-20 font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
-            Thirukkural
+          <h1 className="mt-20 font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-5xl md:leading-tight">
+            திருக்குறள்
           </h1>
         </div>
 

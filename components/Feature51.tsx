@@ -112,7 +112,7 @@ export const Feature51 = ({
           {/* TAB CONTENT */}
           {features.map((tab) => (
             <TabsContent key={tab.id} value={tab.id}>
-              <div className="relative w-full h-[450px] md:h-[550px] lg:h-[650px] rounded-md overflow-hidden shadow-xl transition-opacity duration-500">
+              <div className="relative w-full h-112.5 md:h-137.5 lg:h-162.5 rounded-md overflow-hidden shadow-xl transition-opacity duration-500">
                 <Image
                   src={tab.image}
                   alt={tab.heading}

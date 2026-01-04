@@ -94,7 +94,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="container px-4 py-16 mx-auto text-center">
-        <h1 className="mb-6 text-5xl font-bold text-transparent md:text-6xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text">
+        <h1 className="mb-6 text-5xl font-bold text-transparent md:text-6xl bg-linear-to-r from-primary to-primary/70 bg-clip-text">
           Innovative Projects
         </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">

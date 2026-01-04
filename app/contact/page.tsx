@@ -106,7 +106,7 @@ export default function ContactPage() {
                   <MessageSquare className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
                   <Textarea
                     placeholder="Your message here..."
-                    className="min-h-[150px] pl-10"
+                    className="min-h-37.5 pl-10"
                   />
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function ContactPage() {
         </div>
 
         {/* Support CTA with Pattern */}
-        <div className="relative mt-20 overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-primary/80">
+        <div className="relative mt-20 overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
           {/* Wave Pattern */}
           <div className="absolute inset-0">
             <svg

@@ -34,39 +34,42 @@ const Hero243 = () => {
               }
             >
               Enroll Now
-              <span><ArrowRight className="w-5 h-5 mt-1" /></span>
+              <span>
+                <ArrowRight className="w-5 h-5 mt-1" />
+              </span>
             </Button>
           </div>
 
           {/* Interactive 3D Model Section */}
-<div className="w-full max-w-5xl mx-auto mt-12 lg:mt-16">
-  <div className="relative overflow-hidden border border-gray-200 shadow-2xl rounded-2xl md:rounded-3xl dark:border-gray-800">
-    <div className="relative w-full aspect-4/3 md:aspect-video">
-     <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
-  <iframe
-    src="https://my.spline.design/nexbotrobotcharacterconcept-quLQRzZpCb8v4Js4e5ISLgoE/"
-    className="absolute w-full h-[140%] -top-[15%]"
-    title="AI Learning Assistant - Interactive 3D Model"
-    style={{ border: "none" }}
-    allow="accelerometer; gyroscope"
-    loading="lazy"
-    referrerPolicy="no-referrer"
-  />
-</div>
-      
-      {/* Overlay Label */}
-      <div className="absolute bottom-4 left-4">
-        <span className="px-3 py-1 text-sm font-medium text-white rounded-full bg-black/50 backdrop-blur-sm">
-          Interactive 3D Learning Assistant
-        </span>
-      </div>
-    </div>
-  </div>
-  
-  <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">
-    Experience our AI-powered learning assistant in 3D - Click and drag to interact
-  </p>
-</div>
+          <div className="w-full max-w-5xl mx-auto mt-12 lg:mt-16">
+            <div className="relative overflow-hidden border border-gray-200 shadow-2xl rounded-2xl md:rounded-3xl dark:border-gray-800">
+              <div className="relative w-full aspect-4/3 md:aspect-video">
+                <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
+                  <iframe
+                    src="https://my.spline.design/nexbotrobotcharacterconcept-quLQRzZpCb8v4Js4e5ISLgoE/"
+                    className="absolute w-full h-[140%] -top-[15%]"
+                    title="AI Learning Assistant - Interactive 3D Model"
+                    style={{ border: "none" }}
+                    allow="accelerometer; gyroscope"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Overlay Label */}
+                {/* <div className="absolute bottom-4 left-4">
+                  <span className="px-3 py-1 text-sm font-medium text-white rounded-full bg-black/50 backdrop-blur-xl">
+                    Interactive 3D Learning Assistant
+                  </span>
+                </div> */}
+              </div>
+            </div>
+
+            <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">
+              Experience our AI-powered learning assistant in 3D - Click and
+              drag to interact
+            </p>
+          </div>
         </div>
       </div>
     </section>

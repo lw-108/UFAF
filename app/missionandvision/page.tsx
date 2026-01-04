@@ -39,7 +39,7 @@ export default function MissionVision() {
       </div>
 
       {/* 🔥 Single Full Width Image with Overlay */}
-      <div className="max-w-6xl mx-auto mt-16 rounded-2xl overflow-hidden h-[400px] relative group">
+      <div className="relative max-w-6xl mx-auto mt-16 overflow-hidden rounded-2xl h-100 group">
         <Image
           src="/forest.png"
           alt="Mission Vision Background"
@@ -48,7 +48,7 @@ export default function MissionVision() {
           priority
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/20 to-transparent" />
 
         {/* Animated Pattern Overlay */}
         <div className="absolute inset-0 opacity-30">

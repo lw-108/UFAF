@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Volume2,
@@ -9,15 +9,14 @@ import {
   ChevronUp,
   MoveUpRight,
 } from "lucide-react";
-import { Case1 } from "@/components/ui/Case1"; // import the carousel
+// import { Case1 } from "@/components/ui/Case1";
 import type { FC } from "react";
 import Image from "next/image";
 
-// --------------- TEXT CONTENT (3 PARAGRAPHS) ----------------
-
+// Text content
 const paragraphs = [
   {
-    text: "U Fill Academy is an educational initiative built on the principle of \"Education for All.\" Our core motive is to serve society by providing free and accessible education to tribal students and children from economically weaker sections.",
+    text: "U Fill Academy is an educational initiative built on the principle of 'Education for All.' Our core motive is to serve society by providing free and accessible education to tribal students and children from economically weaker sections.",
   },
   {
     text: "We believe that every child deserves quality learning opportunities, regardless of background or financial status. By offering free academic support, tuition classes, and career guidance, U Fill Academy ensures that underprivileged students get equal access to knowledge and skills.",
@@ -27,145 +26,184 @@ const paragraphs = [
   },
 ];
 
-// ------------------ Achievements ------------------
-
+// Achievements
 const defaultAchievements = [
   { label: "Students Impacted", value: "2000+" },
-  { label: "Free Classes Conducted", value: "500+" },
+  { label: "Free Classes", value: "500+" },
   { label: "Mentors & Volunteers", value: "60+" },
   { label: "Communities Served", value: "15+" },
 ];
 
-// ------------------ COMPONENT ------------------
-
-export const About3: FC = () => {
-  const [muted, setMuted] = useState(true);
-  const [expanded, setExpanded] = useState(false);
+// Simple Local Video Player with Mute/Unmute Only
+const LocalVideoPlayer = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   const toggleMute = () => {
-    setMuted(!muted);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
   };
 
   return (
-    <section className="flex items-center justify-center w-full min-h-screen">
-      <div className="container pt-10 border border-t-0 border-l-0 border-r-0 border-dashed backdrop-blur-sm">
-        {/* ---------------- HEADER ---------------- */}
-        <div className="mt-16 space-y-4 text-center">
-          <h1 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
-            About Us
+    <div className="relative w-full h-full overflow-hidden bg-black rounded-2xl">
+      {/* Video Element - Auto-plays, loops, initially muted */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 object-cover w-full h-full"
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        preload="metadata"
+      >
+        <source src="/vids/aiaiai.mp4" type="video/mp4" />
+        <source src="/vids/aiaiai.webm" type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Mute/Unmute Button Only */}
+      <button
+        onClick={toggleMute}
+        className="absolute p-3 transition-all rounded-full shadow-lg bg-white/90 backdrop-blur-sm bottom-4 left-4 hover:scale-110 hover:bg-white"
+        aria-label={isMuted ? "Unmute video" : "Mute video"}
+      >
+        {isMuted ? (
+          <VolumeX className="w-5 h-5 text-gray-700" />
+        ) : (
+          <Volume2 className="w-5 h-5 text-gray-700" />
+        )}
+      </button>
+    </div>
+  );
+};
+
+export const About3: FC = () => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <section className="w-full min-h-screen py-20">
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
+            <span className="text-sm font-semibold">Our Story</span>
+          </div>
+          
+          <h1 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-7xl">
+            About <span className="text-primary">U Fill Academy</span>
           </h1>
 
-          {/* ABOUT TEXT BOX */}
-          <div
-            className={`max-w-3xl mx-auto mt-8 rounded-2xl bg-background/50 backdrop-blur p-6 sm:p-8 text-muted-foreground overflow-hidden transition-all duration-500 ease-in-out 
-  ${expanded ? "max-h-62.5" : "max-h-70"}`}
-          >
-            <div className="pt-1 pl-5 pr-5 space-y-4 overflow-y-auto text-lg leading-relaxed text-left md:text-xl max-h-54.5 no-scrollbar">
+          {/* About Text Box */}
+          <div className={`max-w-3xl mx-auto mb-8 p-6 rounded-2xl bg-transparent border border-white/20 border-dashed shadow-sm transition-all duration-500 ${
+            expanded ? "max-h-125" : "max-h-50"
+          } overflow-hidden`}>
+            <div className="space-y-4 leading-relaxed text-black dark:text-white">
               {paragraphs.map((p, i) => (
-                <p key={i}>{p.text}</p>
+                <p key={i} className={i > 0 && !expanded ? "hidden" : ""}>
+                  {p.text}
+                </p>
               ))}
             </div>
           </div>
 
-          {/* SHOW MORE BUTTON */}
+          {/* Show More Button */}
           <button
             onClick={() => setExpanded(!expanded)}
-            className="flex items-center gap-2 mx-auto mt-4 text-sm font-medium transition text-primary hover:opacity-70"
+            className="inline-flex items-center gap-2 px-4 py-2 transition-colors text-primary hover:text-primary/80"
           >
             {expanded ? "Show Less" : "Read More"}
             {expanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
           </button>
         </div>
 
-        {/* ---------------- CAROUSEL (REPLACES LOGOS3) ---------------- */}
-        <div className="py-20">
+        {/* Carousel */}
+        {/* <div className="mb-20">
           <Case1 />
-        </div>
+        </div> */}
 
-        {/* ---------------- VIDEO + IMAGE / CARD ---------------- */}
-        <div className="grid gap-10 pb-10 border border-t-0 border-b-0 border-l-0 border-r-0 border-dashed lg:grid-cols-3 rounded-2xl">
-          {/* VIDEO */}
-          <div className="relative overflow-hidden shadow-lg rounded-2xl lg:col-span-2">
-            {/* YouTube Embed */}
-            <div className="relative pt-[36.25%]">
-              <iframe
-                src={`https://www.youtube.com/embed/O-BdMhNGvQw?autoplay=1&mute=${muted ? 1 : 0}&loop=1&playlist=O-BdMhNGvQw&controls=0&modestbranding=1&rel=0`}
-                className="absolute top-0 left-0 w-full h-full rounded-2xl"
-                title="U-Fill Academy Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              />
+        {/* Video + Image Section */}
+        <div className="grid gap-8 mb-20 lg:grid-cols-3">
+          {/* Video Section */}
+          <div className="lg:col-span-2">
+            <div className="relative overflow-hidden shadow-xl rounded-2xl">
+              <div className="relative aspect-video">
+                {/* Use Local Video Player Component */}
+                <LocalVideoPlayer />
+              </div>
             </div>
-
-            {/* Mute Button */}
-            <button
-              onClick={toggleMute}
-              className="absolute p-3 transition-all border rounded-full bottom-4 left-4 bg-background/60 backdrop-blur-sm border-white/40 hover:scale-110 hover:bg-background/80"
-              aria-label={muted ? "Unmute video" : "Mute video"}
-            >
-              {muted ? (
-                <VolumeX className="w-5 h-5" />
-              ) : (
-                <Volume2 className="w-5 h-5" />
-              )}
-            </button>
           </div>
 
-          {/* RIGHT SIDE CARD + IMAGE */}
-          <div className="flex flex-col justify-between gap-7">
-            <div className="p-6 space-y-4 bg-transparent border shadow-sm rounded-2xl">
-              <div className="relative w-40 h-40 mx-auto">
+          {/* Right Side Content */}
+          <div className="flex flex-col gap-8">
+            {/* Logo Card */}
+            <div className="p-6 border border-dashed rounded-2xl bg-background border-white/20">
+              <div className="relative w-32 h-32 mx-auto mb-4">
                 <Image 
                   src="/u-robo.png" 
                   alt="U Fill Academy Logo" 
                   fill
-                  className="object-contain"
+                  className="object-contain drop-shadow-lg"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
                 />
               </div>
-              <h3 className="text-xl font-semibold text-center">
+              <h3 className="mb-3 text-xl font-bold text-center text-black dark:text-white">
                 Innovation That Matters
               </h3>
-              <p className="text-center text-muted-foreground">
+              <p className="mb-6 text-center text-gray-600">
                 We build educational solutions that transform lives.
               </p>
-
               <Button variant="outline" className="w-full gap-2">
                 Explore More <MoveUpRight className="w-4 h-4" />
               </Button>
             </div>
 
-            <div className="relative w-full h-64 overflow-hidden border rounded-2xl">
+            {/* Optional Image */}
+            {/* <div className="relative flex-1 min-h-[200px] rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/placeholder-image.jpg" // Replace with your actual image
+                src="/about-students.jpg"
                 alt="Our students learning"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-            </div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
+            </div> */}
           </div>
         </div>
 
-        {/* ---------------- ACHIEVEMENTS ---------------- */}
-        <div className="p-10 mt-20 text-center">
-          <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-6xl md:leading-tight">
-            Our Journey & Impact
+        {/* Achievements */}
+        {/* <div className="text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
+            <span className="text-sm font-semibold">Our Impact</span>
+          </div>
+          
+          <h2 className="mb-6 font-serif text-3xl md:text-4xl lg:text-5xl">
+            Transforming Education, Transforming Lives
           </h2>
-          <p className="max-w-lg mx-auto mt-4 text-muted-foreground">
-            We are continuously working towards empowering underserved
-            communities through education.
+          
+          <p className="max-w-2xl mx-auto mb-12 text-lg text-gray-600">
+            We are continuously working towards empowering underserved communities through education.
           </p>
 
-          <div className="grid grid-cols-2 gap-10 mt-10 lg:grid-cols-4">
-            {defaultAchievements.map((a, i) => (
-              <div key={i} className="space-y-2">
-                <h3 className="text-4xl font-bold text-primary">{a.value}</h3>
-                <p className="text-muted-foreground">{a.label}</p>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {defaultAchievements.map((achievement, index) => (
+              <div 
+                key={index}
+                className="p-6 transition-shadow duration-300 bg-transparent shadow-sm text-serif rounded-2xl hover:shadow-md"
+              >
+                <div className="mb-2 text-4xl font-bold text-serif text-primary">
+                  {achievement.value}
+                </div>
+                <div className="font-medium text-gray-600">
+                  {achievement.label}
+                </div>
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

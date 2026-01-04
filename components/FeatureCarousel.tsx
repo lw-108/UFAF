@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { BookOpen, Users, Mic, Lightbulb, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { Play, Pause } from "lucide-react";
 
 const stages = [
@@ -18,7 +19,7 @@ const stages = [
     subtitle: "The Rise",
     stage: "Stage 1",
     desc: "Foundational learning and discovery. Building the first blocks of knowledge and curiosity through play-based learning and sensory activities.",
-    image: "/u-robo.png",
+    image: "/1.webp",
     color: "from-blue-50 to-blue-100",
     iconColor: "text-blue-600",
   },
@@ -28,7 +29,7 @@ const stages = [
     subtitle: "The Connections",
     stage: "Stage 2",
     desc: "Building relationships and core skills. Learning to collaborate, communicate effectively, and develop social-emotional intelligence.",
-    image: "/u-robo.png",
+    image: "/2.png",
     color: "from-emerald-50 to-emerald-100",
     iconColor: "text-emerald-600",
   },
@@ -38,7 +39,7 @@ const stages = [
     subtitle: "The Voice",
     stage: "Stage 3",
     desc: "Developing expression and identity. Finding and using ones unique voice through debate, public speaking, and creative expression.",
-    image: "/u-robo.png",
+    image: "/3.png",
     color: "from-purple-50 to-purple-100",
     iconColor: "text-purple-600",
   },
@@ -48,7 +49,7 @@ const stages = [
     subtitle: "The Creation",
     stage: "Stage 4",
     desc: "Innovation and original thinking. Learning to create, innovate, and bring ideas to life through project-based learning.",
-    image: "/u-robo.png",
+    image: "/4.png",
     color: "from-amber-50 to-amber-100",
     iconColor: "text-amber-600",
   },
@@ -58,7 +59,7 @@ const stages = [
     subtitle: "The Future",
     stage: "Stage 5",
     desc: "Preparing for what lies ahead. Developing skills and mindset for future success, leadership, and global impact.",
-    image: "/u-robo.png",
+    image: "/5.png",
     color: "from-rose-50 to-rose-100",
     iconColor: "text-rose-600",
   },
@@ -247,12 +248,16 @@ export const FeatureCarousel = () => {
                         <div className="relative overflow-hidden bg-background">
                           <div className="absolute inset-0 flex items-center justify-center p-8">
                             <div className="relative w-64 h-64 lg:w-80 lg:h-80">
-                              {/* Placeholder for image - you can replace with actual Image component */}
-                              <div className="absolute inset-0 border shadow-inner rounded-2xl bg-linear-to-br from-white to-gray-100" />
-                              <div className="absolute inset-4 rounded-xl bg-linear-to-br from-gray-200 to-gray-300 animate-pulse" />
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <stage.icon
-                                  className={`h-24 w-24 ${stage.iconColor} opacity-20`}
+                              {/* Image container with gradient background */}
+                              <div className="absolute inset-0 overflow-hidden border rounded-4xl bg-background">
+                                {/* Image - Replace the stage.image with your actual image source */}
+                                <Image
+                                  src={stage.image} // or your specific image path like "/images/stage1.jpg"
+                                  alt={stage.title || "Process stage"}
+                                  fill
+                                  className="object-cover transition-transform duration-500 hover:scale-105"
+                                  sizes="(max-width: 1024px) 256px, 320px"
+                                  priority={false}
                                 />
                               </div>
                             </div>
