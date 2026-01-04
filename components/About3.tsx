@@ -91,7 +91,7 @@ export const About3: FC = () => {
             <span className="text-sm font-semibold">Our Story</span>
           </div>
           
-          <h1 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-7xl">
+          <h1 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-6xl">
             About <span className="text-primary">U Fill Academy</span>
           </h1>
 

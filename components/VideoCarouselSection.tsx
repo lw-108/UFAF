@@ -224,8 +224,8 @@ export default function VideoCarouselSection() {
       <div className="mx-auto max-w-7xl">
         {/* Header - Same as before */}
         <div className="mb-10 text-center">
-          <h2 className="mb-3 text-3xl font-bowlby md:text-4xl lg:text-5xl">
-            Campus Life
+          <h2 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-6xl">
+            Knowledge Archive
           </h2>
           <p className="max-w-2xl mx-auto text-muted-foreground">
             Choose and watch any video you like — playback starts only when you
