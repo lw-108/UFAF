@@ -1,34 +1,22 @@
 export interface Course {
-  id: number
-  title: string
-  description: string
-  category: string
-  duration: string
-  students: number
-  rating: number
-  isNew: boolean
-  isPopular: boolean
-  price: string
-  tags: string[]
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  duration: string;
+  students: number;
+  rating: number;
+  isNew: boolean;
+  isPopular: boolean;
+  price: string;
+  tags: string[];
+  trendingScore?: number; // Added for market trend calculation
 }
 
 export const coursesData: Course[] = [
   // TECH BASED CLASSES
   {
     id: 1,
-    title: "IOT - Internet of Things",
-    description: "Learn to build connected devices and IoT systems from scratch",
-    category: "Tech Based Classes",
-    duration: "8 weeks",
-    students: 1250,
-    rating: 4.8,
-    isNew: false,
-    isPopular: true,
-    price: "₹4,999",
-    tags: ["IoT", "Embedded", "Sensors"]
-  },
-  {
-    id: 2,
     title: "AI & Robotics",
     description: "Master artificial intelligence and robotics with hands-on projects",
     category: "Tech Based Classes",
@@ -38,7 +26,22 @@ export const coursesData: Course[] = [
     isNew: true,
     isPopular: true,
     price: "₹6,999",
-    tags: ["AI", "Machine Learning", "Robotics"]
+    tags: ["AI", "Machine Learning", "Robotics"],
+    trendingScore: 92
+  },
+  {
+    id: 2,
+    title: "IOT - Internet of Things",
+    description: "Learn to build connected devices and IoT systems from scratch",
+    category: "Tech Based Classes",
+    duration: "8 weeks",
+    students: 1250,
+    rating: 4.8,
+    isNew: false,
+    isPopular: true,
+    price: "₹4,999",
+    tags: ["IoT", "Embedded", "Sensors"],
+    trendingScore: 78
   },
   {
     id: 3,
@@ -51,7 +54,8 @@ export const coursesData: Course[] = [
     isNew: false,
     isPopular: true,
     price: "₹3,999",
-    tags: ["Programming", "Python", "Web Dev"]
+    tags: ["Programming", "Python", "Web Dev"],
+    trendingScore: 85
   },
   {
     id: 4,
@@ -64,7 +68,8 @@ export const coursesData: Course[] = [
     isNew: false,
     isPopular: false,
     price: "₹4,999",
-    tags: ["Java", "Spring", "Backend"]
+    tags: ["Java", "Spring", "Backend"],
+    trendingScore: 65
   },
   {
     id: 5,
@@ -77,7 +82,8 @@ export const coursesData: Course[] = [
     isNew: false,
     isPopular: false,
     price: "₹3,499",
-    tags: ["Web", "C", "C++", "Fundamentals"]
+    tags: ["Web", "C", "C++", "Fundamentals"],
+    trendingScore: 58
   },
   {
     id: 6,
@@ -90,23 +96,11 @@ export const coursesData: Course[] = [
     isNew: false,
     isPopular: true,
     price: "₹5,999",
-    tags: ["Mobile", "React Native", "Flutter"]
+    tags: ["Mobile", "React Native", "Flutter"],
+    trendingScore: 82
   },
   {
     id: 7,
-    title: "Embedded System",
-    description: "Design and program embedded systems",
-    category: "Tech Based Classes",
-    duration: "10 weeks",
-    students: 950,
-    rating: 4.7,
-    isNew: false,
-    isPopular: false,
-    price: "₹4,499",
-    tags: ["Embedded", "Microcontrollers", "Hardware"]
-  },
-  {
-    id: 8,
     title: "Animation",
     description: "2D and 3D animation using modern tools",
     category: "Tech Based Classes",
@@ -116,36 +110,25 @@ export const coursesData: Course[] = [
     isNew: false,
     isPopular: false,
     price: "₹7,999",
-    tags: ["Animation", "Blender", "3D"]
+    tags: ["Animation", "Blender", "3D"],
+    trendingScore: 55
   },
   {
     id: 9,
-    title: "13 Days SPL Boot Camp",
+    title: "SPL Worksops",
     description: "Mixed course covering multiple programming languages",
     category: "Tech Based Classes",
-    duration: "13 days",
+    duration: "20 days",
     students: 850,
     rating: 4.9,
     isNew: true,
     isPopular: true,
     price: "₹2,999",
-    tags: ["Bootcamp", "Crash Course", "Mixed"]
+    tags: ["Bootcamp", "Crash Course", "Mixed"],
+    trendingScore: 88
   },
 
   // MATH BASED CLASSES
-  {
-    id: 10,
-    title: "Abacus",
-    description: "Mental math techniques using abacus",
-    category: "Math Based Classes",
-    duration: "8 weeks",
-    students: 3100,
-    rating: 4.8,
-    isNew: false,
-    isPopular: true,
-    price: "₹2,499",
-    tags: ["Mental Math", "Kids", "Calculation"]
-  },
   {
     id: 11,
     title: "Vedic Maths",
@@ -157,255 +140,83 @@ export const coursesData: Course[] = [
     isNew: false,
     isPopular: true,
     price: "₹2,999",
-    tags: ["Vedic", "Fast Calculation", "Tricks"]
+    tags: ["Vedic", "Fast Calculation", "Tricks"],
+    trendingScore: 72
   },
-  {
-    id: 12,
-    title: "Geometry in Arts",
-    description: "Applying mathematical concepts in artistic creations",
-    category: "Math Based Classes",
-    duration: "8 weeks",
-    students: 850,
-    rating: 4.6,
-    isNew: true,
-    isPopular: false,
-    price: "₹3,499",
-    tags: ["Art", "Geometry", "Creative"]
-  },
-  {
-    id: 13,
-    title: "Competitive Math Prep",
-    description: "Preparation for various math competitions",
-    category: "Math Based Classes",
-    duration: "12 weeks",
-    students: 1200,
-    rating: 4.9,
-    isNew: false,
-    isPopular: true,
-    price: "₹4,999",
-    tags: ["Competitive", "Olympiad", "Exams"]
-  },
-
-  // INDOOR AND FITNESS
-  {
-    id: 14,
-    title: "Chess",
-    description: "Master chess strategies and tactics",
-    category: "Indoor & Fitness",
-    duration: "8 weeks",
-    students: 1800,
-    rating: 4.8,
-    isNew: false,
-    isPopular: true,
-    price: "₹2,499",
-    tags: ["Strategy", "Brain Game", "Tactics"]
-  },
-  {
-    id: 15,
-    title: "Carrom",
-    description: "Professional carrom techniques and gameplay",
-    category: "Indoor & Fitness",
-    duration: "6 weeks",
-    students: 750,
-    rating: 4.5,
-    isNew: false,
-    isPopular: false,
-    price: "₹1,999",
-    tags: ["Indoor", "Game", "Recreational"]
-  },
-  {
-    id: 16,
-    title: "Yoga & Meditation",
-    description: "Complete yoga and meditation for mental peace",
-    category: "Indoor & Fitness",
-    duration: "12 weeks",
-    students: 3200,
-    rating: 4.9,
-    isNew: false,
-    isPopular: true,
-    price: "₹3,999",
-    tags: ["Health", "Wellness", "Mindfulness"]
-  },
-
-  // HOBBIES & LIFESTYLE
-  {
-    id: 17,
-    title: "Drawing",
-    description: "Fundamental drawing techniques and styles",
-    category: "Hobbies & Lifestyle",
-    duration: "10 weeks",
-    students: 2100,
-    rating: 4.7,
-    isNew: false,
-    isPopular: true,
-    price: "₹3,499",
-    tags: ["Art", "Sketching", "Creative"]
-  },
-  {
-    id: 18,
-    title: "Hand Writing & Calligraphy",
-    description: "Improve handwriting and learn calligraphy",
-    category: "Hobbies & Lifestyle",
-    duration: "8 weeks",
-    students: 1600,
-    rating: 4.6,
-    isNew: false,
-    isPopular: true,
-    price: "₹2,999",
-    tags: ["Writing", "Art", "Skill"]
-  },
-  {
-    id: 19,
-    title: "Photography",
-    description: "Professional photography techniques",
-    category: "Hobbies & Lifestyle",
-    duration: "12 weeks",
-    students: 1900,
-    rating: 4.8,
-    isNew: true,
-    isPopular: true,
-    price: "₹4,999",
-    tags: ["Camera", "Creative", "Professional"]
-  },
-  {
-    id: 20,
-    title: "Music",
-    description: "Learn vocal and instrumental music",
-    category: "Hobbies & Lifestyle",
-    duration: "16 weeks",
-    students: 2300,
-    rating: 4.7,
-    isNew: false,
-    isPopular: true,
-    price: "₹5,999",
-    tags: ["Vocal", "Instruments", "Art"]
-  },
-  {
-    id: 21,
-    title: "Painting",
-    description: "Various painting techniques and styles",
-    category: "Hobbies & Lifestyle",
-    duration: "12 weeks",
-    students: 1400,
-    rating: 4.6,
-    isNew: false,
-    isPopular: false,
-    price: "₹4,499",
-    tags: ["Art", "Colors", "Creative"]
-  },
-  {
-    id: 22,
-    title: "Film Making",
-    description: "Complete film making from script to screen",
-    category: "Hobbies & Lifestyle",
-    duration: "20 weeks",
-    students: 650,
-    rating: 4.9,
-    isNew: true,
-    isPopular: false,
-    price: "₹8,999",
-    tags: ["Video", "Production", "Creative"]
-  },
-  {
-    id: 23,
-    title: "Art & Craft",
-    description: "Creative art and craft projects",
-    category: "Hobbies & Lifestyle",
-    duration: "8 weeks",
-    students: 1800,
-    rating: 4.5,
-    isNew: false,
-    isPopular: true,
-    price: "₹2,999",
-    tags: ["Craft", "Creative", "DIY"]
-  },
-
-  // STUDY BASED CLASSES
-  {
-    id: 24,
-    title: "Tuitions (Grade 3rd to 12th)",
-    description: "Comprehensive tuition for school students",
-    category: "Study Based Classes",
-    duration: "Ongoing",
-    students: 4200,
-    rating: 4.8,
-    isNew: false,
-    isPopular: true,
-    price: "₹1,999/month",
-    tags: ["School", "Academic", "CBSE"]
-  },
-  {
-    id: 25,
-    title: "NEET Preparation",
-    description: "Complete NEET exam preparation",
-    category: "Study Based Classes",
-    duration: "12 months",
-    students: 1800,
-    rating: 4.9,
-    isNew: false,
-    isPopular: true,
-    price: "₹9,999",
-    tags: ["Medical", "Exam", "Competitive"]
-  },
-  {
-    id: 26,
-    title: "GATE Preparation",
-    description: "GATE exam preparation for engineering graduates",
-    category: "Study Based Classes",
-    duration: "10 months",
-    students: 1200,
-    rating: 4.7,
-    isNew: false,
-    isPopular: true,
-    price: "₹8,999",
-    tags: ["Engineering", "Exam", "PG"]
-  },
-  {
-    id: 27,
-    title: "JEE Preparation",
-    description: "Comprehensive JEE Main & Advanced preparation",
-    category: "Study Based Classes",
-    duration: "12 months",
-    students: 2500,
-    rating: 4.9,
-    isNew: false,
-    isPopular: true,
-    price: "₹11,999",
-    tags: ["Engineering", "Exam", "Competitive"]
-  },
-  {
-    id: 28,
-    title: "Phonics",
-    description: "English phonics for early learners",
-    category: "Study Based Classes",
-    duration: "8 weeks",
-    students: 1900,
-    rating: 4.6,
-    isNew: false,
-    isPopular: true,
-    price: "₹2,499",
-    tags: ["English", "Kids", "Language"]
-  },
-  {
-    id: 29,
-    title: "Spoken English",
-    description: "Fluency and communication skills in English",
-    category: "Study Based Classes",
-    duration: "12 weeks",
-    students: 3100,
-    rating: 4.8,
-    isNew: false,
-    isPopular: true,
-    price: "₹3,999",
-    tags: ["Communication", "Language", "Speaking"]
-  }
-]
+  
+ 
+];
 
 export const categories = [
   "All Courses",
   "Tech Based Classes",
   "Math Based Classes",
-  "Indoor & Fitness",
-  "Hobbies & Lifestyle",
   "Study Based Classes"
-]
+];
+
+// Helper function to calculate trend score based on market factors
+export const calculateTrendScore = (course: Course): number => {
+  let score = 0;
+  
+  // Base score from rating (0-50 points)
+  score += course.rating * 10;
+  
+  // Student popularity (0-20 points)
+  if (course.students > 3000) score += 20;
+  else if (course.students > 2000) score += 15;
+  else if (course.students > 1000) score += 10;
+  else score += 5;
+  
+  // New course bonus
+  if (course.isNew) score += 10;
+  
+  // Popular course bonus
+  if (course.isPopular) score += 15;
+  
+  // Price factor (affordable courses get bonus)
+  const price = parseInt(course.price.replace(/[^0-9]/g, ''));
+  if (price < 3000) score += 10;
+  else if (price < 5000) score += 5;
+  
+  // Duration factor (shorter courses preferred)
+  if (course.duration.includes('days')) score += 15;
+  else if (course.duration.includes('weeks') && parseInt(course.duration) <= 12) score += 10;
+  
+  // Category weight (Tech gets highest weight)
+  if (course.category === "Tech Based Classes") score += 20;
+  else if (course.category === "Study Based Classes") score += 15;
+  else if (course.category === "Math Based Classes") score += 10;
+  
+  return Math.min(100, Math.max(0, score));
+};
+
+// Calculate trend scores for all courses (if not already calculated)
+coursesData.forEach(course => {
+  if (!course.trendingScore) {
+    course.trendingScore = calculateTrendScore(course);
+  }
+});
+
+// Sort courses by trend score (descending)
+export const getTrendingCourses = () => {
+  return [...coursesData].sort((a, b) => 
+    (b.trendingScore || 0) - (a.trendingScore || 0)
+  );
+};
+
+// Get courses by category
+export const getCoursesByCategory = (category: string) => {
+  if (category === "All Courses") return coursesData;
+  return coursesData.filter(course => course.category === category);
+};
+
+// Get market stats
+export const marketStats = {
+  totalCourses: coursesData.length,
+  totalStudents: coursesData.reduce((acc, course) => acc + course.students, 0),
+  averageRating: parseFloat((coursesData.reduce((acc, course) => acc + course.rating, 0) / coursesData.length).toFixed(1)),
+  averagePrice: Math.round(coursesData.reduce((acc, course) => acc + parseInt(course.price.replace(/[^0-9]/g, '')), 0) / coursesData.length),
+  trendingTechCourses: coursesData.filter(c => c.category === "Tech Based Classes" && c.trendingScore && c.trendingScore > 75).length,
+  trendingStudyCourses: coursesData.filter(c => c.category === "Study Based Classes" && c.trendingScore && c.trendingScore > 70).length,
+  highDemandCourses: coursesData.filter(c => c.isPopular).length
+};

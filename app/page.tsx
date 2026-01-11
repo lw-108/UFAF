@@ -8,7 +8,7 @@ import { ThirukkuralSection } from "@/components/Thirukkural";
 import { About3 } from "@/components/About3";
 import MissionVision from "@/components/MissionVision";
 import { FeatureCarousel } from "@/components/FeatureCarousel";
-import { Feature51 } from "@/components/Feature51";
+// import { Feature51 } from "@/components/Feature51";
 import ClassesCarousel from "@/components/ClassesCarousel";
 import Gallery from "@/components/Gallery";
 import VideoCarouselSection from "@/components/VideoCarouselSection";
@@ -44,7 +44,7 @@ const Page = () => {
           <About3 />
           <MissionVision />
           <FeatureCarousel />
-          <Feature51 />
+          {/* <Feature51 /> */}
           <ClassesCarousel />
           <Gallery />
           <VideoCarouselSection />

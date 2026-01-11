@@ -102,7 +102,7 @@ const GridPattern = () => (
 const teamMembers = [
   {
     id: 1,
-    name: "Dr. Arjun Patel",
+    name: "Muthubalaji",
     role: "Founder & CEO",
     department: "Leadership",
     description: "Visionary leader with 15+ years in educational reform",
@@ -117,8 +117,8 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    role: "Academic Director",
+    name: "Hari Krishnan",
+    role: "Deputy Managing Director",
     department: "Academics",
     description: "Curriculum expert with passion for inclusive education",
     image: "/u-robo.png",
@@ -132,8 +132,8 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: "Rajesh Kumar",
-    role: "Technical Head",
+    name: "Dhivya Dharshini",
+    role: "Financial & Executive Director",
     department: "Technology",
     description: "EdTech innovator creating accessible learning platforms",
     image: "/u-robo.png",
@@ -148,8 +148,8 @@ const teamMembers = [
   },
   {
     id: 4,
-    name: "Ananya Reddy",
-    role: "Student Welfare Officer",
+    name: "Vignesh Kumar",
+    role: "Marketing Director",
     department: "Student Support",
     description: "Dedicated to student well-being and holistic development",
     image: "/u-robo.png",
@@ -163,8 +163,8 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: "Suresh Menon",
-    role: "Finance Director",
+    name: "Lingesh Warma",
+    role: "FGeneral Manager",
     department: "Operations",
     description: "Ensuring sustainable growth through strategic management",
     image: "/u-robo.png",
@@ -175,52 +175,6 @@ const teamMembers = [
     },
     color: "from-red-500 to-rose-400",
   },
-  {
-    id: 6,
-    name: "Meera Kapoor",
-    role: "Creative Director",
-    department: "Content & Design",
-    description: "Making learning engaging through innovative content",
-    image: "/u-robo.png",
-    skills: ["Content Creation", "Graphic Design", "Animation"],
-    social: {
-      twitter: "#",
-      linkedin: "#",
-      instagram: "#",
-      email: "#",
-    },
-    color: "from-indigo-500 to-blue-400",
-  },
-  {
-    id: 7,
-    name: "Karan Singh",
-    role: "Rural Outreach Head",
-    department: "Community",
-    description: "Bridging urban resources with rural educational needs",
-    image: "/u-robo.png",
-    skills: ["Community Engagement", "Rural Development", "Logistics"],
-    social: {
-      twitter: "#",
-      linkedin: "#",
-      email: "#",
-    },
-    color: "from-teal-500 to-cyan-400",
-  },
-  {
-    id: 8,
-    name: "Neha Gupta",
-    role: "Volunteer Coordinator",
-    department: "Volunteers",
-    description: "Building and nurturing our community of volunteers",
-    image: "/u-robo.png",
-    skills: ["Team Management", "Training", "Coordination"],
-    social: {
-      linkedin: "#",
-      instagram: "#",
-      email: "#",
-    },
-    color: "from-violet-500 to-purple-400",
-  },
 ];
 
 const departments = [
@@ -228,10 +182,6 @@ const departments = [
   { id: "leadership", name: "Leadership", icon: Award, count: 1 },
   { id: "academics", name: "Academics", icon: BookOpen, count: 1 },
   { id: "technology", name: "Technology", icon: Zap, count: 1 },
-  { id: "support", name: "Student Support", icon: Heart, count: 1 },
-  { id: "operations", name: "Operations", icon: Target, count: 1 },
-  { id: "content", name: "Content & Design", icon: Sparkles, count: 1 },
-  { id: "community", name: "Community", icon: Globe, count: 2 },
 ];
 
 const TeamPage = () => {
@@ -276,9 +226,9 @@ const TeamPage = () => {
 
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { value: "60+", label: "Team Members" },
-                { value: "15+", label: "Years Experience" },
-                { value: "2000+", label: "Students Impacted" },
+                { value: "10+", label: "Team Members" },
+                { value: "2+", label: "Years Experience" },
+                { value: "500+", label: "Students Impacted" },
                 { value: "100%", label: "Passionate" },
               ].map((stat, index) => (
                 <div

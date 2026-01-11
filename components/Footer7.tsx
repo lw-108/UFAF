@@ -100,9 +100,9 @@ const defaultLegalLinks = [
 ];
 
 const defaultContactInfo = {
-  address: "123 Learning Street, Education District, Chennai, Tamil Nadu 600001",
-  phone: "+91 44 9876 5432",
-  email: "admissions@ufillacademy.in",
+  address: "Salem, Tamil Nadu",
+  phone: " +91 89399 76607",
+  email: "ufillacademy@gmail.com ",
   hours: "Mon - Sat: 8:00 AM - 7:00 PM"
 };
 
@@ -135,7 +135,7 @@ const Footer7 = ({
                     U FILL ACADEMY
                   </h2>
                   <Badge variant="outline" className="mt-1 text-xs">
-                    Excellence in Children Education
+                    Fill Your Knowledge-Fill Your Future
                   </Badge>
                 </div>
               </div>

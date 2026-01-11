@@ -5,12 +5,26 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
   },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["t4.ftcdn.net"], // add any external image host here
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 't4.ftcdn.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com', // Wildcard for all subdomains
+        pathname: '**',
+      },
+    ],
   },
 };
 

@@ -1,463 +1,589 @@
 // app/projects/page.tsx
+"use client";
+
 import {
   ExternalLink,
   Github,
   Star,
   Users,
-  Calendar,
   ChevronRight,
   GraduationCap,
+  Play,
+  Code,
+  Video,
+  Globe,
+  Eye,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
+import { useState, useEffect } from "react";
 
-const projects = [
+const studentProjects = [
   {
     id: 1,
-    title: "EduLearn Platform",
+    title: "Smart Classroom Dashboard",
+    studentName: "Priya Sharma",
+    studentRole: "Final Year CS Student",
     description:
-      "A comprehensive online learning management system with interactive courses, quizzes, and progress tracking.",
-    image: "/project1.jpg",
-    status: "Completed",
-    tags: ["React", "Next.js", "Node.js", "MongoDB", "Tailwind"],
-    githubStars: 245,
-    contributors: 12,
-    lastUpdated: "Nov 2024",
-    demoLink: "https://edulearn.demo",
-    githubLink: "https://github.com/edulearn",
+      "A real-time dashboard for teachers to monitor student engagement and performance with AI-powered analytics.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/smart-classroom",
+    liveDemo: "https://smartclassroom.ufill.org",
+    techStack: ["React", "Node.js", "Socket.io", "Chart.js", "MongoDB"],
+    duration: "4 months",
+    views: "2.5k",
+    stars: 142,
+    forks: 32,
+    contributors: 5,
+    featured: true,
+    achievement: "Best Project Award 2024",
   },
   {
     id: 2,
-    title: "AI Study Assistant",
+    title: "AI Language Tutor",
+    studentName: "Raj Kumar",
+    studentRole: "AI/ML Student",
     description:
-      "Artificial intelligence-powered learning companion that adapts to individual learning styles and pace.",
-    image: "/project2.jpg",
-    status: "Active",
-    tags: ["Python", "TensorFlow", "FastAPI", "React", "OpenAI"],
-    githubStars: 189,
-    contributors: 8,
-    lastUpdated: "Dec 2024",
-    demoLink: "https://aistudy.demo",
-    githubLink: "https://github.com/aistudy",
+      "An intelligent language learning app that adapts to individual learning patterns using speech recognition.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/ai-language-tutor",
+    liveDemo: "https://ailanguagetutor.ufill.org",
+    techStack: ["Python", "TensorFlow", "FastAPI", "React Native", "Redis"],
+    duration: "6 months",
+    views: "1.8k",
+    stars: 89,
+    forks: 21,
+    contributors: 3,
+    featured: true,
+    achievement: "Featured on TechEd Magazine",
   },
   {
     id: 3,
-    title: "Virtual Lab Simulator",
+    title: "Virtual Science Lab",
+    studentName: "Anjali Mehta",
+    studentRole: "Physics Major",
     description:
-      "Interactive virtual laboratory for science experiments with real-time physics simulations.",
-    image: "/project3.jpg",
-    status: "Completed",
-    tags: ["Three.js", "WebGL", "TypeScript", "WebRTC"],
-    githubStars: 312,
-    contributors: 15,
-    lastUpdated: "Oct 2024",
-    demoLink: "https://virtuallab.demo",
-    githubLink: "https://github.com/virtuallab",
+      "Interactive virtual laboratory with 3D simulations for conducting physics and chemistry experiments.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/virtual-science-lab",
+    liveDemo: "https://virtuallab.ufill.org",
+    techStack: ["Three.js", "WebGL", "TypeScript", "WebRTC", "Node.js"],
+    duration: "8 months",
+    views: "3.2k",
+    stars: 215,
+    forks: 45,
+    contributors: 7,
+    featured: true,
+    achievement: "Open Source Education Award",
   },
   {
     id: 4,
-    title: "Code Mentor Platform",
+    title: "Accessible Exam Platform",
+    studentName: "Suresh Patel",
+    studentRole: "Accessibility Advocate",
     description:
-      "Real-time code review and mentorship platform for programming students and developers.",
-    image: "/project4.jpg",
-    status: "Active",
-    tags: ["Vue.js", "WebSockets", "Docker", "PostgreSQL"],
-    githubStars: 156,
-    contributors: 6,
-    lastUpdated: "Dec 2024",
-    demoLink: "https://codementor.demo",
-    githubLink: "https://github.com/codementor",
+      "An exam platform designed with accessibility features for students with visual and hearing impairments.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/accessible-exam",
+    liveDemo: "https://accessibleexam.ufill.org",
+    techStack: ["Vue.js", "Web Speech API", "PWA", "PostgreSQL", "Docker"],
+    duration: "5 months",
+    views: "1.4k",
+    stars: 76,
+    forks: 18,
+    contributors: 4,
+    featured: false,
+    achievement: "Accessibility Innovation Grant",
   },
   {
     id: 5,
-    title: "Accessible Reader",
+    title: "Peer Learning Network",
+    studentName: "Meena Das",
+    studentRole: "Education Technology",
     description:
-      "Web application that makes digital content accessible for learners with visual impairments.",
-    image: "/project5.jpg",
-    status: "Completed",
-    tags: ["React", "Web Speech API", "Accessibility", "PWA"],
-    githubStars: 278,
-    contributors: 10,
-    lastUpdated: "Sep 2024",
-    demoLink: "https://accessiblereader.demo",
-    githubLink: "https://github.com/accessiblereader",
+      "A collaborative platform where students can learn from each other through video sessions and shared notes.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/peer-learning",
+    liveDemo: "https://peerlearning.ufill.org",
+    techStack: ["Next.js", "WebRTC", "Firebase", "Tailwind", "Stripe"],
+    duration: "7 months",
+    views: "2.1k",
+    stars: 124,
+    forks: 29,
+    contributors: 6,
+    featured: false,
+    achievement: "Student Choice Award",
   },
   {
     id: 6,
-    title: "Classroom Analytics",
+    title: "Code Mentor AI",
+    studentName: "Karan Singh",
+    studentRole: "CS Graduate",
     description:
-      "Dashboard for educators to track student performance and engagement metrics.",
-    image: "/project6.jpg",
-    status: "In Development",
-    tags: ["React", "D3.js", "Express", "Redis", "Chart.js"],
-    githubStars: 98,
+      "AI-powered code review system that provides instant feedback and suggestions for programming assignments.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/code-mentor-ai",
+    liveDemo: "https://codementorai.ufill.org",
+    techStack: ["Python", "OpenAI API", "React", "MongoDB", "Docker"],
+    duration: "9 months",
+    views: "2.8k",
+    stars: 187,
+    forks: 41,
+    contributors: 8,
+    featured: true,
+    achievement: "AI Education Innovation Prize",
+  },
+  {
+    id: 7,
+    title: "Rural Education Portal",
+    studentName: "Sunita Devi",
+    studentRole: "Social Entrepreneur",
+    description:
+      "Offline-first educational portal designed for low-connectivity areas with localized content.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/rural-edu-portal",
+    liveDemo: "https://ruraledu.ufill.org",
+    techStack: ["React", "PWA", "IndexedDB", "Service Workers", "Express"],
+    duration: "6 months",
+    views: "1.6k",
+    stars: 92,
+    forks: 23,
+    contributors: 5,
+    featured: false,
+    achievement: "Social Impact Award",
+  },
+  {
+    id: 8,
+    title: "Math Visualizer",
+    studentName: "Arun Verma",
+    studentRole: "Mathematics Student",
+    description:
+      "Interactive tool that visualizes complex mathematical concepts through animations and simulations.",
+    videoId: "",
+    githubUrl: "https://github.com/ufill/math-visualizer",
+    liveDemo: "https://mathvisualizer.ufill.org",
+    techStack: ["D3.js", "Canvas API", "React", "MathJax", "Node.js"],
+    duration: "4 months",
+    views: "2.3k",
+    stars: 135,
+    forks: 31,
     contributors: 4,
-    lastUpdated: "Dec 2024",
-    demoLink: "https://analytics.demo",
-    githubLink: "https://github.com/classroom-analytics",
+    featured: true,
+    achievement: "Educational Tool Excellence",
   },
 ];
 
-const statusColors = {
-  Completed: "bg-green-500/20 text-green-400",
-  Active: "bg-primary/20 text-primary",
-  "In Development": "bg-yellow-500/20 text-yellow-400",
-};
+const projectCategories = [
+  "All Projects",
+  "AI/ML",
+  "Web Development",
+  "Mobile Apps",
+  "Accessibility",
+  "Education Tools",
+  "Open Source",
+];
 
 export default function ProjectsPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All Projects");
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Get YouTube thumbnail URL
+  const getThumbnailUrl = (videoId: string) => {
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  };
+
+  const getEmbedUrl = (videoId: string) => {
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+  };
+
+  const openVideoModal = (videoId: string, project: any) => {
+    setSelectedVideo(videoId);
+    setSelectedProject(project);
+    setIsModalOpen(true);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideo(null);
+    setSelectedProject(null);
+    setIsModalOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeVideoModal();
+    };
+    
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
+  }, []);
+
+  // Close modal when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (isModalOpen && (e.target as HTMLElement).classList.contains('modal-overlay')) {
+        closeVideoModal();
+      }
+    };
+    
+    window.addEventListener('click', handleClickOutside);
+    return () => window.removeEventListener('click', handleClickOutside);
+  }, [isModalOpen]);
+
   return (
     <div className="min-h-screen bg-background">
       <div className="fixed top-0 left-0 z-50 w-full mb-50">
         <NavbarWithMegaMenu />
       </div>
+
+      {/* Video Modal */}
+      {isModalOpen && selectedVideo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center modal-overlay bg-black/90 backdrop-blur-sm">
+          <div className="relative w-full max-w-4xl mx-4">
+            {/* Close Button */}
+            <button
+              onClick={closeVideoModal}
+              className="absolute right-0 z-10 p-2 text-white transition-colors -top-12 hover:text-gray-300"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            {/* Video Container */}
+            <div className="relative pt-[56.25%] bg-black rounded-lg overflow-hidden">
+              <iframe
+                src={getEmbedUrl(selectedVideo)}
+                className="absolute inset-0 w-full h-full"
+                title={selectedProject?.title || "Project Video"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            
+            {/* Video Info */}
+            {selectedProject && (
+              <div className="p-6 mt-4 bg-white rounded-lg dark:bg-gray-900">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  {selectedProject.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  By {selectedProject.studentName} • {selectedProject.studentRole}
+                </p>
+                <p className="mt-2 text-gray-700 dark:text-gray-300">
+                  {selectedProject.description}
+                </p>
+                <div className="flex gap-4 mt-4">
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors bg-gray-800 rounded-lg hover:bg-gray-900"
+                  >
+                    <Github className="w-4 h-4" />
+                    View Code
+                  </a>
+                  <a
+                    href={selectedProject.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-primary hover:bg-primary/90"
+                  >
+                    <Globe className="w-4 h-4" />
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <div className="container px-4 py-16 mx-auto mt-20 text-center">
         <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
-          Our Student&apos;s <span className="text-primary">Innovative</span>{" "}
-          Projects
+          Student <span className="text-primary">Project</span> Showcase
         </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">
-          Explore our open-source projects that are transforming education
-          through technology and innovation.
+          Watch our students' innovative projects in action. From concept to deployment, 
+          see how they're solving real-world problems through technology.
         </p>
-
-        {/* Stats */}
-        <div className="grid max-w-4xl grid-cols-2 gap-6 mx-auto mb-12 md:grid-cols-4">
-          <div className="p-6 rounded-2xl bg-card">
-            <div className="mb-2 text-3xl font-bold text-foreground">
-              {projects.length}+
-            </div>
-            <div className="text-muted-foreground">Active Projects</div>
-          </div>
-          <div className="p-6 rounded-2xl bg-card">
-            <div className="mb-2 text-3xl font-bold text-foreground">1278</div>
-            <div className="text-muted-foreground">GitHub Stars</div>
-          </div>
-          <div className="p-6 rounded-2xl bg-card">
-            <div className="mb-2 text-3xl font-bold text-foreground">55</div>
-            <div className="text-muted-foreground">Contributors</div>
-          </div>
-          <div className="p-6 rounded-2xl bg-card">
-            <div className="mb-2 text-3xl font-bold text-foreground">42</div>
-            <div className="text-muted-foreground">Forks</div>
-          </div>
-        </div>
       </div>
 
       {/* Main Content */}
       <div className="container px-4 pb-20 mx-auto">
-        {/* Filter Buttons */}
+        {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          <Button variant="default">All Projects</Button>
-          <Button variant="outline">Web Development</Button>
-          <Button variant="outline">Mobile Apps</Button>
-          <Button variant="outline">AI/ML</Button>
-          <Button variant="outline">Data Visualization</Button>
-          <Button variant="outline">Accessibility</Button>
+          {projectCategories.map((category) => (
+            <Button 
+              key={category} 
+              variant={selectedCategory === category ? "default" : "outline"} 
+              size="sm"
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </Button>
+          ))}
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="relative overflow-hidden transition-all duration-500 border border-gray-200 group rounded-2xl dark:border-gray-800 hover:border-primary/30"
-            >
-              {/* Top Bar */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {project.status}
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <div className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
-                    <Star className="w-3.5 h-3.5" />
+        {/* Featured Projects Section */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-foreground">
+              Featured Project Videos
+            </h2>
+            <Button variant="outline">
+              <Video className="w-4 h-4 mr-2" />
+              View All Videos
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            {studentProjects
+              .filter((project) => project.featured)
+              .slice(0, 2)
+              .map((project) => (
+                <div
+                  key={project.id}
+                  className="overflow-hidden transition-all duration-300 border rounded-2xl bg-card border-border hover:shadow-xl"
+                >
+                  {/* Video Player */}
+                  <div className="relative pt-[56.25%] bg-black cursor-pointer"
+                       onClick={() => openVideoModal(project.videoId, project)}>
+                    <img
+                      src={getThumbnailUrl(project.videoId)}
+                      alt={`${project.title} video thumbnail`}
+                      className="absolute inset-0 object-cover w-full h-full"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`;
+                      }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative">
+                        <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm"></div>
+                        <Play className="absolute w-10 h-10 text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-3 left-3">
+                      <span className="px-2 py-1 text-xs text-white rounded-full bg-black/70">
+                        Click to Play
+                      </span>
+                    </div>
                   </div>
-                  <div className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
-                    <Users className="w-3.5 h-3.5" />
+
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-foreground">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          By {project.studentName} • {project.studentRole}
+                        </p>
+                      </div>
+                      {project.achievement && (
+                        <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary">
+                          {project.achievement}
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="mb-6 text-sm text-muted-foreground">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 text-xs rounded-full bg-muted text-muted-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Stats and Links */}
+                    <div className="flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-1">
+                          <Users className="w-4 h-4 text-blue-500" />
+                          <span className="text-sm">{project.contributors}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Eye className="w-4 h-4 text-green-500" />
+                          <span className="text-sm">{project.views}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 text-sm transition-colors rounded-lg hover:bg-muted"
+                        >
+                          <Github className="w-4 h-4" />
+                          Code
+                        </a>
+                        <a
+                          href={project.liveDemo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-primary hover:bg-primary/90"
+                        >
+                          <Globe className="w-4 h-4" />
+                          Live Demo
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
+          </div>
+        </div>
 
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-white/10 dark:from-black/10 to-transparent"></div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="mb-3 text-lg font-bold text-gray-900 transition-colors duration-300 dark:text-white group-hover:text-primary">
-                  {project.title}
-                </h3>
-
-                <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Hover Reveal Tags */}
-                <div className="flex flex-wrap gap-2 mb-6 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20"
-                    >
-                      {tag}
+        {/* All Projects Grid */}
+        <div className="mb-20">
+          <h3 className="mb-8 text-2xl font-bold text-center text-foreground">
+            All Student Projects
+          </h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+            {studentProjects.map((project) => (
+              <div
+                key={project.id}
+                className="overflow-hidden transition-all duration-300 border cursor-pointer rounded-2xl bg-card border-border group hover:shadow-xl hover:-translate-y-1"
+                onClick={() => openVideoModal(project.videoId, project)}
+              >
+                {/* Video Thumbnail */}
+                <div className="relative pt-[56.25%] bg-black overflow-hidden">
+                  {/* YouTube Thumbnail */}
+                  <img
+                    src={getThumbnailUrl(project.videoId)}
+                    alt={`${project.title} video thumbnail`}
+                    className="absolute inset-0 object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`;
+                    }}
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 via-transparent to-transparent group-hover:opacity-100"></div>
+                  
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative transition-transform duration-300 transform group-hover:scale-110">
+                      <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm"></div>
+                      <Play className="absolute w-8 h-8 text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+                    </div>
+                  </div>
+                  
+                  {/* Duration Badge */}
+                  <div className="absolute bottom-3 left-3">
+                    <span className="px-2 py-1 text-xs text-white rounded-full bg-black/70">
+                      {project.duration}
                     </span>
-                  ))}
-                </div>
-
-                {/* Stats Bar */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="text-center">
-                    <div className="text-xl font-bold text-gray-900 dark:text-white">
-                      {project.githubStars}
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      Stars
-                    </div>
                   </div>
-                  <div className="w-px h-8 bg-gray-200 dark:bg-gray-800"></div>
-                  <div className="text-center">
-                    <div className="text-xl font-bold text-gray-900 dark:text-white">
-                      {project.contributors}
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      Contributors
-                    </div>
-                  </div>
-                  <div className="w-px h-8 bg-gray-200 dark:bg-gray-800"></div>
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-gray-900 dark:text-white">
-                      {project.lastUpdated}
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      Updated
+                  
+                  {/* Play Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                    <div className="px-3 py-1 text-sm font-medium text-white rounded-full bg-black/50">
+                      Click to Play
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom Buttons */}
-                <div className="flex gap-3">
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span className="text-sm font-medium">GitHub</span>
-                  </a>
-                  <a
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white transition-all duration-300 group/demo"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span className="text-sm font-medium">Live Demo</span>
-                  </a>
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold truncate text-foreground">
+                        {project.title}
+                      </h4>
+                      <p className="text-xs truncate text-muted-foreground">
+                        By {project.studentName}
+                      </p>
+                    </div>
+                    {project.featured && (
+                      <Star className="flex-shrink-0 w-4 h-4 ml-2 text-yellow-500" />
+                    )}
+                  </div>
+
+                  <p className="mb-4 text-sm text-muted-foreground line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.techStack.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 text-xs rounded-full bg-muted text-muted-foreground whitespace-nowrap"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 3 && (
+                      <span className="px-2.5 py-1 text-xs rounded-full bg-muted text-muted-foreground">
+                        +{project.techStack.length - 3}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Project Stats */}
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-1.5">
+                        <Star className="w-3.5 h-3.5 text-yellow-500" />
+                        <span className="text-xs font-medium">{project.stars}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Code className="w-3.5 h-3.5 text-blue-500" />
+                        <span className="text-xs font-medium">{project.forks}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 transition-colors rounded-lg hover:bg-muted"
+                        title="View on GitHub"
+                        onClick={(e) => e.stopPropagation()} // Prevent card click
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 transition-colors rounded-lg hover:bg-muted"
+                        title="Live Demo"
+                        onClick={(e) => e.stopPropagation()} // Prevent card click
+                      >
+                        <Globe className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Contribute Section */}
         <div className="container px-4 mx-auto mt-20">
           <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
-            {/* Geometric Pattern Background */}
-            <div className="absolute inset-0">
-              <svg
-                className="absolute inset-0 w-full h-full"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  {/* Grid pattern */}
-                  <pattern
-                    id="contribute-grid"
-                    x="0"
-                    y="0"
-                    width="80"
-                    height="80"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <path
-                      d="M0,0 L80,0 M0,80 L80,80 M0,0 L0,80 M80,0 L80,80"
-                      stroke="rgba(255,255,255,0.15)"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </pattern>
-
-                  {/* Dots pattern */}
-                  <pattern
-                    id="contribute-dots"
-                    x="0"
-                    y="0"
-                    width="60"
-                    height="60"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <circle
-                      cx="30"
-                      cy="30"
-                      r="2"
-                      fill="rgba(255,255,255,0.1)"
-                    />
-                  </pattern>
-
-                  {/* Code brackets pattern */}
-                  <pattern
-                    id="code-pattern"
-                    x="0"
-                    y="0"
-                    width="100"
-                    height="100"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <path
-                      d="M30,20 L20,50 L30,80 M70,20 L80,50 L70,80"
-                      stroke="rgba(255,255,255,0.08)"
-                      strokeWidth="2"
-                      fill="none"
-                    />
-                    <rect
-                      x="40"
-                      y="35"
-                      width="20"
-                      height="30"
-                      fill="none"
-                      stroke="rgba(255,255,255,0.08)"
-                      strokeWidth="2"
-                    />
-                  </pattern>
-
-                  {/* Blur gradient */}
-                  <radialGradient id="blur-gradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
-                    <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-                  </radialGradient>
-                </defs>
-
-                {/* Background patterns */}
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="url(#contribute-grid)"
-                  opacity="0.4"
-                />
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="url(#contribute-dots)"
-                  opacity="0.3"
-                />
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="url(#code-pattern)"
-                  opacity="0.2"
-                />
-
-                {/* Floating elements */}
-                <circle
-                  cx="15%"
-                  cy="25%"
-                  r="40"
-                  fill="rgba(255,255,255,0.06)"
-                />
-                <circle
-                  cx="85%"
-                  cy="75%"
-                  r="50"
-                  fill="rgba(255,255,255,0.06)"
-                />
-                <circle
-                  cx="70%"
-                  cy="20%"
-                  r="30"
-                  fill="rgba(255,255,255,0.06)"
-                />
-
-                {/* Animated floating elements */}
-                <g className="animate-float-slow">
-                  <rect
-                    x="20%"
-                    y="60%"
-                    width="40"
-                    height="40"
-                    fill="rgba(255,255,255,0.05)"
-                    transform="rotate(45)"
-                  />
-                </g>
-                <g className="animate-float-medium">
-                  <circle
-                    cx="40%"
-                    cy="80%"
-                    r="25"
-                    fill="rgba(255,255,255,0.05)"
-                  />
-                </g>
-                <g className="animate-float-fast">
-                  <rect
-                    x="75%"
-                    y="40%"
-                    width="35"
-                    height="35"
-                    fill="rgba(255,255,255,0.05)"
-                    transform="rotate(15)"
-                  />
-                </g>
-
-                {/* Blur overlays */}
-                <circle cx="0%" cy="100%" r="150" fill="url(#blur-gradient)" />
-                <circle cx="100%" cy="0%" r="150" fill="url(#blur-gradient)" />
-              </svg>
-            </div>
-
-            {/* Animated wave pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <svg className="w-full h-full" viewBox="0 0 1200 400">
-                <defs>
-                  <linearGradient
-                    id="code-wave"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="rgba(255,255,255,0.3)" />
-                    <stop offset="50%" stopColor="rgba(255,255,255,0.1)" />
-                    <stop offset="100%" stopColor="rgba(255,255,255,0.3)" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,100 C300,50 500,150 800,100 C1100,50 1200,150 1200,100"
-                  fill="none"
-                  stroke="url(#code-wave)"
-                  strokeWidth="3"
-                  className="animate-wave"
-                />
-                <path
-                  d="M0,300 C200,250 400,350 600,300 C800,250 1000,350 1200,300"
-                  fill="none"
-                  stroke="url(#code-wave)"
-                  strokeWidth="2"
-                  className="animate-wave-slow"
-                />
-              </svg>
-            </div>
-
             <div className="relative px-8 py-12 md:px-12">
               <div className="flex flex-col items-center justify-between gap-10 md:flex-row">
-                {/* Left Content */}
                 <div className="max-w-xl text-white">
                   <div className="inline-flex items-center gap-3 px-4 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-sm">
                     <svg
@@ -501,7 +627,6 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Right Content - Stats Grid */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="relative p-5 transition-all duration-300 rounded-2xl bg-white/5 backdrop-blur-sm group hover:bg-white/10">
                     <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -549,7 +674,6 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
-              {/* Bottom Decorative */}
               <div className="flex justify-center mt-12">
                 <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm">
                   <div className="flex gap-1">
@@ -573,155 +697,6 @@ export default function ProjectsPage() {
         {/* Join Team CTA */}
         <div className="container px-4 mx-auto mt-20">
           <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
-            {/* SVG Pattern 1: Geometric Grid */}
-            <div className="absolute inset-0">
-              <svg
-                className="absolute inset-0 w-full h-full"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <pattern
-                    id="pattern-circles"
-                    x="0"
-                    y="0"
-                    width="40"
-                    height="40"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <circle
-                      cx="20"
-                      cy="20"
-                      r="1"
-                      fill="rgba(255,255,255,0.1)"
-                    />
-                  </pattern>
-                  <pattern
-                    id="pattern-dots"
-                    x="0"
-                    y="0"
-                    width="60"
-                    height="60"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <circle
-                      cx="30"
-                      cy="30"
-                      r="2"
-                      fill="rgba(255,255,255,0.15)"
-                    />
-                  </pattern>
-                  <pattern
-                    id="pattern-grid"
-                    x="0"
-                    y="0"
-                    width="80"
-                    height="80"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <path
-                      d="M0,80 L80,0 M-80,80 L80,-80 M0,0 L80,80"
-                      stroke="rgba(255,255,255,0.2)"
-                      strokeWidth="1"
-                    />
-                  </pattern>
-                  <linearGradient
-                    id="blue-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="rgba(59, 130, 246, 0.4)" />
-                    <stop offset="100%" stopColor="rgba(37, 99, 235, 0.2)" />
-                  </linearGradient>
-                </defs>
-
-                {/* Layered patterns for depth */}
-                <rect width="100%" height="100%" fill="url(#pattern-circles)" />
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="url(#pattern-dots)"
-                  opacity="0.5"
-                />
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="url(#pattern-grid)"
-                  opacity="0.3"
-                />
-
-                {/* Animated floating elements */}
-                <circle
-                  cx="10%"
-                  cy="20%"
-                  r="30"
-                  fill="rgba(255,255,255,0.05)"
-                />
-                <circle
-                  cx="90%"
-                  cy="80%"
-                  r="40"
-                  fill="rgba(255,255,255,0.05)"
-                />
-                <circle
-                  cx="70%"
-                  cy="30%"
-                  r="25"
-                  fill="rgba(255,255,255,0.05)"
-                />
-
-                {/* Geometric shapes */}
-                <path
-                  d="M20%,20% L40%,10% L60%,30% Z"
-                  fill="rgba(255,255,255,0.08)"
-                  opacity="0.6"
-                />
-                <rect
-                  x="80%"
-                  y="10%"
-                  width="50"
-                  height="50"
-                  fill="rgba(255,255,255,0.08)"
-                  opacity="0.6"
-                  transform="rotate(45)"
-                />
-              </svg>
-            </div>
-
-            {/* SVG Pattern 2: Wave pattern overlay */}
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1000 300">
-                <defs>
-                  <linearGradient
-                    id="wave-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="rgba(255,255,255,0.2)" />
-                    <stop offset="50%" stopColor="rgba(255,255,255,0.1)" />
-                    <stop offset="100%" stopColor="rgba(255,255,255,0.2)" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,150 Q250,100 500,150 T1000,150"
-                  fill="none"
-                  stroke="url(#wave-gradient)"
-                  strokeWidth="2"
-                  strokeDasharray="10,5"
-                />
-                <path
-                  d="M0,200 Q250,250 500,200 T1000,200"
-                  fill="none"
-                  stroke="url(#wave-gradient)"
-                  strokeWidth="2"
-                  strokeDasharray="15,10"
-                />
-              </svg>
-            </div>
-
             <div className="relative px-8 py-12 md:px-12">
               <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                 <div className="text-white">
