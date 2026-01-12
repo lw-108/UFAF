@@ -1,3 +1,4 @@
+// app/courses/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -21,9 +22,12 @@ export default function CoursesPage() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [sortBy, setSortBy] = useState("popular");
+  const [sortBy, setSortBy] = useState("fixed-order"); // Changed default to fixed-order
 
-  const filteredCourses = coursesData.filter((course) => {
+  // Get courses in exact fixed order
+  const allCoursesInFixedOrder = [...coursesData].sort((a, b) => a.displayOrder - b.displayOrder);
+
+  const filteredCourses = allCoursesInFixedOrder.filter((course) => {
     const matchesCategory =
       activeCategory === "all" || course.category === activeCategory;
     const matchesSearch =
@@ -35,8 +39,11 @@ export default function CoursesPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const sortedCourses = [...filteredCourses].sort((a, b) => {
+  // Apply sorting if needed (but fixed-order is default)
+  const displayedCourses = [...filteredCourses].sort((a, b) => {
     switch (sortBy) {
+      case "fixed-order":
+        return a.displayOrder - b.displayOrder; // Fixed order
       case "popular":
         return b.students - a.students;
       case "rating":
@@ -54,7 +61,7 @@ export default function CoursesPage() {
           parseFloat(a.price.replace(/[^0-9]/g, ""))
         );
       default:
-        return 0;
+        return a.displayOrder - b.displayOrder; // Default to fixed order
     }
   });
 
@@ -121,6 +128,7 @@ export default function CoursesPage() {
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="fixed-order">Recommended Order</SelectItem>
                   <SelectItem value="popular">Most Popular</SelectItem>
                   <SelectItem value="rating">Highest Rated</SelectItem>
                   <SelectItem value="new">New Courses</SelectItem>
@@ -170,6 +178,7 @@ export default function CoursesPage() {
               onClick={() => {
                 setSearchQuery("");
                 setActiveCategory("all");
+                setSortBy("fixed-order");
               }}
             >
               Clear Filters
@@ -183,35 +192,11 @@ export default function CoursesPage() {
                 : "grid-cols-1"
             }`}
           >
-            {sortedCourses.map((course) => (
+            {displayedCourses.map((course) => (
               <CourseCard key={course.id} {...course} />
             ))}
           </div>
         )}
-
-        {/* Stats Section */}
-        <div className="pt-12 mt-20 border-t">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-            <div className="p-6 text-center rounded-lg bg-primary/5">
-              <div className="mb-2 text-4xl font-bold text-primary">
-                {coursesData.length}+
-              </div>
-              <div className="text-muted-foreground">Courses</div>
-            </div>
-            <div className="p-6 text-center rounded-lg bg-primary/5">
-              <div className="mb-2 text-4xl font-bold text-primary">5000+</div>
-              <div className="text-muted-foreground">Students Enrolled</div>
-            </div>
-            <div className="p-6 text-center rounded-lg bg-primary/5">
-              <div className="mb-2 text-4xl font-bold text-primary">4.8</div>
-              <div className="text-muted-foreground">Average Rating</div>
-            </div>
-            <div className="p-6 text-center rounded-lg bg-primary/5">
-              <div className="mb-2 text-4xl font-bold text-primary">25+</div>
-              <div className="text-muted-foreground">Expert Instructors</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -1,77 +1,91 @@
 // app/blog/page.tsx
-import { Calendar, User, ArrowRight, Clock, Tag, Search, ChevronRight } from 'lucide-react'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
+import {
+  Calendar,
+  User,
+  ArrowRight,
+  Clock,
+  Tag,
+  Search,
+  ChevronRight,
+} from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
 
 const blogPosts = [
   {
     id: 1,
     title: "The Future of Online Education in 2026",
-    excerpt: "Explore how AI and machine learning are revolutionizing the way we learn online and what trends to watch out for.",
+    excerpt:
+      "Explore how AI and machine learning are revolutionizing the way we learn online and what trends to watch out for.",
     image: "https://media1.giphy.com/media/GSoFOqB2EIjDy/giphy.gif",
     author: "Dr. Sarah Johnson",
     date: "Dec 15, 2024",
     readTime: "8 min read",
     category: "Technology",
-    tags: ["AI", "Education", "Future Trends"]
+    tags: ["AI", "Education", "Future Trends"],
   },
   {
     id: 2,
     title: "Building Accessible Learning Platforms",
-    excerpt: "Best practices for creating educational websites that are accessible to all learners, including those with disabilities.",
+    excerpt:
+      "Best practices for creating educational websites that are accessible to all learners, including those with disabilities.",
     image: "/blog2.jpg",
     author: "Michael Chen",
     date: "Dec 10, 2024",
     readTime: "6 min read",
     category: "Development",
-    tags: ["Accessibility", "Web Development", "Inclusive Design"]
+    tags: ["Accessibility", "Web Development", "Inclusive Design"],
   },
   {
     id: 3,
     title: "The Psychology of Effective Learning",
-    excerpt: "How cognitive science can help us design better learning experiences and improve knowledge retention.",
+    excerpt:
+      "How cognitive science can help us design better learning experiences and improve knowledge retention.",
     image: "/blog3.jpg",
     author: "Dr. Emily Rodriguez",
     date: "Dec 5, 2024",
     readTime: "10 min read",
     category: "Psychology",
-    tags: ["Learning Science", "Cognitive Psychology", "Education"]
+    tags: ["Learning Science", "Cognitive Psychology", "Education"],
   },
   {
     id: 4,
     title: "Open Source Tools for Educators",
-    excerpt: "A comprehensive guide to free and open-source tools that can enhance teaching and learning experiences.",
+    excerpt:
+      "A comprehensive guide to free and open-source tools that can enhance teaching and learning experiences.",
     image: "/blog4.jpg",
     author: "Alex Thompson",
     date: "Nov 28, 2024",
     readTime: "12 min read",
     category: "Resources",
-    tags: ["Open Source", "Tools", "EdTech"]
+    tags: ["Open Source", "Tools", "EdTech"],
   },
   {
     id: 5,
     title: "Gamification in Education",
-    excerpt: "How game mechanics can increase student engagement and improve learning outcomes in digital classrooms.",
+    excerpt:
+      "How game mechanics can increase student engagement and improve learning outcomes in digital classrooms.",
     image: "/blog5.jpg",
     author: "James Wilson",
     date: "Nov 20, 2024",
     readTime: "7 min read",
     category: "Methodology",
-    tags: ["Gamification", "Engagement", "Teaching Methods"]
+    tags: ["Gamification", "Engagement", "Teaching Methods"],
   },
   {
     id: 6,
     title: "Data Privacy in EdTech",
-    excerpt: "Understanding data protection regulations and best practices for handling student information.",
+    excerpt:
+      "Understanding data protection regulations and best practices for handling student information.",
     image: "/blog6.jpg",
     author: "Lisa Park",
     date: "Nov 15, 2024",
     readTime: "9 min read",
     category: "Legal",
-    tags: ["Privacy", "GDPR", "Security"]
+    tags: ["Privacy", "GDPR", "Security"],
   },
-]
+];
 
 const categories = [
   "All Topics",
@@ -81,37 +95,39 @@ const categories = [
   "Resources",
   "Methodology",
   "Legal",
-  "Case Studies"
-]
+  "Case Studies",
+];
 
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="fixed top-0 left-0 z-50 w-full mb-50">
-              <NavbarWithMegaMenu />
-            </div>
+        <NavbarWithMegaMenu />
+      </div>
       {/* Hero Section */}
       <div className="container px-4 py-16 mx-auto mt-20 text-center">
         <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
-              Educational Insights & <span className="text-primary">Learning</span> Tips
-            </h1>
+          Educational Insights & <span className="text-primary">Learning</span>{" "}
+          Tips
+        </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">
-          Stay updated with the latest trends, research, and best practices in education technology and learning methodologies.
+          Stay updated with the latest trends, research, and best practices in
+          education technology and learning methodologies.
         </p>
-        
+
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-12">
           <div className="relative">
-            <Search className="absolute w-5 h-5 left-4 top-4 text-muted-foreground" />
             <input
               type="text"
               placeholder="Search articles, topics, or authors..."
-              className="w-full py-4 pl-12 pr-4 border rounded-2xl text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-card border-border"
+              className="w-full py-4 pl-5 pr-4 border rounded-full text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-card border-border"
             />
-            <Button className="absolute right-3 top-3">
-              Search
+            <Button className="absolute right-2 w-10 h-10 top-2 rounded-full">
+              <Search className="absolute w-5 h-5 text-muted-foreground" />
             </Button>
           </div>
+          <div></div>
         </div>
       </div>
 
@@ -140,8 +156,12 @@ export default function BlogPage() {
                     Featured
                   </span>
                 </div>
-                <h2 className="mb-4 text-3xl font-bold text-foreground">{blogPosts[0].title}</h2>
-                <p className="mb-6 text-muted-foreground">{blogPosts[0].excerpt}</p>
+                <h2 className="mb-4 text-3xl font-bold text-foreground">
+                  {blogPosts[0].title}
+                </h2>
+                <p className="mb-6 text-muted-foreground">
+                  {blogPosts[0].excerpt}
+                </p>
                 <div className="flex items-center gap-6 mb-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <User className="w-4 h-4" />
@@ -201,13 +221,17 @@ export default function BlogPage() {
                   <span className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary">
                     {post.category}
                   </span>
-                  <span className="text-sm text-muted-foreground">{post.date}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {post.date}
+                  </span>
                 </div>
 
                 <h3 className="mb-3 text-xl font-semibold transition-colors group-hover:text-primary text-foreground">
                   {post.title}
                 </h3>
-                <p className="mb-4 text-sm text-muted-foreground">{post.excerpt}</p>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  {post.excerpt}
+                </p>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-6">
@@ -228,7 +252,9 @@ export default function BlogPage() {
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20">
                       <User className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-sm text-muted-foreground">{post.author}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {post.author}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Clock className="w-4 h-4" />
@@ -244,29 +270,71 @@ export default function BlogPage() {
         <div className="relative mt-20 overflow-hidden rounded-3xl bg-linear-to-br from-primary via-primary/90 to-primary/80">
           {/* Diamond Grid Pattern */}
           <div className="absolute inset-0">
-            <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="absolute inset-0 w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <defs>
-                <pattern id="diamond-pattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-                  <path d="M0,40 L40,0 L80,40 L40,80 Z" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                <pattern
+                  id="diamond-pattern"
+                  x="0"
+                  y="0"
+                  width="80"
+                  height="80"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M0,40 L40,0 L80,40 L40,80 Z"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.15)"
+                    strokeWidth="1"
+                  />
                 </pattern>
-                <pattern id="triangle-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <polygon points="30,0 60,60 0,60" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+                <pattern
+                  id="triangle-pattern"
+                  x="0"
+                  y="0"
+                  width="60"
+                  height="60"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <polygon
+                    points="30,0 60,60 0,60"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.1)"
+                    strokeWidth="1"
+                  />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#diamond-pattern)" />
-              <rect width="100%" height="100%" fill="url(#triangle-pattern)" opacity="0.5" />
-              
+              <rect
+                width="100%"
+                height="100%"
+                fill="url(#triangle-pattern)"
+                opacity="0.5"
+              />
+
               {/* Floating Elements */}
               <circle cx="15%" cy="25%" r="20" fill="rgba(255,255,255,0.08)" />
               <circle cx="85%" cy="75%" r="25" fill="rgba(255,255,255,0.08)" />
-              <rect x="75%" y="15%" width="30" height="30" fill="rgba(255,255,255,0.08)" transform="rotate(45)" />
+              <rect
+                x="75%"
+                y="15%"
+                width="30"
+                height="30"
+                fill="rgba(255,255,255,0.08)"
+                transform="rotate(45)"
+              />
             </svg>
           </div>
 
           <div className="relative px-8 py-12 text-center">
-            <h3 className="mb-4 text-3xl font-bold text-white">Subscribe to Our Newsletter</h3>
+            <h3 className="mb-4 text-3xl font-bold text-white">
+              Subscribe to Our Newsletter
+            </h3>
             <p className="max-w-2xl mx-auto mb-8 text-white/90">
-              Get weekly updates on educational research, teaching strategies, and EdTech innovations.
+              Get weekly updates on educational research, teaching strategies,
+              and EdTech innovations.
             </p>
             <div className="max-w-md mx-auto">
               <div className="flex gap-4">
@@ -275,7 +343,10 @@ export default function BlogPage() {
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-3 text-white border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
                 />
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90"
+                >
                   Subscribe
                 </Button>
               </div>
@@ -284,5 +355,5 @@ export default function BlogPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -27,7 +27,7 @@ const studentProjects = [
     studentRole: "Final Year CS Student",
     description:
       "A real-time dashboard for teachers to monitor student engagement and performance with AI-powered analytics.",
-    videoId: "",
+    videoId: "ywwbBBZ583U",
     githubUrl: "https://github.com/ufill/smart-classroom",
     liveDemo: "https://smartclassroom.ufill.org",
     techStack: ["React", "Node.js", "Socket.io", "Chart.js", "MongoDB"],
@@ -37,7 +37,7 @@ const studentProjects = [
     forks: 32,
     contributors: 5,
     featured: true,
-    achievement: "Best Project Award 2024",
+    achievement: "",
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ const studentProjects = [
     studentRole: "AI/ML Student",
     description:
       "An intelligent language learning app that adapts to individual learning patterns using speech recognition.",
-    videoId: "",
+    videoId: "9KPWMNUQTEg",
     githubUrl: "https://github.com/ufill/ai-language-tutor",
     liveDemo: "https://ailanguagetutor.ufill.org",
     techStack: ["Python", "TensorFlow", "FastAPI", "React Native", "Redis"],
@@ -56,7 +56,7 @@ const studentProjects = [
     forks: 21,
     contributors: 3,
     featured: true,
-    achievement: "Featured on TechEd Magazine",
+    achievement: "",
   },
   {
     id: 3,
@@ -65,7 +65,7 @@ const studentProjects = [
     studentRole: "Physics Major",
     description:
       "Interactive virtual laboratory with 3D simulations for conducting physics and chemistry experiments.",
-    videoId: "",
+    videoId: "GaLESAgU_Sw",
     githubUrl: "https://github.com/ufill/virtual-science-lab",
     liveDemo: "https://virtuallab.ufill.org",
     techStack: ["Three.js", "WebGL", "TypeScript", "WebRTC", "Node.js"],
@@ -75,7 +75,7 @@ const studentProjects = [
     forks: 45,
     contributors: 7,
     featured: true,
-    achievement: "Open Source Education Award",
+    achievement: "",
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ const studentProjects = [
     studentRole: "Accessibility Advocate",
     description:
       "An exam platform designed with accessibility features for students with visual and hearing impairments.",
-    videoId: "",
+    videoId: "zFS7GHPQD_o",
     githubUrl: "https://github.com/ufill/accessible-exam",
     liveDemo: "https://accessibleexam.ufill.org",
     techStack: ["Vue.js", "Web Speech API", "PWA", "PostgreSQL", "Docker"],
@@ -93,8 +93,8 @@ const studentProjects = [
     stars: 76,
     forks: 18,
     contributors: 4,
-    featured: false,
-    achievement: "Accessibility Innovation Grant",
+    featured: true,
+    achievement: "",
   },
   {
     id: 5,
@@ -103,7 +103,7 @@ const studentProjects = [
     studentRole: "Education Technology",
     description:
       "A collaborative platform where students can learn from each other through video sessions and shared notes.",
-    videoId: "",
+    videoId: "yvaWO5ZDdDs",
     githubUrl: "https://github.com/ufill/peer-learning",
     liveDemo: "https://peerlearning.ufill.org",
     techStack: ["Next.js", "WebRTC", "Firebase", "Tailwind", "Stripe"],
@@ -112,8 +112,8 @@ const studentProjects = [
     stars: 124,
     forks: 29,
     contributors: 6,
-    featured: false,
-    achievement: "Student Choice Award",
+    featured: true,
+    achievement: "",
   },
   {
     id: 6,
@@ -122,7 +122,7 @@ const studentProjects = [
     studentRole: "CS Graduate",
     description:
       "AI-powered code review system that provides instant feedback and suggestions for programming assignments.",
-    videoId: "",
+    videoId: "IBpEjh-GX8Q",
     githubUrl: "https://github.com/ufill/code-mentor-ai",
     liveDemo: "https://codementorai.ufill.org",
     techStack: ["Python", "OpenAI API", "React", "MongoDB", "Docker"],
@@ -132,7 +132,7 @@ const studentProjects = [
     forks: 41,
     contributors: 8,
     featured: true,
-    achievement: "AI Education Innovation Prize",
+    achievement: "",
   },
   {
     id: 7,
@@ -141,7 +141,7 @@ const studentProjects = [
     studentRole: "Social Entrepreneur",
     description:
       "Offline-first educational portal designed for low-connectivity areas with localized content.",
-    videoId: "",
+    videoId: "b6Y8zLTx73w",
     githubUrl: "https://github.com/ufill/rural-edu-portal",
     liveDemo: "https://ruraledu.ufill.org",
     techStack: ["React", "PWA", "IndexedDB", "Service Workers", "Express"],
@@ -150,8 +150,8 @@ const studentProjects = [
     stars: 92,
     forks: 23,
     contributors: 5,
-    featured: false,
-    achievement: "Social Impact Award",
+    featured: true,
+    achievement: "",
   },
   {
     id: 8,
@@ -160,7 +160,7 @@ const studentProjects = [
     studentRole: "Mathematics Student",
     description:
       "Interactive tool that visualizes complex mathematical concepts through animations and simulations.",
-    videoId: "",
+    videoId: "eh7_ZsAWph4",
     githubUrl: "https://github.com/ufill/math-visualizer",
     liveDemo: "https://mathvisualizer.ufill.org",
     techStack: ["D3.js", "Canvas API", "React", "MathJax", "Node.js"],
@@ -170,7 +170,7 @@ const studentProjects = [
     forks: 31,
     contributors: 4,
     featured: true,
-    achievement: "Educational Tool Excellence",
+    achievement: "",
   },
 ];
 
@@ -204,36 +204,39 @@ export default function ProjectsPage() {
     setSelectedProject(project);
     setIsModalOpen(true);
     // Prevent body scroll when modal is open
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeVideoModal = () => {
     setSelectedVideo(null);
     setSelectedProject(null);
     setIsModalOpen(false);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   // Close modal on escape key
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeVideoModal();
+      if (e.key === "Escape") closeVideoModal();
     };
-    
-    window.addEventListener('keydown', handleEscKey);
-    return () => window.removeEventListener('keydown', handleEscKey);
+
+    window.addEventListener("keydown", handleEscKey);
+    return () => window.removeEventListener("keydown", handleEscKey);
   }, []);
 
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (isModalOpen && (e.target as HTMLElement).classList.contains('modal-overlay')) {
+      if (
+        isModalOpen &&
+        (e.target as HTMLElement).classList.contains("modal-overlay")
+      ) {
         closeVideoModal();
       }
     };
-    
-    window.addEventListener('click', handleClickOutside);
-    return () => window.removeEventListener('click', handleClickOutside);
+
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
   }, [isModalOpen]);
 
   return (
@@ -244,61 +247,72 @@ export default function ProjectsPage() {
 
       {/* Video Modal */}
       {isModalOpen && selectedVideo && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center modal-overlay bg-black/90 backdrop-blur-sm">
-          <div className="relative w-full max-w-4xl mx-4">
-            {/* Close Button */}
-            <button
-              onClick={closeVideoModal}
-              className="absolute right-0 z-10 p-2 text-white transition-colors -top-12 hover:text-gray-300"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            
-            {/* Video Container */}
-            <div className="relative pt-[56.25%] bg-black rounded-lg overflow-hidden">
-              <iframe
-                src={getEmbedUrl(selectedVideo)}
-                className="absolute inset-0 w-full h-full"
-                title={selectedProject?.title || "Project Video"}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            
-            {/* Video Info */}
-            {selectedProject && (
-              <div className="p-6 mt-4 bg-white rounded-lg dark:bg-gray-900">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  By {selectedProject.studentName} • {selectedProject.studentRole}
-                </p>
-                <p className="mt-2 text-gray-700 dark:text-gray-300">
-                  {selectedProject.description}
-                </p>
-                <div className="flex gap-4 mt-4">
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors bg-gray-800 rounded-lg hover:bg-gray-900"
-                  >
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </a>
-                  <a
-                    href={selectedProject.liveDemo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-white transition-colors rounded-lg bg-primary hover:bg-primary/90"
-                  >
-                    <Globe className="w-4 h-4" />
-                    Live Demo
-                  </a>
+        <div className="fixed inset-0 z-100 bg-black/90 backdrop-blur-sm">
+          {/* Scroll Container */}
+          <div className="absolute inset-0 overflow-y-auto">
+            <div className="flex min-h-screen justify-center px-4 py-12">
+              {/* Modal Card */}
+              <div className="relative w-full max-w-4xl">
+                {/* Close Button */}
+                <button
+                  onClick={closeVideoModal}
+                  className="sticky top-0 float-right z-20 mb-4 p-2 text-white transition hover:text-gray-300"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {/* Video */}
+                <div className="relative pt-[56.25%] bg-black rounded-2xl overflow-hidden">
+                  <iframe
+                    src={getEmbedUrl(selectedVideo)}
+                    className="absolute inset-0 w-full h-full"
+                    title={selectedProject?.title || "Project Video"}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
+
+                {/* Video Info */}
+                {selectedProject && (
+                  <div className="p-6 mt-6  rounded-2xl bg-background">
+                    <h3 className="text-xl font-bold text-black dark:text-white">
+                      {selectedProject.title}
+                    </h3>
+
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                      By {selectedProject.studentName} •{" "}
+                      {selectedProject.studentRole}
+                    </p>
+
+                    <p className="mt-4 text-gray-700 dark:text-gray-300">
+                      {selectedProject.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-4 mt-6">
+                      <a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-white transition rounded-lg bg-gray-800 hover:bg-gray-900"
+                      >
+                        <Github className="w-4 h-4" />
+                        View Code
+                      </a>
+
+                      <a
+                        href={selectedProject.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-white transition rounded-lg bg-primary hover:bg-primary/90"
+                      >
+                        <Globe className="w-4 h-4" />
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       )}
@@ -309,15 +323,16 @@ export default function ProjectsPage() {
           Student <span className="text-primary">Project</span> Showcase
         </h1>
         <p className="max-w-3xl mx-auto mb-10 text-xl text-muted-foreground">
-          Watch our students' innovative projects in action. From concept to deployment, 
-          see how they're solving real-world problems through technology.
+          Watch our students' innovative projects in action. From concept to
+          deployment, see how they're solving real-world problems through
+          technology.
         </p>
       </div>
 
       {/* Main Content */}
       <div className="container px-4 pb-20 mx-auto">
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* <div className="flex flex-wrap justify-center gap-3 mb-12">
           {projectCategories.map((category) => (
             <Button 
               key={category} 
@@ -328,7 +343,7 @@ export default function ProjectsPage() {
               {category}
             </Button>
           ))}
-        </div>
+        </div> */}
 
         {/* Featured Projects Section */}
         <div className="mb-16">
@@ -336,10 +351,6 @@ export default function ProjectsPage() {
             <h2 className="text-3xl font-bold text-foreground">
               Featured Project Videos
             </h2>
-            <Button variant="outline">
-              <Video className="w-4 h-4 mr-2" />
-              View All Videos
-            </Button>
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -352,8 +363,10 @@ export default function ProjectsPage() {
                   className="overflow-hidden transition-all duration-300 border rounded-2xl bg-card border-border hover:shadow-xl"
                 >
                   {/* Video Player */}
-                  <div className="relative pt-[56.25%] bg-black cursor-pointer"
-                       onClick={() => openVideoModal(project.videoId, project)}>
+                  <div
+                    className="relative pt-[56.25%] bg-black cursor-pointer"
+                    onClick={() => openVideoModal(project.videoId, project)}
+                  >
                     <img
                       src={getThumbnailUrl(project.videoId)}
                       alt={`${project.title} video thumbnail`}
@@ -365,15 +378,15 @@ export default function ProjectsPage() {
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="relative">
-                        <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm"></div>
-                        <Play className="absolute w-10 h-10 text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+                        <div className="w-20 h-20 rounded-full"></div>
+                        <Play className="absolute w-10 h-10 text-transparent transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
                       </div>
                     </div>
-                    <div className="absolute bottom-3 left-3">
+                    {/* <div className="absolute bottom-3 left-3">
                       <span className="px-2 py-1 text-xs text-white rounded-full bg-black/70">
                         Click to Play
                       </span>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="p-6">
@@ -414,7 +427,9 @@ export default function ProjectsPage() {
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
                           <Users className="w-4 h-4 text-blue-500" />
-                          <span className="text-sm">{project.contributors}</span>
+                          <span className="text-sm">
+                            {project.contributors}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Eye className="w-4 h-4 text-green-500" />
@@ -467,37 +482,37 @@ export default function ProjectsPage() {
                   <img
                     src={getThumbnailUrl(project.videoId)}
                     alt={`${project.title} video thumbnail`}
-                    className="absolute inset-0 object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                    className="absolute inset-0 object-cover w-full h-full "
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = `https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`;
                     }}
                   />
-                  
+
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 via-transparent to-transparent group-hover:opacity-100"></div>
-                  
+                  <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-linear-to-t from-black/70 via-transparent to-transparent group-hover:opacity-100"></div>
+
                   {/* Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="relative transition-transform duration-300 transform group-hover:scale-110">
-                      <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm"></div>
-                      <Play className="absolute w-8 h-8 text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+                    <div className="relative ">
+                      <div className="w-16 h-16 rounded-full"></div>
+                      <Play className="absolute w-8 h-8 text-transparent transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
                     </div>
                   </div>
-                  
+
                   {/* Duration Badge */}
-                  <div className="absolute bottom-3 left-3">
+                  {/* <div className="absolute bottom-3 left-3">
                     <span className="px-2 py-1 text-xs text-white rounded-full bg-black/70">
                       {project.duration}
                     </span>
-                  </div>
-                  
+                  </div> */}
+
                   {/* Play Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+                  {/* <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
                     <div className="px-3 py-1 text-sm font-medium text-white rounded-full bg-black/50">
                       Click to Play
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Content */}
@@ -542,15 +557,19 @@ export default function ProjectsPage() {
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1.5">
                         <Star className="w-3.5 h-3.5 text-yellow-500" />
-                        <span className="text-xs font-medium">{project.stars}</span>
+                        <span className="text-xs font-medium">
+                          {project.stars}
+                        </span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Code className="w-3.5 h-3.5 text-blue-500" />
-                        <span className="text-xs font-medium">{project.forks}</span>
+                        <span className="text-xs font-medium">
+                          {project.forks}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="flex gap-2">
+                    {/* <div className="flex gap-2">
                       <a
                         href={project.githubUrl}
                         target="_blank"
@@ -571,7 +590,7 @@ export default function ProjectsPage() {
                       >
                         <Globe className="w-4 h-4" />
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

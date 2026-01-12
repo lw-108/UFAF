@@ -24,6 +24,11 @@ const nextConfig: NextConfig = {
         hostname: '*.googleusercontent.com', // Wildcard for all subdomains
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '**',
+      },
     ],
   },
 };
