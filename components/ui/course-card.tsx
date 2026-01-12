@@ -87,9 +87,9 @@ export function CourseCard({
               </div>
             </div>
 
-            <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center justify-between gap-6 mt-4">
               <span className="text-2xl font-bold">{price}</span>
-              <Button className="bg-primary hover:bg-primary/90">
+              <Button className="bg-primary  hover:bg-primary/90">
                 Enroll Now
               </Button>
             </div>
@@ -97,7 +97,7 @@ export function CourseCard({
         </div>
 
         {/* RIGHT — Image */}
-        <div className="relative hidden md:block">
+        <div className="relative hidden md:block w-50 h-50">
           <Image
             src={image}
             alt={title}
