@@ -1,84 +1,97 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import {
-  X,
-  Send,
-  MessageCircle,
-  Minimize2,
-  Maximize2,
-  GripVertical,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import ChatMessage from "./chat-message";
-import { getBotAnswer } from "@/lib/chatbot-engine";
+import React, { useState, useRef, useEffect } from "react";
 
-const initialMessages = [
+/* ================= TYPES ================= */
+
+type Sender = "user" | "bot";
+
+type Message = {
+  id: number;
+  text: string;
+  sender: Sender;
+  timestamp: string;
+};
+
+/* ================= STATIC QA ================= */
+
+const chatbotQAs = [
   {
-    id: 1,
-    text: "Hello! I'm the U-Fill Academy assistant. Ask me about courses, admissions, fees, or schedules.",
-    sender: "bot",
-    timestamp: new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    }),
+    questions: ["course", "courses"],
+    answer:
+      "We offer Full Stack Development, Data Science, UI/UX, and Digital Marketing courses.",
+  },
+  {
+    questions: ["fees", "fee"],
+    answer:
+      "Course fees range from ₹25,000 to ₹85,000. EMI options are available.",
+  },
+  {
+    questions: ["admission", "admissions"],
+    answer:
+      "Admissions are open year-round. You can apply online or visit our campus.",
+  },
+  {
+    questions: ["schedule", "timing", "batch"],
+    answer:
+      "We have morning, afternoon, and evening batches on weekdays and weekends.",
+  },
+  {
+    questions: ["placement", "placements", "job"],
+    answer:
+      "We provide placement assistance with a 90%+ placement success rate.",
   },
 ];
 
+/* ================= COMPONENT ================= */
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
-  const [messages, setMessages] = useState(initialMessages);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: 1,
+      text:
+        "Hi 👋 Ask me about courses, fees, admissions, schedules, or placements.",
+      sender: "bot",
+      timestamp: new Date().toISOString(),
+    },
+  ]);
+
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  const [chatHeight, setChatHeight] = useState(560);
-  const isResizing = useRef(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  /* ================= AUTO SCROLL ================= */
 
-  /* Auto scroll */
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  /* Resize logic (desktop only) */
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isResizing.current) return;
-      const newHeight = window.innerHeight - e.clientY - 32;
-      if (newHeight > 420 && newHeight < 800) {
-        setChatHeight(newHeight);
-      }
-    };
+  /* ================= BOT LOGIC ================= */
 
-    const stopResize = () => {
-      isResizing.current = false;
-      document.body.style.cursor = "default";
-    };
+  const getBotResponse = (text: string): string => {
+    const normalized = text.toLowerCase();
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", stopResize);
+    const match = chatbotQAs.find((qa) =>
+      qa.questions.some((q) => normalized.includes(q))
+    );
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", stopResize);
-    };
-  }, []);
+    return (
+      match?.answer ||
+      "I'm not sure about that yet. You can ask about courses, fees, admissions, schedules, or placements."
+    );
+  };
 
-  /* Send message */
+  /* ================= SEND ================= */
+
   const handleSend = () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim()) return;
 
-    const userText = input;
-
-    const userMessage = {
+    const userMessage: Message = {
       id: Date.now(),
-      text: userText,
+      text: input,
       sender: "user",
-      timestamp: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
+      timestamp: new Date().toISOString(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -86,105 +99,44 @@ export default function Chatbot() {
     setIsLoading(true);
 
     setTimeout(() => {
-      const botMessage = {
+      const botMessage: Message = {
         id: Date.now() + 1,
-        text: getBotAnswer(userText),
+        text: getBotResponse(userMessage.text),
         sender: "bot",
-        timestamp: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        timestamp: new Date().toISOString(),
       };
 
       setMessages((prev) => [...prev, botMessage]);
       setIsLoading(false);
-    }, 500);
+    }, 600);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
-
-  const clearChat = () => setMessages(initialMessages);
-
-  /* Floating button */
-  if (!isOpen) {
-    return (
-      <div className="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="relative p-4 transition rounded-full shadow-lg bg-primary text-primary-foreground hover:scale-105"
-        >
-          <MessageCircle className="w-6 h-6" />
-          <span className="absolute w-3 h-3 bg-red-500 rounded-full -top-1 -right-1 animate-pulse" />
-        </button>
-      </div>
-    );
-  }
+  /* ================= UI ================= */
 
   return (
-    <div
-      className={cn(
-        "fixed z-50 flex flex-col",
-        "bottom-4 right-4 sm:bottom-6 sm:right-6",
-        "w-[calc(100vw-2rem)] sm:w-[380px] md:w-[420px]",
-        "max-h-[85svh]",
-        "bg-background border rounded-2xl shadow-2xl transition-all",
-        isMinimized && "h-12"
+    <>
+      {/* Floating Button */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed z-50 text-white transition bg-blue-600 rounded-full shadow-lg bottom-5 right-5 h-14 w-14 hover:scale-105"
+        >
+          💬
+        </button>
       )}
-      style={!isMinimized ? { height: chatHeight } : {}}
-    >
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b bg-primary text-primary-foreground rounded-t-2xl">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse" />
-          <span className="text-sm font-semibold sm:text-base">
-            U-Fill Assistant
-          </span>
-        </div>
 
-        <div className="flex items-center gap-1">
-          <button
-            onClick={() => setIsMinimized(!isMinimized)}
-            className="p-1.5 rounded hover:bg-white/15"
-          >
-            {isMinimized ? (
-              <Maximize2 className="w-4 h-4" />
-            ) : (
-              <Minimize2 className="w-4 h-4" />
-            )}
-          </button>
-
-          <button
-            onClick={clearChat}
-            className="hidden px-2 py-1 text-xs rounded sm:block hover:bg-white/15"
-          >
-            Clear
-          </button>
-
-          <button
-            onClick={() => setIsOpen(false)}
-            className="p-1.5 rounded hover:bg-white/15"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-
-      {!isMinimized && (
-        <>
-          {/* Resize handle */}
-          <div
-            className="items-center justify-center hidden h-2 border-b sm:flex cursor-ns-resize hover:bg-muted"
-            onMouseDown={() => {
-              isResizing.current = true;
-              document.body.style.cursor = "ns-resize";
-            }}
-          >
-            <GripVertical className="w-4 h-4 text-muted-foreground" />
+      {/* Chat Window */}
+      {isOpen && (
+        <div className="fixed bottom-5 right-5 z-50 w-[92vw] max-w-sm h-[520px] bg-background border rounded-2xl shadow-2xl flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3 font-semibold border-b">
+            Admissions Assistant
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-sm opacity-60 hover:opacity-100"
+            >
+              ✕
+            </button>
           </div>
 
           {/* Messages */}
@@ -194,40 +146,56 @@ export default function Chatbot() {
             ))}
 
             {isLoading && (
-              <div className="flex gap-1 text-muted-foreground">
-                <span className="w-2 h-2 bg-current rounded-full animate-pulse" />
-                <span className="w-2 h-2 delay-150 bg-current rounded-full animate-pulse" />
-                <span className="w-2 h-2 delay-300 bg-current rounded-full animate-pulse" />
-              </div>
+              <div className="text-xs text-muted-foreground">Typing…</div>
             )}
 
             <div ref={messagesEndRef} />
           </div>
 
           {/* Input */}
-          <div className="p-3 border-t">
-            <div className="relative">
-              <textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Ask about courses, fees, admissions…"
-                className="w-full px-2 py-2.5 pr-12 text-sm border rounded-xl resize-none focus:ring-2 focus:ring-primary focus:outline-none"
-                rows={2}
-                disabled={isLoading}
-              />
-
-              <button
-                onClick={handleSend}
-                disabled={!input.trim() || isLoading}
-                className="absolute p-2 rounded-full right-2 bottom-4 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
+          <div className="flex gap-2 p-3 border-t">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
+              placeholder="Type your question…"
+              className="flex-1 px-3 py-2 text-sm border rounded-lg outline-none"
+            />
+            <button
+              onClick={handleSend}
+              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+            >
+              Send
+            </button>
           </div>
-        </>
+        </div>
       )}
+    </>
+  );
+}
+
+/* ================= MESSAGE ================= */
+
+function ChatMessage({ message }: { message: Message }) {
+  const isUser = message.sender === "user";
+
+  return (
+    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
+      <div
+        className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm ${
+          isUser
+            ? "bg-blue-600 text-white"
+            : "bg-muted text-foreground"
+        }`}
+      >
+        {message.text}
+        <div className="mt-1 text-[10px] opacity-70">
+          {new Date(message.timestamp).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </div>
+      </div>
     </div>
   );
 }
