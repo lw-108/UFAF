@@ -116,12 +116,10 @@
   --font-family-garet: var(--font-garet), sans-serif;
   --font-family-league: var(--font-league), sans-serif;
   --font-family-nsec: var(--font-nsec), sans-serif;
-  --font-sans:
-    Instrument Sans, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif:
-    Instrument Serif, ui-serif, Georgia, Cambria, "Times New Roman", Times,
-    serif;
+  --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Instrument Serif, ui-serif, Georgia, Cambria, "Times New Roman",
+    Times, serif;
 }
 
 @layer base {
@@ -133,12 +131,11 @@
   }
 }
 
-::selection{
-  color:white;
+::selection {
+  color: white;
   /* user-select: crimson; */
-  background:rgb(1, 4, 173) ;
+  background: rgb(1, 4, 173);
 }
-
 
 /* ---------------- Scrollbars Utility ---------------- */
 /* Very thin custom scrollbar using OKLCH color */
@@ -161,7 +158,6 @@
   scrollbar-color: oklch(0.488 0.243 264.376) transparent;
 }
 /* -------------------------------------------------------- */
-
 
 /* Smooth theme transitions */
 * {
@@ -187,8 +183,13 @@
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Soft fade mask so watermark feels embedded */
@@ -202,42 +203,71 @@
 }
 
 @keyframes gentle-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+  0%,
+  100% {
+    opacity: 1;
   }
-  
-  .animate-gentle-pulse {
-    animation: gentle-pulse 2s ease-in-out infinite;
+  50% {
+    opacity: 0.6;
   }
-  
-  @keyframes color-pulse {
-    0%, 100% { background-color: rgb(59 130 246); }
-    50% { background-color: rgb(139 92 246); }
-  }
-  
-  .animate-color-pulse {
-    animation: color-pulse 3s ease-in-out infinite;
-  }
+}
 
-  /* Add these animations to your global.css or tailwind.config.js */
+.animate-gentle-pulse {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes color-pulse {
+  0%,
+  100% {
+    background-color: rgb(59 130 246);
+  }
+  50% {
+    background-color: rgb(139 92 246);
+  }
+}
+
+.animate-color-pulse {
+  animation: color-pulse 3s ease-in-out infinite;
+}
+
+/* Add these animations to your global.css or tailwind.config.js */
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(5deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
 }
 
 @keyframes float-medium {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(-5deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
 }
 
 @keyframes float-fast {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(10deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
 }
 
 @keyframes wave {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50px); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
 }
 
 .animate-float-slow {
@@ -274,4 +304,35 @@
 
 .group-hover\:\[transform\:translateZ\(20px\)\] {
   transform: translateZ(20px);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-10px) translateX(10px);
+  }
+  66% {
+    transform: translateY(5px) translateX(-5px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.animate-float {
+  animation: float linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
 }

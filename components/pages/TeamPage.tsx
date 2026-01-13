@@ -164,7 +164,7 @@ const teamMembers = [
   {
     id: 5,
     name: "Lingesh Warma",
-    role: "FGeneral Manager",
+    role: "General Manager",
     department: "Operations",
     description: "Ensuring sustainable growth through strategic management",
     image: "/u-robo.png",
@@ -233,7 +233,7 @@ const TeamPage = () => {
               ].map((stat, index) => (
                 <div
                   key={index}
-                  className="px-6 py-3 border rounded-full bg-background/50 backdrop-blur-sm"
+                  className="px-6 py-3 bg-background/50 backdrop-blur-sm"
                 >
                   <div className="text-2xl font-bold text-primary">
                     {stat.value}

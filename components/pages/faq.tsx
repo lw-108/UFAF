@@ -316,7 +316,7 @@ const FAQPage = () => {
                         }}
                         className="flex items-start w-full gap-2 p-2 text-sm text-left rounded hover:bg-primary-50"
                       >
-                        <ChevronRight className="h-3 w-3 mt-0.5 text-primary flex-shrink-0" />
+                        <ChevronRight className="h-3 w-3 mt-0.5 text-primary shrink-0" />
                         <span className="flex-1">{faq.question}</span>
                       </button>
                     ))}
@@ -379,7 +379,7 @@ const FAQPage = () => {
                     >
                       <AccordionTrigger className="px-6 py-4 text-left hover:text-black dark:text-white hover:no-underline hover:bg-primary">
                         <div className="flex items-start gap-4">
-                          <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full bg-primary/10">
+                          <div className="flex items-center justify-center w-8 h-8 rounded-full shrink-0 bg-primary/10">
                             <HelpCircle className="w-4 h-4 text-primary" />
                           </div>
                           <div className="flex-1 text-left">

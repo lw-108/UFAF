@@ -114,7 +114,7 @@ const EventsPage = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
               <Award className="w-5 h-5" />
-              <span className="text-sm font-semibold">Our Events Gallery</span>
+              <span className="text-sm font-semibold">Our Events Showcase</span>
             </div>
 
             <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">
@@ -129,7 +129,7 @@ const EventsPage = () => {
       </section>
 
       {/* Filter Tabs */}
-      <div className="sticky z-10 py-4 mb-8 top-24 bg-background/80 backdrop-blur-sm">
+      {/* <div className="sticky z-10 py-4 mb-8 top-24 bg-background/80 backdrop-blur-sm">
         <div className="container px-6 mx-auto sm:px-8 lg:px-12">
           <div className="flex flex-wrap justify-center gap-2">
             {eventTypes.map((type) => (
@@ -155,7 +155,7 @@ const EventsPage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Content - Full Height Split Layout */}
       <section className="pb-20">
