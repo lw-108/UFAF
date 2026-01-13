@@ -250,13 +250,13 @@ export default function ProjectsPage() {
         <div className="fixed inset-0 z-100 bg-black/90 backdrop-blur-sm">
           {/* Scroll Container */}
           <div className="absolute inset-0 overflow-y-auto">
-            <div className="flex min-h-screen justify-center px-4 py-12">
+            <div className="flex justify-center min-h-screen px-4 py-12">
               {/* Modal Card */}
               <div className="relative w-full max-w-4xl">
                 {/* Close Button */}
                 <button
                   onClick={closeVideoModal}
-                  className="sticky top-0 float-right z-20 mb-4 p-2 text-white transition hover:text-gray-300"
+                  className="sticky top-0 z-20 float-right p-2 mb-4 text-white transition hover:text-gray-300"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -274,7 +274,7 @@ export default function ProjectsPage() {
 
                 {/* Video Info */}
                 {selectedProject && (
-                  <div className="p-6 mt-6  rounded-2xl bg-background">
+                  <div className="p-6 mt-6 rounded-2xl bg-background">
                     <h3 className="text-xl font-bold text-black dark:text-white">
                       {selectedProject.title}
                     </h3>
@@ -293,7 +293,7 @@ export default function ProjectsPage() {
                         href={selectedProject.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-white transition rounded-lg bg-gray-800 hover:bg-gray-900"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-white transition bg-gray-800 rounded-lg hover:bg-gray-900"
                       >
                         <Github className="w-4 h-4" />
                         View Code
@@ -351,6 +351,9 @@ export default function ProjectsPage() {
             <h2 className="text-3xl font-bold text-foreground">
               Featured Project Videos
             </h2>
+             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-transparent border border-black rounded-full dark:border-white ">
+              <span className="font-medium">Click to watch</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
