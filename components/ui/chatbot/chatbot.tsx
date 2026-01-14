@@ -1,20 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import {
-  X,
-  Send,
-  MessageCircle,
-  Minimize2,
-  Maximize2,
-  GripVertical,
-  GripHorizontal,
-} from "lucide-react";
+import { X, Send, Minimize2, Maximize2, GripHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ChatMessage from "./chat-message";
 import { getBotAnswer } from "@/lib/chatbot-engine";
 
-/* ================= TYPES (FIX) ================= */
+/* ================= TYPES ================= */
 
 type Sender = "user" | "bot";
 
@@ -25,43 +17,46 @@ type Message = {
   timestamp: string;
 };
 
+/* ================= HELPERS ================= */
+
+const now = () => new Date().toISOString();
+
 /* ================= INITIAL MESSAGE ================= */
 
 const initialMessages: Message[] = [
   {
     id: 1,
-    text:
-      "Hello! I'm the U-Fill Academy assistant. Ask me about courses, admissions, fees, or schedules.",
+    text: "Hello! I'm the U-Fill Academy assistant. Ask me about courses, admissions, fees, or schedules.",
     sender: "bot",
-    timestamp: new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    }),
+    timestamp: now(),
   },
 ];
 
+/* ================= CHATBOT ================= */
+
 export default function Chatbot() {
+  /* ---------- STATE ---------- */
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const [chatHeight, setChatHeight] = useState(560);
+
+  /* ---------- REFS ---------- */
   const isResizing = useRef(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  /* ================= AUTO SCROLL ================= */
-
+  /* ---------- AUTO SCROLL ---------- */
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  /* ================= RESIZE LOGIC ================= */
-
+  /* ---------- RESIZE LOGIC ---------- */
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isResizing.current) return;
+
       const newHeight = window.innerHeight - e.clientY - 32;
       if (newHeight > 420 && newHeight < 800) {
         setChatHeight(newHeight);
@@ -82,8 +77,7 @@ export default function Chatbot() {
     };
   }, []);
 
-  /* ================= SEND MESSAGE ================= */
-
+  /* ---------- SEND MESSAGE ---------- */
   const handleSend = () => {
     if (!input.trim() || isLoading) return;
 
@@ -92,11 +86,8 @@ export default function Chatbot() {
     const userMessage: Message = {
       id: Date.now(),
       text: userText,
-      sender: "user", // ✅ strict union
-      timestamp: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
+      sender: "user",
+      timestamp: now(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -107,11 +98,8 @@ export default function Chatbot() {
       const botMessage: Message = {
         id: Date.now() + 1,
         text: getBotAnswer(userText),
-        sender: "bot", // ✅ strict union
-        timestamp: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        sender: "bot",
+        timestamp: now(),
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -133,13 +121,25 @@ export default function Chatbot() {
   if (!isOpen) {
     return (
       <div className="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="relative p-4 transition rounded-full shadow-lg bg-primary text-primary-foreground hover:scale-105"
-        >
-          <MessageCircle className="w-6 h-6" />
-          <span className="absolute w-3 h-3 bg-red-500 rounded-full -top-1 -right-1 animate-pulse" />
-        </button>
+        <div className="relative group">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative p-3 transition rounded-full shadow-lg hover:scale-105"
+            aria-label="Open chat assistant"
+          >
+            <img
+              src="/u-robo.png"
+              alt="U-Fill Chat Assistant"
+              className="object-cover w-20 h-20 rounded-full"
+            />
+
+            <span className="absolute w-3 h-3 rounded-full bg-primary -top-1 -right-1 animate-pulse" />
+          </button>
+
+          <div className="pointer-events-none absolute bottom-full right-1/2 translate-x-1/2 mb-3 whitespace-nowrap rounded-lg bg-background border shadow-md px-3 py-1.5 text-sm text-foreground opacity-0 scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:scale-100">
+            💬 Need help? Chat with us
+          </div>
+        </div>
       </div>
     );
   }
@@ -151,7 +151,7 @@ export default function Chatbot() {
       className={cn(
         "fixed z-50 flex flex-col",
         "bottom-4 right-4 sm:bottom-6 sm:right-6",
-        "w-[calc(100vw-2rem)] sm:w-[380px] md:w-[420px]",
+        "w-[calc(100vw-2rem)] sm:w-95 md:w-150 lg:w-96",
         "max-h-[85svh]",
         "bg-background border rounded-2xl shadow-2xl transition-all",
         isMinimized && "h-12"
@@ -197,7 +197,7 @@ export default function Chatbot() {
 
       {!isMinimized && (
         <>
-          {/* Resize handle */}
+          {/* Resize Handle */}
           <div
             className="items-center justify-center hidden h-2 border-b sm:flex cursor-ns-resize hover:bg-muted"
             onMouseDown={() => {
@@ -243,7 +243,7 @@ export default function Chatbot() {
                 disabled={!input.trim() || isLoading}
                 className="absolute p-2 rounded-full right-2 bottom-4 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
               >
-                <Send className="w-4 h-4 py-0.7 mt-0.2" />
+                <Send className="w-4 h-4" />
               </button>
             </div>
           </div>
