@@ -11,7 +11,7 @@ interface Banner1Props {
 
 const Banner1 = ({
   title = "Ufill Academy - Official Notice",
-  description = "Verified and legally registered institution.",
+  description = "Verified and legally registered institution",
   linkText = "View Proof",
   linkUrl = "#",
   codes = [],
@@ -40,13 +40,13 @@ const Banner1 = ({
             <span className="font-medium">{title}</span>{" "}
             <span className="text-muted-foreground">
               {description}{" "}
-              <a
+              {/* <a
                 href={linkUrl}
                 className="font-medium underline hover:text-foreground underline-offset-2"
                 target="_blank"
               >
                 {linkText}
-              </a>
+              </a> */}
               .
             </span>
           </span>

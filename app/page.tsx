@@ -19,7 +19,6 @@ import { Footer7 } from "@/components/Footer7";
 const Page = () => {
   return (
     <div className="relative w-full min-h-screen">
-
       {/* Main Content */}
       <div className="relative z-10">
         {/* Navbar - Fixed at top */}
