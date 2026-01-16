@@ -4,6 +4,7 @@ import { BookOpen, Users, Mic, Lightbulb, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
 
 const stages = [
   {
@@ -20,15 +21,26 @@ const stages = [
     details: {
       ageGroup: "3-5 years",
       duration: "2 years",
-      keyFocus: ["Play-based learning", "Sensory development", "Basic literacy & numeracy", "Social skills"],
+      keyFocus: [
+        "Play-based learning",
+        "Sensory development",
+        "Basic literacy & numeracy",
+        "Social skills",
+      ],
       outcomes: [
         "Develop basic motor skills and coordination",
         "Foster curiosity and love for learning",
         "Build foundational language skills",
-        "Learn through play and exploration"
+        "Learn through play and exploration",
       ],
-      activities: ["Storytelling sessions", "Art & craft", "Music & movement", "Outdoor play", "Basic counting & alphabet games"]
-    }
+      activities: [
+        "Storytelling sessions",
+        "Art & craft",
+        "Music & movement",
+        "Outdoor play",
+        "Basic counting & alphabet games",
+      ],
+    },
   },
   {
     icon: Users,
@@ -44,15 +56,26 @@ const stages = [
     details: {
       ageGroup: "6-10 years",
       duration: "5 years",
-      keyFocus: ["Core academic skills", "Collaboration", "Communication", "Problem-solving"],
+      keyFocus: [
+        "Core academic skills",
+        "Collaboration",
+        "Communication",
+        "Problem-solving",
+      ],
       outcomes: [
         "Master basic literacy and numeracy",
         "Develop teamwork and collaboration skills",
         "Build emotional intelligence",
-        "Establish strong learning habits"
+        "Establish strong learning habits",
       ],
-      activities: ["Group projects", "Science experiments", "Reading clubs", "Math puzzles", "Sports & team games"]
-    }
+      activities: [
+        "Group projects",
+        "Science experiments",
+        "Reading clubs",
+        "Math puzzles",
+        "Sports & team games",
+      ],
+    },
   },
   {
     icon: Mic,
@@ -68,15 +91,26 @@ const stages = [
     details: {
       ageGroup: "11-14 years",
       duration: "4 years",
-      keyFocus: ["Self-expression", "Critical thinking", "Creative arts", "Leadership"],
+      keyFocus: [
+        "Self-expression",
+        "Critical thinking",
+        "Creative arts",
+        "Leadership",
+      ],
       outcomes: [
         "Develop confidence in public speaking",
         "Explore personal interests and talents",
         "Build critical thinking skills",
-        "Learn digital literacy"
+        "Learn digital literacy",
       ],
-      activities: ["Debate competitions", "Creative writing", "Drama & theater", "Science fairs", "Technology clubs"]
-    }
+      activities: [
+        "Debate competitions",
+        "Creative writing",
+        "Drama & theater",
+        "Science fairs",
+        "Technology clubs",
+      ],
+    },
   },
   {
     icon: Lightbulb,
@@ -92,15 +126,26 @@ const stages = [
     details: {
       ageGroup: "15-16 years",
       duration: "2 years",
-      keyFocus: ["Innovation", "Project-based learning", "Research skills", "Entrepreneurship"],
+      keyFocus: [
+        "Innovation",
+        "Project-based learning",
+        "Research skills",
+        "Entrepreneurship",
+      ],
       outcomes: [
         "Develop innovation and design thinking",
         "Create original projects and solutions",
         "Build research and analytical skills",
-        "Explore career pathways"
+        "Explore career pathways",
       ],
-      activities: ["Capstone projects", "Innovation labs", "Startup simulations", "Research papers", "Industry visits"]
-    }
+      activities: [
+        "Capstone projects",
+        "Innovation labs",
+        "Startup simulations",
+        "Research papers",
+        "Industry visits",
+      ],
+    },
   },
   {
     icon: Rocket,
@@ -116,15 +161,26 @@ const stages = [
     details: {
       ageGroup: "17-18 years",
       duration: "2 years",
-      keyFocus: ["Future readiness", "Leadership", "Global citizenship", "Career preparation"],
+      keyFocus: [
+        "Future readiness",
+        "Leadership",
+        "Global citizenship",
+        "Career preparation",
+      ],
       outcomes: [
         "Develop leadership and management skills",
         "Prepare for higher education and careers",
         "Build global awareness and citizenship",
-        "Create personal development plans"
+        "Create personal development plans",
       ],
-      activities: ["Leadership workshops", "Career counseling", "Global exchange programs", "Community service", "Portfolio development"]
-    }
+      activities: [
+        "Leadership workshops",
+        "Career counseling",
+        "Global exchange programs",
+        "Community service",
+        "Portfolio development",
+      ],
+    },
   },
 ];
 
@@ -133,7 +189,10 @@ export default function EducationalPathwayPage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden border-b border-white/20">
-        <div className="container px-4 mx-auto">
+        <div className="fixed top-0 left-0 z-50 w-full mb-50">
+          <NavbarWithMegaMenu />
+        </div>
+        <div className="container px-4 mx-auto mt-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm rounded-full bg-primary/10 text-primary">
               <BookOpen className="w-4 h-4" />
@@ -145,20 +204,17 @@ export default function EducationalPathwayPage() {
               <span className="text-primary">Educational Pathway</span>
             </h1>
             <p className="max-w-2xl mx-auto mt-6 text-xl text-muted-foreground">
-              A structured journey from foundational discovery to future-ready skills, 
-              designed to nurture every child&apos;s potential across five developmental stages.
+              A structured journey from foundational discovery to future-ready
+              skills, designed to nurture every child&apos;s potential across
+              five developmental stages.
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-4 mt-10">
               <Button asChild>
-                <Link href="#explore-pathway">
-                  Explore All Stages
-                </Link>
+                <Link href="#explore-pathway">Explore All Stages</Link>
               </Button>
               <Button variant="outline" asChild>
-                <Link href="/admissions">
-                  Join Our Community
-                </Link>
+                <Link href="/admissions">Join Our Community</Link>
               </Button>
             </div>
           </div>
@@ -172,7 +228,9 @@ export default function EducationalPathwayPage() {
             <div className="grid grid-cols-1 gap-8 mb-20 lg:grid-cols-3">
               <div className="p-6 border rounded-3xl">
                 <div className="text-4xl font-bold text-primary">05</div>
-                <h3 className="mt-4 text-xl font-semibold">Developmental Stages</h3>
+                <h3 className="mt-4 text-xl font-semibold">
+                  Developmental Stages
+                </h3>
                 <p className="mt-2 text-muted-foreground">
                   Each stage builds upon previous learning milestones
                 </p>
@@ -241,25 +299,47 @@ export default function EducationalPathwayPage() {
                           {/* Details Grid */}
                           <div className="grid grid-cols-1 gap-6 pt-6 border-t md:grid-cols-2">
                             <div>
-                              <h4 className="mb-3 font-semibold">Key Focus Areas</h4>
+                              <h4 className="mb-3 font-semibold">
+                                Key Focus Areas
+                              </h4>
                               <ul className="space-y-2">
                                 {stage.details.keyFocus.map((item, i) => (
-                                  <li key={i} className="flex items-center gap-2">
-                                    <div className={`w-1.5 h-1.5 rounded-full ${stage.bgColor.replace('bg-', 'bg-')}`} />
+                                  <li
+                                    key={i}
+                                    className="flex items-center gap-2"
+                                  >
+                                    <div
+                                      className={`w-1.5 h-1.5 rounded-full ${stage.bgColor.replace(
+                                        "bg-",
+                                        "bg-"
+                                      )}`}
+                                    />
                                     <span>{item}</span>
                                   </li>
                                 ))}
                               </ul>
                             </div>
                             <div>
-                              <h4 className="mb-3 font-semibold">Learning Outcomes</h4>
+                              <h4 className="mb-3 font-semibold">
+                                Learning Outcomes
+                              </h4>
                               <ul className="space-y-2">
-                                {stage.details.outcomes.slice(0, 3).map((item, i) => (
-                                  <li key={i} className="flex items-center gap-2">
-                                    <div className={`w-1.5 h-1.5 rounded-full ${stage.bgColor.replace('bg-', 'bg-')}`} />
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
+                                {stage.details.outcomes
+                                  .slice(0, 3)
+                                  .map((item, i) => (
+                                    <li
+                                      key={i}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <div
+                                        className={`w-1.5 h-1.5 rounded-full ${stage.bgColor.replace(
+                                          "bg-",
+                                          "bg-"
+                                        )}`}
+                                      />
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
                               </ul>
                             </div>
                           </div>
@@ -267,12 +347,20 @@ export default function EducationalPathwayPage() {
                           {/* Age & Duration */}
                           <div className="flex gap-6 pt-6 border-t">
                             <div>
-                              <div className="text-sm text-muted-foreground">Age Group</div>
-                              <div className="text-lg font-semibold">{stage.details.ageGroup}</div>
+                              <div className="text-sm text-muted-foreground">
+                                Age Group
+                              </div>
+                              <div className="text-lg font-semibold">
+                                {stage.details.ageGroup}
+                              </div>
                             </div>
                             <div>
-                              <div className="text-sm text-muted-foreground">Duration</div>
-                              <div className="text-lg font-semibold">{stage.details.duration}</div>
+                              <div className="text-sm text-muted-foreground">
+                                Duration
+                              </div>
+                              <div className="text-lg font-semibold">
+                                {stage.details.duration}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -292,7 +380,9 @@ export default function EducationalPathwayPage() {
                         </div>
 
                         <div>
-                          <h4 className="mb-4 font-semibold">Sample Activities</h4>
+                          <h4 className="mb-4 font-semibold">
+                            Sample Activities
+                          </h4>
                           <div className="flex flex-wrap gap-2">
                             {stage.details.activities.map((activity, i) => (
                               <span
@@ -320,22 +410,21 @@ export default function EducationalPathwayPage() {
             {/* Continuous Journey Section */}
             <div className="p-8 mt-12 border rounded-3xl bg-background">
               <div className="max-w-2xl mx-auto text-center">
-                <h3 className="text-2xl font-bold">Continuous Learning Journey</h3>
+                <h3 className="text-2xl font-bold">
+                  Continuous Learning Journey
+                </h3>
                 <p className="mt-4 text-muted-foreground">
-                  Each stage seamlessly transitions to the next, ensuring a cohesive 
-                  educational experience that adapts to your child&apos;s evolving needs 
-                  and prepares them for lifelong success.
+                  Each stage seamlessly transitions to the next, ensuring a
+                  cohesive educational experience that adapts to your
+                  child&apos;s evolving needs and prepares them for lifelong
+                  success.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 mt-8">
                   <Button asChild>
-                    <Link href="/admissions">
-                      Begin Your Journey
-                    </Link>
+                    <Link href="/admissions">Begin Your Journey</Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href="/contact">
-                      Schedule a Visit
-                    </Link>
+                    <Link href="/contact">Schedule a Visit</Link>
                   </Button>
                 </div>
               </div>
@@ -356,14 +445,10 @@ export default function EducationalPathwayPage() {
             </div>
             <div className="flex gap-4">
               <Button variant="outline" asChild>
-                <Link href="/">
-                  ← Back to Home
-                </Link>
+                <Link href="/">← Back to Home</Link>
               </Button>
               <Button asChild>
-                <Link href="/admissions">
-                  Admissions Process →
-                </Link>
+                <Link href="/admissions">Admissions Process →</Link>
               </Button>
             </div>
           </div>
