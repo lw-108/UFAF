@@ -1,9 +1,11 @@
-// components/Hero243.tsx
 "use client";
 
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+
+const SPLINE_URL =
+  "https://my.spline.design/nexbotrobotcharacterconcept-quLQRzZpCb8v4Js4e5ISLgoE/";
 
 const Hero243 = () => {
   return (
@@ -20,8 +22,9 @@ const Hero243 = () => {
           />
 
           <p className="max-w-2xl mx-auto mt-6 text-lg text-center text-gray-600 dark:text-gray-300">
-            Join U Fill Academy's innovative programs and unlock your potential
-            with cutting-edge education technology and expert guidance.
+            Join U Fill Academy&apos;s innovative programs and unlock your
+            potential with cutting-edge education technology and expert
+            guidance.
           </p>
 
           <div className="mt-8 text-center">
@@ -34,40 +37,34 @@ const Hero243 = () => {
               }
             >
               Enroll Now
-              <span>
-                <ArrowRight className="w-5 h-5 mt-1" />
-              </span>
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
 
-          {/* Interactive 3D Model Section */}
+          {/* AUTO VISIBILITY OPTIMIZED 3D SECTION */}
           <div className="w-full max-w-5xl mx-auto mt-12 lg:mt-16">
-            <div className="relative overflow-hidden border border-gray-200 shadow-2xl rounded-2xl md:rounded-3xl dark:border-gray-800">
-              <div className="relative w-full aspect-4/3 md:aspect-video">
-                <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
-                  <iframe
-                    src="https://my.spline.design/nexbotrobotcharacterconcept-quLQRzZpCb8v4Js4e5ISLgoE/"
-                    className="absolute w-full h-[140%] -top-[15%]"
-                    title="AI Learning Assistant - Interactive 3D Model"
-                    style={{ border: "none" }}
-                    allow="accelerometer; gyroscope"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-
-                {/* Overlay Label */}
-                {/* <div className="absolute bottom-4 left-4">
-                  <span className="px-3 py-1 text-sm font-medium text-white rounded-full bg-black/50 backdrop-blur-xl">
-                    Interactive 3D Learning Assistant
-                  </span>
-                </div> */}
+            <div
+              className="relative overflow-hidden border border-gray-200 shadow-2xl rounded-2xl md:rounded-3xl dark:border-gray-800"
+              style={{
+                contentVisibility: "auto",
+                containIntrinsicSize: "720px", // prevents layout shift
+              }}
+            >
+              <div className="relative w-full aspect-video bg-black/5">
+                <iframe
+                  src={SPLINE_URL}
+                  title="AI Learning Assistant - Interactive 3D Model"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ border: "none" }}
+                  loading="lazy"
+                  allow="accelerometer; gyroscope"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </div>
 
             <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">
-              Experience our AI-powered learning assistant in 3D - Click and
-              drag to interact
+              3D content renders only when visible to ensure smooth performance
             </p>
           </div>
         </div>
