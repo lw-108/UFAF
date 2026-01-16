@@ -20,6 +20,7 @@ import {
   Calendar,
   MessageCircle,
   ChevronRight,
+  CircleQuestionMark,
   Sparkles,
 } from "lucide-react";
 import { NavbarWithMegaMenu } from "@/components/NavbarWithMegaMenu";
@@ -212,8 +213,10 @@ const FAQPage = () => {
         <div className="container relative px-4 mx-auto">
           <div className="max-w-3xl mx-auto text-center mt-15">
             <Badge className="px-4 py-2 mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              <HelpCircle className="w-18 h-18" /> {/* Custom size */}
-              Frequently Asked Questions
+              <span className="inline-flex items-center gap-2">
+                <CircleQuestionMark className="w-5 h-5" />
+                <span>Frequently Asked Questions</span>
+              </span>
             </Badge>
 
             <h1 className="mb-4 font-serif text-5xl tracking-tight md:text-7xl">

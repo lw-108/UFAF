@@ -41,20 +41,21 @@ const Hero243 = () => {
             </Button>
           </div>
 
-          {/* AUTO VISIBILITY OPTIMIZED 3D SECTION */}
-          <div className="w-full max-w-5xl mx-auto mt-12 lg:mt-16">
+          {/* 🔒 HIDDEN ON MOBILE | VISIBLE FROM TABLET UP */}
+          <div className="hidden w-full max-w-5xl mx-auto mt-12 md:block lg:mt-16">
             <div
               className="relative overflow-hidden border border-gray-200 shadow-2xl rounded-2xl md:rounded-3xl dark:border-gray-800"
               style={{
                 contentVisibility: "auto",
-                containIntrinsicSize: "720px", // prevents layout shift
+                containIntrinsicSize: "720px",
               }}
             >
-              <div className="relative w-full aspect-video bg-black/5">
+              <div className="relative w-full overflow-hidden aspect-video bg-black/5">
+                {/* ⬇️ MODEL MOVED DOWN TO HIDE SPLINE BADGE */}
                 <iframe
                   src={SPLINE_URL}
                   title="AI Learning Assistant - Interactive 3D Model"
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute w-full h-[120%] top-0 left-0"
                   style={{ border: "none" }}
                   loading="lazy"
                   allow="accelerometer; gyroscope"
@@ -64,7 +65,7 @@ const Hero243 = () => {
             </div>
 
             <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">
-              3D content renders only when visible to ensure smooth performance
+              Interactive 3D experience available on larger screens
             </p>
           </div>
         </div>

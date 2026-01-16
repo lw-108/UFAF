@@ -267,7 +267,7 @@ export default function MissionVision() {
       </div>
 
       {/* Impact Stats */}
-      <div className="max-w-6xl mx-auto mt-16">
+      {/* <div className="max-w-6xl mx-auto mt-16">
         <h3 className="mb-8 font-serif text-3xl font-bold text-center text-foreground">
           Our Impact So Far
         </h3>
@@ -293,7 +293,7 @@ export default function MissionVision() {
             <div className="text-sm text-muted-foreground">Success Rate</div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

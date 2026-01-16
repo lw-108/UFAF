@@ -249,7 +249,7 @@ const Footer7 = ({
                   <div className="flex flex-wrap gap-3">
                     <Badge variant="secondary" className="text-xs">
                       <FaCertificate className="w-3 h-3 mr-1" />
-                      ISO 9001:2015
+                      ISO 9001:2018
                     </Badge>
                     <Badge variant="secondary" className="text-xs">
                       <FaUsers className="w-3 h-3 mr-1" />

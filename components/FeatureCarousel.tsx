@@ -11,6 +11,7 @@ import { BookOpen, Users, Mic, Lightbulb, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Play, Pause } from "lucide-react";
+import Link from "next/link";
 
 const stages = [
   {
@@ -236,9 +237,15 @@ export const FeatureCarousel = () => {
                             </div>
 
                             <div className="pt-4">
-                              <Button variant="outline" className="gap-2">
-                                Learn More
-                                <span className="ml-2">→</span>
+                              <Button
+                                variant="outline"
+                                className="gap-2 mt-3"
+                                asChild
+                              >
+                                <Link href="/educational-pathway">
+                                  Learn More
+                                  <span className="ml-2">→</span>
+                                </Link>
                               </Button>
                             </div>
                           </div>

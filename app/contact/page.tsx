@@ -15,6 +15,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import { IconBrandWhatsapp } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -59,14 +60,14 @@ export default function ContactPage() {
                   </label>
                   <div className="relative">
                     <User className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
-                    <Input placeholder="John" className="pl-10" />
+                    <Input placeholder="Siddharth" className="pl-10" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">
                     Last Name
                   </label>
-                  <Input placeholder="Doe" />
+                  <Input placeholder="Abhimanyu" />
                 </div>
               </div>
 
@@ -78,12 +79,11 @@ export default function ContactPage() {
                   <MailIcon className="absolute w-4 h-4 left-3 top-3 text-muted-foreground" />
                   <Input
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="ufillacademy@gmail.com"
                     className="pl-10"
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground">
                   Phone Number
@@ -121,8 +121,8 @@ export default function ContactPage() {
           {/* Contact Information */}
           <div className="space-y-6">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/20">
-                <Mail className="w-6 h-6 text-primary" />
+              <div className="p-3 rounded-lg">
+                <Mail className="w-6 h-6 -mt-2 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold text-foreground">Email</h4>
@@ -133,14 +133,14 @@ export default function ContactPage() {
                   ufillacademy@gmail.com
                 </a>
                 <p className="text-sm text-muted-foreground">
-                  We reply within 24 hours
+                  We try to reply ASAP
                 </p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/20">
-                <Phone className="w-6 h-6 text-primary" />
+              <div className="p-3 rounded-lg">
+                <Phone className="w-6 h-6 -mt-2 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold text-foreground">Phone</h4>
@@ -151,12 +151,6 @@ export default function ContactPage() {
                   >
                     +91 8939976607
                   </a>
-                  <a
-                    href="tel:+917904281435"
-                    className="block transition-colors text-primary hover:text-primary/80 hover:underline"
-                  >
-                    +91 7904281435
-                  </a>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Mon-Fri, 9am-5pm IST
@@ -165,8 +159,8 @@ export default function ContactPage() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/20">
-                <MapPin className="w-6 h-6 text-primary" />
+              <div className="p-3 rounded-lg">
+                <MapPin className="w-6 h-6 -mt-2 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold text-foreground">
@@ -195,8 +189,8 @@ export default function ContactPage() {
 
             {/* Social Media Links */}
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/20">
-                <Globe2 className="w-6 h-6 text-primary" />
+              <div className="p-3 rounded-lg">
+                <Globe2 className="w-6 h-6 -mt-2.5 ml-1 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold text-foreground">
@@ -207,25 +201,25 @@ export default function ContactPage() {
                     href="https://wa.me/918939976607"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 transition-colors rounded-lg bg-green-500/20 hover:bg-green-500/30"
+                    className="p-2 transition-colors rounded-full hover:bg-green-500/30"
                     title="WhatsApp"
                   >
-                    <MessageCircle className="w-5 h-5 text-green-500" />
+                    <IconBrandWhatsapp className="w-5 h-5 text-green-500" />
                   </a>
                   <a
                     href="https://www.facebook.com/ufillacademy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 transition-colors rounded-lg bg-blue-500/20 hover:bg-blue-500/30"
+                    className="p-2 transition-colors rounded-full hover:bg-blue-500/30"
                     title="Facebook"
                   >
                     <Facebook className="w-5 h-5 text-blue-500" />
                   </a>
                   <a
-                    href="https://www.instagram.com/ufill_academy/"
+                    href="https://www.instagram.com/u_fill_academy/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 transition-colors rounded-lg bg-pink-500/20 hover:bg-pink-500/30"
+                    className="p-2 transition-colors rounded-full hover:bg-pink-500/30"
                     title="Instagram"
                   >
                     <Instagram className="w-5 h-5 text-pink-500" />
@@ -234,7 +228,7 @@ export default function ContactPage() {
                     href="https://www.linkedin.com/company/ufill-academy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 transition-colors rounded-lg bg-blue-700/20 hover:bg-blue-700/30"
+                    className="p-2 transition-colors rounded-full hover:bg-blue-700/30"
                     title="LinkedIn"
                   >
                     <Linkedin className="w-5 h-5 text-blue-700" />
@@ -283,6 +277,14 @@ export default function ContactPage() {
                 We accept all major credit cards, UPI, and bank transfers.
               </p>
             </div>
+          </div>
+          <div className="flex justify-end mt-8">
+            <a href="/faq">
+              <Button>
+                <MessageCircle className="w-4 h-4 mr-2" />
+                More FAQs
+              </Button>
+            </a>
           </div>
         </div>
 

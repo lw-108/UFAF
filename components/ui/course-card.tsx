@@ -37,7 +37,7 @@ export function CourseCard({
 }: CourseCardProps) {
   return (
     <Card className="relative overflow-hidden transition-all border-2 group hover:border-primary/50 hover:shadow-lg">
-      <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+      <div className="grid h-full grid-cols-1 md:grid-cols-2">
         
         {/* LEFT — Course Details */}
         <div className="flex flex-col justify-between">
@@ -61,7 +61,7 @@ export function CourseCard({
                 )}
               </div>
 
-              <Badge variant="outline" className="w-fit text-xs">
+              <Badge variant="outline" className="text-xs w-fit">
                 {category}
               </Badge>
             </div>
@@ -87,12 +87,20 @@ export function CourseCard({
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-6 mt-4">
-              <span className="text-2xl font-bold">{price}</span>
-              <Button className="bg-primary  hover:bg-primary/90">
-                Enroll Now
-              </Button>
-            </div>
+           <div className="flex items-center justify-between gap-6 mt-4">
+  <span className="text-2xl font-bold">{price}</span>
+
+  <a
+    href="https://wa.me/918939976607"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Button className="bg-primary hover:bg-primary/90">
+      Enroll Now
+    </Button>
+  </a>
+</div>
+
           </CardContent>
         </div>
 

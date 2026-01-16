@@ -242,7 +242,7 @@ const AboutPage = () => {
 
         {/* Impact Stats */}
         <div className="my-20">
-          <div className="p-8 rounded-2xl bg-linear-to-r from-primary/10 to-primary/5">
+          {/* <div className="p-8 rounded-2xl bg-linear-to-r from-primary/10 to-primary/5">
             <div className="mb-10 text-center">
               <h2 className="font-serif text-4xl tracking-tight md:text-5xl lg:text-5xl">
                 Our Impact
@@ -267,7 +267,7 @@ const AboutPage = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Programs Section */}

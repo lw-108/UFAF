@@ -12,6 +12,7 @@ import {
   BookHeartIcon,
   BookOpen,
   BookOpenCheck,
+  
   CircleQuestionMarkIcon,
   Clock3Icon,
   FileText,
@@ -94,12 +95,12 @@ const MEGA_MENU_SECTIONS = [
         icon: User,
         href: "/about",
       },
-      {
-        title: "Faculty",
-        description: "Meet our expert instructors and mentors.",
-        icon: Users,
-        href: "/faculty",
-      },
+      // {
+      //   title: "Faculty",
+      //   description: "Meet our expert instructors and mentors.",
+      //   icon: Users,
+      //   href: "/faculty",
+      // },
       {
         title: "Mission & Vision",
         description: "Learn about our mission and vision.",
@@ -112,12 +113,12 @@ const MEGA_MENU_SECTIONS = [
         icon: TriangleDashedIcon,
         href: "/testimonials",
       },
-      {
-        title: "Projects",
-        description: "Career opportunities and job placements.",
-        icon: FaRobot,
-        href: "/project",
-      },
+      // {
+      //   title: "Projects",
+      //   description: "Career opportunities and job placements.",
+      //   icon: FaRobot,
+      //   href: "/project",
+      // },
     ],
   },
   {
