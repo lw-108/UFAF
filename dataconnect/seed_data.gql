@@ -1,0 +1,75 @@
+mutation SeedDatabase @transaction @auth(level: NO_ACCESS) {
+  user_insertMany(
+    data: [
+      {
+        id: "676f6875-5873-4d61-a4cd-4b3692885791"
+        createdAt: "2024-04-26T12:00:00Z"
+        displayName: "John Doe"
+        email: "john.doe@example.com"
+        role: "applicant"
+      }
+      {
+        id: "090a34e9-9a70-4051-b572-9905c3094b7e"
+        createdAt: "2024-04-26T12:00:00Z"
+        displayName: "Jane Smith"
+        email: "jane.smith@example.com"
+        role: "reviewer"
+      }
+    ]
+  )
+  application_insertMany(
+    data: [
+      {
+        id: "1c4e22f7-52b6-4549-8496-5ce798053742"
+        applicantId: "676f6875-5873-4d61-a4cd-4b3692885791"
+        admissionYear: 2024
+        applyingCourseGrade: "A"
+        status: "pending"
+        submissionDate: "2024-04-26T12:00:00Z"
+      }
+    ]
+  )
+  student_insertMany(
+    data: [
+      {
+        id: "83b3d627-5392-4764-ba51-7052a5a74b3d"
+        applicationId: "1c4e22f7-52b6-4549-8496-5ce798053742"
+        addressLine1: "123 Main St"
+        city: "Anytown"
+        contactNumber: "555-1212"
+        country: "USA"
+        dateOfBirth: "2000-01-01"
+        email: "student@example.com"
+        fullName: "Student Name"
+        gender: "Male"
+        previousSchool: "High School"
+        state: "CA"
+        zipCode: "91234"
+      }
+    ]
+  )
+  guardian_insertMany(
+    data: [
+      {
+        id: "24f73264-78ee-46e1-9cf7-31e0e7a979e2"
+        applicationId: "1c4e22f7-52b6-4549-8496-5ce798053742"
+        contactNumber: "555-3434"
+        email: "guardian@example.com"
+        fullName: "Guardian Name"
+        occupation: "Teacher"
+        relationshipToStudent: "Parent"
+      }
+    ]
+  )
+  document_insertMany(
+    data: [
+      {
+        id: "5e8e974f-569b-499c-a7de-6a7a58f9e482"
+        applicationId: "1c4e22f7-52b6-4549-8496-5ce798053742"
+        documentType: "Transcript"
+        fileUrl: "http://example.com/transcript.pdf"
+        uploadTime: "2024-04-26T12:00:00Z"
+      }
+    ]
+  )
+}

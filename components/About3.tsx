@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, FC } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Volume2,
@@ -8,47 +9,57 @@ import {
   ChevronDown,
   ChevronUp,
   MoveUpRight,
+  Play,
+  Pause,
 } from "lucide-react";
-// import { Case1 } from "@/components/ui/Case1";
-import type { FC } from "react";
-import Image from "next/image";
 
-// Text content
+/* -------------------- Content -------------------- */
+
 const paragraphs = [
   {
-    text: "U Fill Academy is an educational initiative built on the principle of 'Education for All.' Our core motive is to serve society by providing free and accessible education to tribal students and children from economically weaker sections.",
+    text: "U Fill Academy is an educational initiative built on the principle of “Education for All.”Our core motive is to serve society by providing free and accessible education to tribalstudents and children from economically weaker sections.",
   },
   {
-    text: "We believe that every child deserves quality learning opportunities, regardless of background or financial status. By offering free academic support, tuition classes, and career guidance, U Fill Academy ensures that underprivileged students get equal access to knowledge and skills.",
+    text: "We believe that every child deserves quality learning opportunities, regardless ofbackground or financial status. By offering free academic support, tuition classes, and career guidance, U Fill Academy ensures that underprivileged students get equal access to knowledge and skills.",
   },
   {
     text: "Along with core academics, we also provide Co-Curricular (CCA) and Extra-Curricular (ECA) programs that help students grow holistically. From foundation classes, JEE/NEET/GATE guidance, to sports, arts, personality development, and skill training, we create an environment where learning is not just about passing exams, but also about building confidence, creativity, and character.",
   },
 ];
 
-// Achievements
-const defaultAchievements = [
-  { label: "Students Impacted", value: "2000+" },
-  { label: "Free Classes", value: "500+" },
-  { label: "Mentors & Volunteers", value: "60+" },
-  { label: "Communities Served", value: "15+" },
-];
+/* -------------------- Video Player Component -------------------- */
 
-// Simple Local Video Player with Mute/Unmute Only
-const LocalVideoPlayer = () => {
+interface VideoPlayerProps {
+  onTogglePlay?: (playing: boolean) => void;
+}
+
+const VideoPlayer: FC<VideoPlayerProps> = ({ onTogglePlay }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
     }
+
+    const newState = !isPlaying;
+    setIsPlaying(newState);
+    onTogglePlay?.(newState);
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-black rounded-2xl">
-      {/* Video Element - Auto-plays, loops, initially muted */}
+    <div className="relative w-full h-full overflow-hidden rounded-3xl group">
       <video
         ref={videoRef}
         className="absolute inset-0 object-cover w-full h-full"
@@ -60,150 +71,295 @@ const LocalVideoPlayer = () => {
       >
         <source src="/vids/aiaiai.mp4" type="video/mp4" />
         <source src="/vids/aiaiai.webm" type="video/webm" />
-        Your browser does not support the video tag.
       </video>
 
-      {/* Mute/Unmute Button Only */}
-      <button
-        onClick={toggleMute}
-        className="absolute p-3 transition-all rounded-full shadow-lg bg-white/90 backdrop-blur-sm bottom-4 left-4 hover:scale-110 hover:bg-white"
-        aria-label={isMuted ? "Unmute video" : "Mute video"}
-      >
-        {isMuted ? (
-          <VolumeX className="w-5 h-5 text-gray-700" />
-        ) : (
-          <Volume2 className="w-5 h-5 text-gray-700" />
-        )}
-      </button>
+      {/* linear Overlay */}
+      <div className="absolute inset-0 bg-linear-to-t from-white/40 via-transparent to-transparent opacity-60" />
+
+      {/* Controls Container */}
+      <div className="absolute flex items-center gap-3 bottom-6 left-6">
+        {/* Play/Pause Button */}
+        <button
+          onClick={togglePlay}
+          className="flex items-center justify-center w-12 h-12 transition-all rounded-full shadow-lg bg-white/20 hover:scale-105 backdrop-blur-sm hover:bg-white/30"
+          aria-label={isPlaying ? "Pause video" : "Play video"}
+        >
+          {isPlaying ? (
+            <Pause className="w-5 h-5" />
+          ) : (
+            <Play className="w-5 h-5" />
+          )}
+        </button>
+
+        {/* Mute Button */}
+        <button
+          onClick={toggleMute}
+          className="flex items-center justify-center w-10 h-10 transition-all rounded-full shadow-lg bg-white/20 hover:scale-105 backdrop-blur-sm hover:bg-white/30"
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
+        >
+          {isMuted ? (
+            <VolumeX className="w-4 h-4" />
+          ) : (
+            <Volume2 className="w-4 h-4" />
+          )}
+        </button>
+
+        {/* Video Label */}
+        <div className="px-3 py-1.5 text-sm font-medium rounded-full bg-white/10 backdrop-blur-sm">
+          Our Story Video
+        </div>
+      </div>
     </div>
   );
 };
 
-export const About3: FC = () => {
-  const [expanded, setExpanded] = useState(false);
+/* -------------------- Media Card Component -------------------- */
+
+interface MediaCardProps {
+  src: string;
+  alt: string;
+  title?: string;
+  subtitle?: string;
+  aspectRatio?: "square" | "portrait" | "landscape";
+  className?: string;
+}
+
+const MediaCard: FC<MediaCardProps> = ({
+  src,
+  alt,
+  title,
+  subtitle,
+  aspectRatio = "square",
+  className = "",
+}) => {
+  const aspectClasses = {
+    square: "aspect-square",
+    portrait: "aspect-[3/4]",
+    landscape: "aspect-[4/3]",
+  };
 
   return (
-    <section className="w-full min-h-screen py-20">
-      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
-            <span className="text-sm font-semibold">Our Story</span>
-          </div>
-          
+    <div className={`relative overflow-hidden rounded-3xl group ${className}`}>
+      <div className={`relative ${aspectClasses[aspectRatio]}`}>
+        {/* Image with proper object-contain */}
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain p-8 transition-all duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
+        />
+
+        {/* Subtle linear overlay */}
+        <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-linear-to-t from-white/5 to-transparent group-hover:opacity-100" />
+      </div>
+
+      {/* Text Overlay (only if title or subtitle provided) */}
+      {(title || subtitle) && (
+        <div className="absolute inset-x-0 bottom-0 p-6 text-white bg-linear-to-t from-[blue]/80 via-[blue]/40 to-transparent">
+          {title && (
+            <h3 className="text-xl font-semibold leading-tight text-black dark:text-white">
+              {title}
+            </h3>
+          )}
+          {subtitle && (
+            <p className="mt-1 text-sm text-black opacity-90 dark:text-white">
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* -------------------- Main About Section -------------------- */
+
+export const About3: FC = () => {
+  const [expanded, setExpanded] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(true);
+
+  return (
+    <section className="relative w-full py-24 overflow-hidden bg-background">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-background" />
+
+      <div className="container relative px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="max-w-5xl mx-auto mb-20 text-center">
           <h1 className="mb-6 font-serif text-4xl leading-tight md:text-5xl lg:text-6xl">
             About <span className="text-primary">U Fill Academy</span>
           </h1>
 
-          {/* About Text Box */}
-          <div className={`max-w-3xl mx-auto mb-8 p-6 rounded-2xl bg-transparent border border-white/20 border-dashed shadow-sm transition-all duration-500 ${
-            expanded ? "max-h-125" : "max-h-50"
-          } overflow-hidden`}>
-            <div className="space-y-4 leading-relaxed text-black dark:text-white">
+          {/* Expandable Text Card */}
+          <div className="relative p-8 mb-8 border border-dashed border-white/20 rounded-3xl bg-background/backdrop-blur-sm">
+            <div className="space-y-5 text-lg leading-relaxed text-foreground">
               {paragraphs.map((p, i) => (
-                <p key={i} className={i > 0 && !expanded ? "hidden" : ""}>
+                <p
+                  key={i}
+                  className={`transition-all duration-500 ${i > 0 && !expanded ? "max-h-0 overflow-hidden opacity-0" : "max-h-96 opacity-100"}`}
+                >
                   {p.text}
                 </p>
               ))}
             </div>
+
+            {/* linear fade for read more */}
+            {!expanded && (
+              <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none bg-linear-to-t from-background to-transparent" />
+            )}
           </div>
 
-          {/* Show More Button */}
+          {/* Read More Toggle */}
           <button
             onClick={() => setExpanded(!expanded)}
-            className="inline-flex items-center gap-2 px-4 py-2 transition-colors text-primary hover:text-primary/80"
+            className="inline-flex items-center gap-2 px-4 py-2 transition-all rounded-full hover:bg-primary/10"
           >
-            {expanded ? "Show Less" : "Read More"}
+            <span className="font-medium text-primary">
+              {expanded ? "Show Less" : "Read More"}
+            </span>
             {expanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
           </button>
         </div>
 
-        {/* Carousel */}
-        {/* <div className="mb-20">
-          <Case1 />
-        </div> */}
-
-        {/* Video + Image Section */}
-        <div className="grid gap-8 mb-20 lg:grid-cols-3">
-          {/* Video Section */}
-          <div className="lg:col-span-2">
-            <div className="relative overflow-hidden shadow-xl rounded-2xl">
-              <div className="relative aspect-video">
-                {/* Use Local Video Player Component */}
-                <LocalVideoPlayer />
+        {/* Bento Grid Section - Clean Layout */}
+        <div className="mb-24">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {/* Video - Full width */}
+            <div className="lg:col-span-3 aspect-video">
+              <div className="relative h-full overflow-hidden rounded-3xl bg-linear-to-br from-primary/10 to-primary/5">
+                <VideoPlayer onTogglePlay={setVideoPlaying} />
               </div>
             </div>
-          </div>
 
-          {/* Right Side Content */}
-          <div className="flex flex-col gap-8">
-            {/* Logo Card */}
-            <div className="p-6 border border-dashed rounded-2xl bg-background border-white/20">
-              <div className="relative w-32 h-32 mx-auto mb-4">
-                <Image 
-                  src="/u-robo.png" 
-                  alt="U Fill Academy Logo" 
-                  fill
-                  className="object-contain drop-shadow-lg"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-              <h3 className="mb-3 text-xl font-bold text-center text-black dark:text-white">
-                Innovation That Matters
-              </h3>
-              <p className="mb-6 text-center text-gray-600">
-                We build educational solutions that transform lives.
-              </p>
-              <Button variant="outline" className="w-full gap-2">
-                Explore More <MoveUpRight className="w-4 h-4" />
-              </Button>
-            </div>
-
-            {/* Optional Image */}
-            {/* <div className="relative flex-1 min-h-[200px] rounded-2xl overflow-hidden shadow-lg">
-              <Image
-                src="/about-students.jpg"
-                alt="Our students learning"
-                fill
-                className="object-cover transition-transform duration-700 hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
+            {/* Top Row - Two equal cards */}
+            <div className="lg:col-span-1">
+              <MediaCard
+                src="/learningurobo.png"
+                alt="Students learning with robot"
+                title="Interactive Learning"
+                subtitle="AI-powered education for all"
+                aspectRatio="portrait"
+                className="h-full bg-background"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent"></div>
+            </div>
+
+            <div className="lg:col-span-1">
+              <MediaCard
+                src="/teachingurobo.png"
+                alt="Teaching session with robot"
+                title="Expert Guidance"
+                subtitle="Personalized mentoring approach"
+                aspectRatio="portrait"
+                className="h-full bg-background"
+              />
+            </div>
+
+            <div className="lg:col-span-1">
+              <MediaCard
+                src="/coupleurobo.png"
+                alt="Community learning with robots"
+                title="Community Building"
+                subtitle="Education that uplifts families"
+                aspectRatio="portrait"
+                className="h-full bg-background"
+              />
+            </div>
+
+            {/* Bottom Row - Stats and Mission */}
+            <div className="lg:col-span-2">
+              <div className="grid h-full grid-cols-2 gap-6">
+                {/* Stats Card */}
+                {/* <div className="flex flex-col items-center justify-center p-8 rounded-3xl bg-linear-to-br from-amber-50 to-amber-100">
+                  <div className="text-5xl font-bold text-amber-600">1000+</div>
+                  <div className="mt-2 text-lg font-semibold text-center text-amber-700">
+                    Students Empowered
+                  </div>
+                  <div className="mt-2 text-sm text-center text-amber-600">
+                    Since 2020
+                  </div>
+                </div> */}
+
+                {/* Additional Stats */}
+                {/* <div className="flex flex-col items-center justify-center p-8 rounded-3xl bg-linear-to-br from-indigo-50 to-indigo-100">
+                  <div className="text-5xl font-bold text-indigo-600">50+</div>
+                  <div className="mt-2 text-lg font-semibold text-center text-indigo-700">
+                    Expert Educators
+                  </div>
+                  <div className="mt-2 text-sm text-center text-indigo-600">
+                    Dedicated Faculty
+                    </div>
+                </div> */}
+              </div>
+            </div>
+
+            {/* <div className="lg:col-span-1">
+              <div className="flex flex-col justify-center h-full p-8 rounded-3xl bg-linear-to-br from-rose-50 to-rose-100">
+                <h3 className="mb-4 text-2xl font-bold text-rose-700">
+                  Education For All
+                </h3>
+                <p className="mb-6 text-rose-600">
+                  Free quality education for tribal & underprivileged students
+                </p>
+                <div className="mt-auto">
+                  <button className="inline-flex items-center justify-center w-full gap-2 px-6 py-3 text-sm font-medium transition-all rounded-full bg-rose-600 text-rose-50 hover:bg-rose-700">
+                    <MoveUpRight className="w-4 h-4" />
+                    Join Our Mission
+                  </button>
+                </div>
+              </div>
             </div> */}
           </div>
         </div>
 
-        {/* Achievements */}
-        {/* <div className="text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full bg-primary/10 text-primary border-primary/20">
-            <span className="text-sm font-semibold">Our Impact</span>
-          </div>
-          
-          <h2 className="mb-6 font-serif text-3xl md:text-4xl lg:text-5xl">
-            Transforming Education, Transforming Lives
-          </h2>
-          
-          <p className="max-w-2xl mx-auto mb-12 text-lg text-gray-600">
-            We are continuously working towards empowering underserved communities through education.
-          </p>
+        {/* CTA Section */}
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl bg-background">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5" />
 
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {defaultAchievements.map((achievement, index) => (
-              <div 
-                key={index}
-                className="p-6 transition-shadow duration-300 bg-transparent shadow-sm text-serif rounded-2xl hover:shadow-md"
-              >
-                <div className="mb-2 text-4xl font-bold text-serif text-primary">
-                  {achievement.value}
-                </div>
-                <div className="font-medium text-gray-600">
-                  {achievement.label}
+            <div className="relative grid items-center gap-10 p-12 md:grid-cols-2">
+              <div className="relative flex justify-center">
+                <div className="relative w-48 h-48">
+                  <Image
+                    src="/u-robo.png"
+                    alt="U Fill Academy Logo"
+                    fill
+                    className="z-20 object-contain drop-shadow-2xl"
+                    priority
+                  />
+                  <div className="absolute inset-0 rounded-full animate-pulse bg-linear-to-br from-primary to-transparent" />
                 </div>
               </div>
-            ))}
+
+              <div>
+                <h3 className="mb-4 text-3xl font-bold">
+                  Innovation That Empowers
+                </h3>
+                <p className="mb-6 text-lg text-muted-foreground">
+                  We build inclusive educational ecosystems that uplift
+                  underserved communities and unlock lifelong opportunities.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href="/missionandvision"
+                    target="_self"
+                    rel="noopener noreferrer"
+                  >
+                    <Button size="lg" className="gap-2">
+                      Explore Our Mission <MoveUpRight className="w-4 h-4" />
+                    </Button>
+                  </a>
+                  <a href="/U-Fill-Academy-Brochure.pdf" download>
+                    <Button size="lg" variant="outline" className="gap-2">
+                      Download Brochure
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </section>
   );

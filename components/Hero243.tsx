@@ -30,7 +30,7 @@ const Hero243 = () => {
           <div className="mt-8 text-center">
             <Button
               size="lg"
-              className="px-8 py-6 text-lg font-semibold text-white rounded-full bg-primary hover:bg-primary/90"
+              className="px-8 py-6 text-lg font-semibold text-white rounded-lg bg-primary hover:bg-primary/90"
               onClick={() =>
                 (window.location.href =
                   "https://docs.google.com/forms/d/e/1FAIpQLScG3nDXAdVCfPN0fZbw_i72XbvapbCYzYSBtxlm6o2IHPQygg/viewform")

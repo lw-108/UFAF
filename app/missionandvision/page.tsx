@@ -41,7 +41,7 @@ export default function MissionVision() {
       {/* 🔥 Single Full Width Image with Overlay */}
       <div className="relative max-w-6xl mx-auto mt-16 overflow-hidden rounded-2xl h-100 group">
         <Image
-          src="/forest.png"
+          src="/BANNER.png"
           alt="Mission Vision Background"
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"

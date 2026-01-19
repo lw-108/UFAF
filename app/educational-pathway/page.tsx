@@ -225,7 +225,7 @@ export default function EducationalPathwayPage() {
       <section className="py-20">
         <div className="container px-4 mx-auto">
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 gap-8 mb-20 lg:grid-cols-3">
+            {/* <div className="grid grid-cols-1 gap-8 mb-20 lg:grid-cols-3">
               <div className="p-6 border rounded-3xl">
                 <div className="text-4xl font-bold text-primary">05</div>
                 <h3 className="mt-4 text-xl font-semibold">
@@ -249,7 +249,7 @@ export default function EducationalPathwayPage() {
                   Academic, social, emotional, and creative development
                 </p>
               </div>
-            </div>
+            </div> */}
 
             {/* Stages Grid */}
             <div id="explore-pathway" className="space-y-8">
@@ -311,7 +311,7 @@ export default function EducationalPathwayPage() {
                                     <div
                                       className={`w-1.5 h-1.5 rounded-full ${stage.bgColor.replace(
                                         "bg-",
-                                        "bg-"
+                                        "bg-",
                                       )}`}
                                     />
                                     <span>{item}</span>
@@ -334,7 +334,7 @@ export default function EducationalPathwayPage() {
                                       <div
                                         className={`w-1.5 h-1.5 rounded-full ${stage.bgColor.replace(
                                           "bg-",
-                                          "bg-"
+                                          "bg-",
                                         )}`}
                                       />
                                       <span>{item}</span>
@@ -395,11 +395,11 @@ export default function EducationalPathwayPage() {
                           </div>
                         </div>
 
-                        <div className="absolute bottom-8 left-8">
+                        {/* <div className="absolute bottom-8 left-8">
                           <div className="text-sm text-muted-foreground">
                             U Fill Academy • Stage {index + 1}
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -420,11 +420,15 @@ export default function EducationalPathwayPage() {
                   success.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 mt-8">
-                  <Button asChild>
-                    <Link href="/admissions">Begin Your Journey</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/contact">Schedule a Visit</Link>
+                  <Button
+                    size="lg"
+                    className="px-8 py-6 text-lg font-semibold text-white rounded-lg bg-primary hover:bg-primary/90"
+                    onClick={() =>
+                      (window.location.href =
+                        "https://docs.google.com/forms/d/e/1FAIpQLScG3nDXAdVCfPN0fZbw_i72XbvapbCYzYSBtxlm6o2IHPQygg/viewform")
+                    }
+                  >
+                    Begin Your Journey
                   </Button>
                 </div>
               </div>

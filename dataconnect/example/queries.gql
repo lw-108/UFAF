@@ -1,0 +1,43 @@
+mutation CreateApplication(
+  $applicantId: UUID!
+  $admissionYear: Int!
+  $applyingCourseGrade: String!
+  $status: String!
+  $submissionDate: Timestamp!
+) @auth(level: USER) {
+  application_insert(
+    data: {
+      applicantId: $applicantId
+      admissionYear: $admissionYear
+      applyingCourseGrade: $applyingCourseGrade
+      status: $status
+      submissionDate: $submissionDate
+    }
+  )
+}
+
+query GetApplication($id: UUID!) @auth(level: USER) {
+  application(id: $id) {
+    id
+    applicantId
+    admissionYear
+    applyingCourseGrade
+    status
+    submissionDate
+  }
+}
+
+mutation UpdateApplicationStatus($id: UUID!, $status: String!) @auth(level: USER) {
+  application_update(id: $id, data: { status: $status })
+}
+
+query ListApplications @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  applications {
+    id
+    applicantId
+    admissionYear
+    applyingCourseGrade
+    status
+    submissionDate
+  }
+}

@@ -1,0 +1,56 @@
+type User @table {
+  displayName: String!
+  email: String!
+  role: String!
+  photoUrl: String
+  createdAt: Timestamp
+  updatedAt: Timestamp
+}
+
+type Application @table {
+  applicant: User
+  applyingCourseGrade: String!
+  admissionYear: Int!
+  submissionDate: Timestamp!
+  status: String!
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  adminRemarks: String
+  reviewTimestamp: Timestamp
+  approvedByUser: User
+}
+
+type Student @table {
+  application: Application
+  fullName: String!
+  dateOfBirth: Date!
+  gender: String!
+  contactNumber: String!
+  email: String!
+  addressLine1: String!
+  city: String!
+  state: String!
+  zipCode: String!
+  country: String!
+  previousSchool: String!
+  addressLine2: String
+}
+
+type Guardian @table {
+  application: Application
+  fullName: String!
+  relationshipToStudent: String!
+  contactNumber: String!
+  email: String!
+  occupation: String!
+}
+
+type Document @table {
+  application: Application
+  documentType: String!
+  fileUrl: String!
+  uploadTime: Timestamp!
+  verificationStatus: String
+  verifiedByUser: User
+  verificationRemarks: String
+}

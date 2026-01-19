@@ -79,7 +79,6 @@ export const FeatureCarousel = () => {
     });
   }, [api]);
 
-  // Auto-slide effect
   useEffect(() => {
     if (!api || !isPlaying) return;
 
@@ -87,9 +86,9 @@ export const FeatureCarousel = () => {
       if (api.canScrollNext()) {
         api.scrollNext();
       } else {
-        api.scrollTo(0); // Reset to first slide
+        api.scrollTo(0);
       }
-    }, 5000); // 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [api, isPlaying]);
@@ -127,7 +126,6 @@ export const FeatureCarousel = () => {
   return (
     <section className="w-full py-24 border border-t-0 border-l-0 border-r-0 border-dashed rounded-4xl lg:py-40 bg-background border-white/20">
       <div className="container px-4 mx-auto">
-        {/* Header */}
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h2 className="font-serif text-4xl leading-tight tracking-tight md:text-5xl lg:text-7xl md:leading-tight">
             Our Progressive
@@ -142,9 +140,7 @@ export const FeatureCarousel = () => {
           </p>
         </div>
 
-        {/* Carousel Container */}
         <div className="relative">
-          {/* Navigation Controls */}
           <div className="absolute z-10 flex items-center gap-3 -top-15 right-4">
             <Button
               variant="outline"
@@ -178,7 +174,6 @@ export const FeatureCarousel = () => {
             </div>
           </div>
 
-          {/* Carousel */}
           <Carousel
             setApi={setApi}
             className="w-full max-w-4xl mx-auto"
@@ -195,29 +190,42 @@ export const FeatureCarousel = () => {
                     className={`p-1 rounded-3xl overflow-hidden bg-linear-to-br ${stage.color} border shadow-lg`}
                   >
                     <div className="overflow-hidden bg-background rounded-2xl">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-120">
-                        {/* Left Content */}
-                        <div className="flex flex-col justify-between p-10 lg:p-12">
+                      {/* Mobile: Image on Top */}
+                      <div className="block lg:hidden">
+                        <div className="relative h-64">
+                          <Image
+                            src={stage.image}
+                            alt={stage.title}
+                            fill
+                            className="object-cover"
+                            sizes="100vw"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 lg:grid-cols-2">
+                        {/* Content */}
+                        <div className="p-10 lg:p-12">
                           <div className="space-y-6">
                             <div className="flex items-start justify-between">
-                              <div className="space-y-2 -top-6">
+                              <div className="space-y-2 -top-20">
                                 <div
-                                  className={`inline-flex items-center justify-center p-3 rounded-xl ${stage.color
-                                    .replace("from-", "bg-")
-                                    .replace(" to-", "/20")} mb-4`}
+                                  className={`inline-flex items-center justify-center p-3 -top-20 rounded-xl ${
+                                    stage.color
+                                      .replace("from-", "bg-")
+                                      .replace(" to-", "/20")
+                                  } mb-4`}
                                 >
                                   <stage.icon
                                     className={`h-7 w-7 ${stage.iconColor}`}
                                   />
                                 </div>
-                                <span className="relative px-3 py-1 text-sm font-medium -translate-y-1/2 rounded-full -top-2 text-primary bg-primary/10">
+                                <span className="px-3 py-1 text-sm font-medium rounded-full text-primary bg-primary/10">
                                   {stage.stage}
                                 </span>
                               </div>
-                              <div className="text-right">
-                                <div className="font-mono text-2xl top-6">
-                                  {String(index + 1).padStart(2, "0")}/05
-                                </div>
+                              <div className="font-mono text-2xl">
+                                {String(index + 1).padStart(2, "0")}/05
                               </div>
                             </div>
 
@@ -236,52 +244,47 @@ export const FeatureCarousel = () => {
                               </p>
                             </div>
 
-                            <div className="pt-4">
-                              <Button
-                                variant="outline"
-                                className="gap-2 mt-3"
-                                asChild
-                              >
-                                <Link href="/educational-pathway">
-                                  Learn More
-                                  <span className="ml-2">→</span>
-                                </Link>
-                              </Button>
-                            </div>
+                            <Button
+                              variant="outline"
+                              className="gap-2"
+                              asChild
+                            >
+                              <Link href="/educational-pathway">
+                                Learn More
+                                <span className="ml-2">→</span>
+                              </Link>
+                            </Button>
                           </div>
                         </div>
 
-                        {/* Right Image */}
-                        <div className="relative overflow-hidden bg-background">
-                          <div className="absolute inset-0 flex items-center justify-center p-8">
-                            <div className="relative w-64 h-64 lg:w-80 lg:h-80">
-                              {/* Image container with gradient background */}
-                              <div className="absolute inset-0 overflow-hidden border rounded-4xl bg-background">
-                                {/* Image - Replace the stage.image with your actual image source */}
-                                <Image
-                                  src={stage.image} // or your specific image path like "/images/stage1.jpg"
-                                  alt={stage.title || "Process stage"}
-                                  fill
-                                  className="object-cover transition-transform duration-500 hover:scale-105"
-                                  sizes="(max-width: 1024px) 256px, 320px"
-                                  priority={false}
-                                />
-                              </div>
+                        {/* Desktop: Image on Right */}
+                        <div className="relative hidden lg:block">
+                          <div className="absolute inset-0 p-8">
+                            <div className="relative w-full h-full">
+                              <Image
+                                src={stage.image}
+                                alt={stage.title}
+                                fill
+                                className="object-contain"
+                                sizes="50vw"
+                              />
                             </div>
                           </div>
-                          <div className="absolute bottom-6 left-6">
-                            <div className="text-xs text-muted-foreground">
-                              U Fill Academy • Age Group:{" "}
-                              {index === 0
-                                ? "3-5"
-                                : index === 1
-                                ? "6-10"
-                                : index === 2
-                                ? "11-14"
-                                : "15-18"}{" "}
-                              years
-                            </div>
-                          </div>
+                        </div>
+                      </div>
+
+                      {/* Age Group Info */}
+                      <div className="p-6 border-t">
+                        <div className="text-sm text-muted-foreground">
+                          U Fill Academy • Age Group:{" "}
+                          {index === 0
+                            ? "3-5"
+                            : index === 1
+                            ? "6-10"
+                            : index === 2
+                            ? "11-14"
+                            : "15-18"}{" "}
+                          years
                         </div>
                       </div>
                     </div>
@@ -291,39 +294,7 @@ export const FeatureCarousel = () => {
             </CarouselContent>
           </Carousel>
 
-          {/* Progress Indicators */}
           <div className="flex flex-col items-center gap-6 mt-12">
-            {/*<div className="flex items-center gap-3">
-              {stages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`flex flex-col items-center gap-2 transition-all ${
-                    current === index ? "opacity-100" : "opacity-50 hover:opacity-75"
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        current === index ? "w-8 bg-primary" : "w-2 bg-primary/30"
-                      }`}
-                    />
-                    {current === index && (
-                      <span className="text-xs font-medium text-primary">
-                        {stages[index].stage}
-                      </span>
-                    )}
-                  </div>
-                  {current === index && (
-                    <span className="text-xs text-muted-foreground">
-                      Auto-advance in {isPlaying ? "5s" : "Paused"}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div> */}
-
-            {/* Slide Counter & Timer */}
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <div
@@ -358,7 +329,6 @@ export const FeatureCarousel = () => {
           </div>
         </div>
 
-        {/* Footer Note */}
         <div className="max-w-2xl mx-auto mt-16 text-center">
           <p className="text-sm text-muted-foreground">
             Each stage builds upon the previous, ensuring a continuous learning
